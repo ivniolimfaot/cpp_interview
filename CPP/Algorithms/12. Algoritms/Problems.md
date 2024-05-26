@@ -28384,3 +28384,220 @@ In this implementation:
 - Finally, we print the grid before and after the flood fill operation.
 
 You can adjust the grid, starting point, and new color as needed to experiment with different scenarios.
+
+### 1. Algorithms & Data Structures (C++): DQUERY SPOJ using Mo's Algorithm
+
+Solving the DQUERY problem on SPOJ using Mo's Algorithm can be an interesting challenge. Mo's Algorithm is an offline algorithm used to process range queries offline, meaning that it's suitable when you have all the queries in advance and can process them in any order.
+
+Here's a general outline of how you can implement Mo's Algorithm to solve the DQUERY problem:
+
+1. **Input**: Read the input, which consists of an array of N integers and M queries. Each query is represented by two integers L and R, denoting the range for which you need to find distinct elements.
+
+2. **Preprocessing**: Sort the queries based on the block to which they belong. Each query's block is determined by the value L / block_size, where block_size is some appropriate value. Additionally, sort the array elements if they are not already sorted.
+
+3. **Initialize**: Initialize data structures and variables needed for processing queries.
+
+4. **Mo's Algorithm Processing**: Iterate through each query. For each query, move the left and right pointers to accommodate the current query. As you move from one query to the next, update your data structures to reflect the changes in the range.
+
+5. **Output**: For each query, output the number of distinct elements in the range.
+
+Here's a sample implementation in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include <unordered_map>
+
+using namespace std;
+
+#define MAXN 30005
+#define MAXQ 200005
+#define BLOCK_SIZE 175 // Experiment with block size
+
+struct Query {
+    int id, l, r;
+};
+
+int freq[MAXN]; // frequency array to count occurrences of elements
+int ans[MAXQ]; // to store the answer of each query
+int arr[MAXN]; // input array
+Query queries[MAXQ];
+
+bool compare(Query a, Query b) {
+    // Comparator function to sort queries based on the block
+    if (a.l / BLOCK_SIZE != b.l / BLOCK_SIZE)
+        return a.l / BLOCK_SIZE < b.l / BLOCK_SIZE;
+    return a.r < b.r;
+}
+
+void add(int idx, int& cnt) {
+    // Update data structures when including a new element at idx
+    if (freq[arr[idx]] == 0)
+        cnt++;
+    freq[arr[idx]]++;
+}
+
+void remove(int idx, int& cnt) {
+    // Update data structures when excluding an element at idx
+    freq[arr[idx]]--;
+    if (freq[arr[idx]] == 0)
+        cnt--;
+}
+
+void processQueries(int n, int m) {
+    sort(queries, queries + m, compare);
+    
+    int currL = 0, currR = -1;
+    int distinctCount = 0;
+
+    for (int i = 0; i < m; i++) {
+        int L = queries[i].l;
+        int R = queries[i].r;
+
+        while (currL > L) {
+            currL--;
+            add(currL, distinctCount);
+        }
+        while (currR < R) {
+            currR++;
+            add(currR, distinctCount);
+        }
+        while (currL < L) {
+            remove(currL, distinctCount);
+            currL++;
+        }
+        while (currR > R) {
+            remove(currR, distinctCount);
+            currR--;
+        }
+
+        ans[queries[i].id] = distinctCount;
+    }
+}
+
+int main() {
+    int n, m;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+
+    cin >> m;
+
+    for (int i = 0; i < m; i++) {
+        cin >> queries[i].l >> queries[i].r;
+        queries[i].id = i;
+    }
+
+    processQueries(n, m);
+
+    for (int i = 0; i < m; i++)
+        cout << ans[i] << endl;
+
+    return 0;
+}
+```
+
+This code assumes that the maximum array size is 30005 and the maximum number of queries is 200005. Adjust these constants according to the constraints given in the problem statement. Additionally, you may need to modify the BLOCK_SIZE constant based on experimentation for optimal performance.
+
+Remember to thoroughly test your implementation with various test cases to ensure correctness and efficiency.
+
+### 1. Algorithms & Data Structures (C++): DQUERY using Fenwick Tree
+
+Sure, let's discuss how to solve the "DQUERY" problem using Fenwick Tree (also known as Binary Indexed Tree or BIT) in C++.
+
+The "DQUERY" problem is a classic problem on online judges like SPOJ. Here's a brief overview of the problem:
+
+You are given an array of \( N \) integers. You have to answer \( Q \) queries. Each query is defined by two integers \( l \) and \( r \), and you need to find the number of distinct elements in the subarray \( A[l, r] \).
+
+Here's how you can solve this problem efficiently using a Fenwick Tree:
+
+1. Create a Fenwick Tree of size \( N \) to store the frequencies of elements in the array.
+2. Initialize another array to keep track of the last occurrence of each element.
+3. Process each query:
+   * For each query \( l, r \), iterate from \( l \) to \( r \) and update the Fenwick Tree and the last occurrence array.
+   * Count the distinct elements by subtracting the cumulative frequency at the last occurrence of each element before \( l \) from the cumulative frequency at \( r \).
+
+Here's a sample implementation in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <map>
+using namespace std;
+
+// Fenwick Tree class
+class FenwickTree {
+private:
+    vector<int> tree;
+public:
+    FenwickTree(int size) : tree(size + 1, 0) {}
+
+    void update(int index, int val) {
+        for (; index < tree.size(); index += index & -index)
+            tree[index] += val;
+    }
+
+    int query(int index) {
+        int sum = 0;
+        for (; index > 0; index -= index & -index)
+            sum += tree[index];
+        return sum;
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> a(n + 1); // 1-indexed array
+    map<int, int> last_occurrence;
+
+    for (int i = 1; i <= n; ++i) {
+        cin >> a[i];
+        last_occurrence[a[i]] = 0; // Initialize last occurrence for each element
+    }
+
+    int q;
+    cin >> q;
+
+    vector<pair<int, pair<int, int>>> queries(q); // (index, (l, r))
+    vector<int> result(q);
+
+    for (int i = 0; i < q; ++i) {
+        cin >> queries[i].second.first >> queries[i].second.second;
+        queries[i].first = i;
+    }
+
+    sort(queries.begin(), queries.end());
+
+    FenwickTree fenwick(n);
+    int curr_index = 1;
+
+    for (int i = 0; i < q; ++i) {
+        auto [index, lr] = queries[i];
+        int l = lr.first, r = lr.second;
+
+        while (curr_index <= r) {
+            if (last_occurrence[a[curr_index]] != 0) {
+                fenwick.update(last_occurrence[a[curr_index]], -1);
+            }
+            last_occurrence[a[curr_index]] = curr_index;
+            fenwick.update(curr_index, 1);
+            curr_index++;
+        }
+
+        result[index] = fenwick.query(r) - fenwick.query(l - 1);
+    }
+
+    for (int i = 0; i < q; ++i) {
+        cout << result[i] << endl;
+    }
+
+    return 0;
+}
+```
+
+This code first reads the input array, then processes the queries one by one using Fenwick Tree to efficiently compute the number of distinct elements in each subarray. Finally, it prints the results of all queries.
