@@ -1,356 +1,50 @@
-### 1. Algorithms & Data Structures (C++): Data Structures: Trees
-
-Sure, I can provide you with an overview of trees in the context of algorithms and data structures.
-
-**Trees** are hierarchical data structures composed of nodes. Each tree has a root node (the topmost node) and zero or more child nodes. Nodes are connected by edges. The node at the top is called the **root**, and nodes with no children are called **leaves**.
-
-There are various types of trees, each with its own rules about how nodes are organized:
-
-1. **Binary Tree**: A binary tree is a tree data structure in which each node has at most two children, referred to as the left child and the right child.
-
-2. **Binary Search Tree (BST)**: A binary search tree is a binary tree in which for each node, all elements in its left subtree are less than or equal to the node, and all elements in its right subtree are greater than the node. This property allows for efficient searching, insertion, and deletion operations.
-
-3. **Balanced Tree**: A balanced tree is a tree in which the height difference between the left and right subtrees of any node is not greater than a certain value, ensuring that the tree remains balanced and operations like search, insert, and delete have time complexity logarithmic in the number of nodes.
-
-4. **AVL Tree**: An AVL tree is a self-balancing binary search tree in which the heights of the two child subtrees of any node differ by at most one.
-
-5. **Red-Black Tree**: A red-black tree is another type of self-balancing binary search tree. It ensures that the tree remains balanced by enforcing a set of properties on the tree nodes. These properties guarantee that the longest path from the root to any leaf is no more than twice the length of the shortest path.
-
-6. **Heap**: A heap is a specialized tree-based data structure that satisfies the heap property. Heaps are commonly used to implement priority queues.
-
-7. **Trie**: A trie, also called a prefix tree, is a tree data structure used to store a dynamic set of strings where the keys are usually strings. Each node in a trie represents a common prefix of some keys, and the children of a node represent the different characters that can follow that prefix.
-
-8. **N-ary Tree**: An n-ary tree is a tree in which each node can have at most n children. Binary trees are a special case of n-ary trees where n is 2.
-
-These are some of the most commonly used types of trees in computer science and programming. Understanding trees and their properties is essential for implementing various algorithms efficiently, such as searching, sorting, and traversing data.
-
-### 1. Algorithms & Data Structures (C++): What are trees ?
-
-In computer science, a tree is a widely used data structure that resembles a hierarchical tree structure, consisting of nodes connected by edges. Each node contains a value, and the edges represent the relationships between nodes. Trees are recursive data structures, meaning each node in a tree can itself be the root of a subtree.
-
-Here are some key concepts associated with trees:
-
-1. **Root**: The topmost node of the tree, which does not have any parent node. It is the starting point of the tree.
-
-2. **Parent and Child Nodes**: Nodes in a tree are connected by edges. A node can be a parent to some nodes (its children) and a child of another node (its parent). Except for the root node, every node in a tree has exactly one parent.
-
-3. **Leaf Nodes**: Nodes that do not have any children are called leaf nodes. They are the nodes at the bottom of the tree.
-
-4. **Internal Nodes**: Nodes that have at least one child are called internal nodes. They are any nodes in the tree that are not leaf nodes.
-
-5. **Subtree**: A subtree is a tree structure consisting of a node and all its descendants (children, grandchildren, and so on).
-
-6. **Height**: The height of a tree is the length of the longest path from the root node to a leaf node. It represents the maximum number of edges between the root and a leaf node.
-
-7. **Depth**: The depth of a node is the length of the path from the root node to that particular node.
-
-8. **Binary Trees**: A binary tree is a special type of tree in which each node has at most two children, referred to as the left child and the right child.
-
-9. **Binary Search Trees (BST)**: A binary search tree is a binary tree in which the left child of a node contains a value less than the node's value, and the right child contains a value greater than the node's value. This property allows for efficient searching, insertion, and deletion operations.
-
-Trees are used in various applications such as representing hierarchical data (like file systems), organizing data for efficient searching (like in binary search trees), implementing advanced data structures (like heaps and AVL trees), and in algorithms such as traversal algorithms (like depth-first search and breadth-first search).
-
-### 1. Algorithms & Data Structures (C++): Editing Sorted Trees
-
-Editing sorted trees in C++ typically involves operations such as insertion, deletion, and searching while maintaining the sorted order of the tree. One common data structure for this purpose is the binary search tree (BST). Here's a brief overview of how you can perform these operations:
-
-1. **Insertion**:
-   - To insert a new node into a BST while maintaining the sorted order, you start at the root and compare the value of the new node with the current node.
-   - If the new node's value is less than the current node's value, you move to the left subtree; if it's greater, you move to the right subtree.
-   - Repeat this process until you reach a leaf node (a node with no children) where the new node should be inserted. Then, insert the new node as a child of that leaf node.
-
-2. **Deletion**:
-   - Deleting a node from a BST while maintaining the sorted order requires special consideration to preserve the properties of a BST.
-   - If the node to be deleted has no children, simply remove it from the tree.
-   - If the node has only one child, replace the node with its child.
-   - If the node has two children, find the node with the next highest value (successor) in the tree (typically the leftmost node in the right subtree or the rightmost node in the left subtree).
-   - Replace the node to be deleted with its successor, and then delete the successor node from its original location.
-
-3. **Searching**:
-   - Searching in a BST is straightforward. Start at the root and compare the target value with the value of the current node.
-   - If the target value is equal to the current node's value, you've found the node.
-   - If the target value is less than the current node's value, move to the left subtree.
-   - If the target value is greater than the current node's value, move to the right subtree.
-   - Repeat this process until you find the node or reach a leaf node (indicating the target value is not in the tree).
-
-When implementing these operations, remember to consider edge cases such as handling duplicates (depending on the requirements of your application), handling empty trees, and ensuring proper memory management (e.g., deallocating memory for deleted nodes). Additionally, you might want to consider balancing techniques like AVL trees or Red-Black trees to maintain the tree's height balance, which can improve the efficiency of operations.
-
-### 1. Algorithms & Data Structures (C++): Trees Overview
-
-In C++, trees are fundamental data structures used to store hierarchical data. They are widely used in computer science and are the basis for many other data structures and algorithms. Here's an overview of trees in C++:
-
-#### 1. Binary Trees
-
-- **Definition**: A binary tree is a tree data structure in which each node has at most two children, referred to as the left child and the right child.
-- **Implementation**: In C++, a binary tree can be implemented using a structure or a class to represent each node, with pointers to the left and right children.
-- **Operations**:
-  - Insertion
-  - Deletion
-  - Traversal (Inorder, Preorder, Postorder)
-  - Searching
-
-#### 2. Binary Search Trees (BST)
-
-- **Definition**: A binary search tree is a binary tree in which every node's left child is less than the parent node, and every node's right child is greater than the parent node.
-- **Operations**:
-  - Insertion
-  - Deletion
-  - Searching
-  - Traversal (Inorder gives elements in sorted order)
-
-#### 3. AVL Trees
-
-- **Definition**: AVL trees are self-balancing binary search trees in which the heights of the two child subtrees of any node differ by at most one.
-- **Operations**:
-  - Insertion
-  - Deletion
-  - Searching
-  - Traversal
-
-#### 4. Red-Black Trees
-
-- **Definition**: Red-Black trees are another type of self-balancing binary search tree where each node has an extra bit called the color bit.
-- **Operations**:
-  - Insertion
-  - Deletion
-  - Searching
-  - Traversal
-
-#### 5. Trie (Prefix Tree)
-
-- **Definition**: Trie is a tree-like data structure used to store a dynamic set of strings where the keys are usually strings.
-- **Operations**:
-  - Insertion
-  - Deletion
-  - Searching
-  - Prefix matching
-
-#### 6. Segment Trees
-
-- **Definition**: A segment tree is a tree data structure used to store information about intervals or segments.
-- **Operations**:
-  - Construction
-  - Querying (range queries)
-  - Updating
-
-#### 7. Fenwick Trees (Binary Indexed Trees)
-
-- **Definition**: Fenwick trees are a data structure that can efficiently update elements and calculate prefix sums in a table of numbers.
-- **Operations**:
-  - Point updates
-  - Range queries (prefix sum)
-
-These are some of the key trees and tree-related data structures in C++. Understanding these data structures and algorithms associated with them is crucial for solving various programming problems efficiently.
-
-### 1. Algorithms & Data Structures (C++): 2-3 Trees
-
-2-3 trees are balanced search trees that provide efficient insertion, deletion, and searching operations. They are a type of self-balancing binary search tree where each node can contain either one or two keys and has two or three children nodes.
-
-Here's a brief overview of the properties and operations of 2-3 trees:
-
-#### Properties
-
-1. **Binary Search Tree Property**: For any node, all keys in its left subtree are less than its key, and all keys in its right subtree are greater than its key.
-2. **Balanced Structure**: All leaf nodes are at the same level, ensuring a balanced tree.
-3. **Node Structure**:
-   - Each node can have either one key and two children or two keys and three children.
-   - For a node with one key, it has two child nodes.
-   - For a node with two keys, it has three child nodes.
-
-#### Operations
-
-1. **Insertion**:
-   - Start from the root and recursively traverse down the tree to find the appropriate leaf node for insertion.
-   - If the leaf node has only one key, insert the new key into it.
-   - If the leaf node has two keys, split the node into three and promote the middle key to its parent.
-   - Continue splitting and promoting keys upwards until the tree's balance is restored.
-
-2. **Deletion**:
-   - Start from the root and recursively traverse down the tree to find the node containing the key to be deleted.
-   - If the node is a leaf node, simply remove the key from it.
-   - If the node is an internal node, replace the key to be deleted with its predecessor or successor, then delete the predecessor or successor from its appropriate leaf node.
-   - If necessary, perform rotations or merges to maintain the properties of the 2-3 tree.
-
-3. **Search**:
-   - Start from the root and recursively traverse down the tree, comparing the search key with the keys in each node.
-   - If the key is found, return the corresponding value.
-   - If the key is not found, continue searching in the appropriate subtree until a leaf node is reached.
-
-#### C++ Implementation
-
-```cpp
-// Node structure for 2-3 tree
-struct Node {
-    int key1;
-    int key2;
-    Node* child1;
-    Node* child2;
-    Node* child3;
-    bool isTwoNode; // true if node has one key, false if node has two keys
-};
-
-class TwoThreeTree {
-private:
-    Node* root;
-
-    // Helper functions for insertion, deletion, and search
-
-public:
-    TwoThreeTree() : root(nullptr) {}
-
-    // Function declarations for insertion, deletion, and search
-};
-```
-
-Implementing 2-3 trees in C++ involves managing the node structure and implementing the insertion, deletion, and search algorithms while maintaining the balance and properties of the tree. These operations can be a bit complex due to the need for node splitting, merging, and promotions.
-
-### 1. Algorithms & Data Structures (C++): 2-3-4 Trees
-
-2-3-4 trees are a type of self-balancing search tree where each node can have 2, 3, or 4 child nodes. They are similar to red-black trees but are more generalized and can hold more keys per node.
-
-In a 2-3-4 tree:
-
-1. **Node Structure**: Each node can hold 1, 2, or 3 keys and 2, 3, or 4 child pointers respectively.
-2. **Balanced Structure**: All leaf nodes are at the same level, ensuring a balanced tree.
-3. **Search Operation**: Searching for an element in a 2-3-4 tree follows the same principles as in a binary search tree. You compare the search key with the keys in the nodes, and based on the comparison, you traverse either the left or right child subtree.
-4. **Insertion Operation**: Insertion in a 2-3-4 tree involves finding the appropriate leaf node for the new key and then inserting it into that node. If the node becomes overfull (i.e., has more than 3 keys after insertion), it splits into two nodes, and the middle key is moved up to the parent node. This process may propagate up the tree if necessary.
-5. **Deletion Operation**: Deleting a key from a 2-3-4 tree involves similar steps to insertion. If a node becomes underfull after deletion (i.e., has fewer than 2 keys), it may borrow a key from a sibling node or merge with a sibling node, redistributing keys appropriately.
-6. **Splitting and Merging**: When a node splits, the middle key moves up to the parent node, and the remaining keys form two new nodes. When merging nodes, a key from the parent node moves down to the merged node, and the two nodes combine to form a single node.
-7. **Complexity**: The height of a balanced 2-3-4 tree containing \( n \) keys is \( O(\log n) \), resulting in efficient search, insertion, and deletion operations.
-
-Implementing a 2-3-4 tree involves handling various cases during insertion and deletion to maintain the properties of the tree. It's slightly more complex compared to binary search trees but offers better balance and guarantees logarithmic time complexity for operations.
-
-### 1. Algorithms & Data Structures (C++): Decision Trees
-
-Decision trees are a fundamental concept in both machine learning and computer science. They are versatile tools used for classification and regression tasks, among others. Here's an overview of decision trees in the context of algorithms and data structures in C++:
-
-### Decision Tree Structure
-
-1. **Node Structure**: Each node in a decision tree contains:
-   - A decision (or split) based on a feature.
-   - References (pointers or indices) to child nodes.
-
-2. **Leaf Nodes**: Terminal nodes that represent the output (classification or regression result).
-
-### Construction of Decision Trees
-
-1. **Splitting Criteria**:
-   - Choose the best feature to split on at each node. Common criteria include Gini impurity, entropy, or information gain for classification; mean squared error reduction for regression.
-
-2. **Stopping Criteria**:
-   - Define conditions to stop splitting, like maximum tree depth, minimum samples per leaf, or minimum impurity decrease.
-
-3. **Recursive Splitting**:
-   - Recursively split the dataset based on selected features until stopping criteria are met.
-
-### Key Operations
-
-1. **Tree Construction**:
-   - Build the decision tree by recursively selecting the best split at each node until termination conditions are satisfied.
-
-2. **Prediction**:
-   - Traverse the decision tree based on input features until reaching a leaf node, then return the output.
-
-### Implementation in C++
-
-1. **Node Structure**: Define a struct or class representing each node, storing feature index, split value, pointers to child nodes, and output value for leaf nodes.
-
-2. **Construction Functions**: Write functions to recursively construct the decision tree by selecting the best split and partitioning the dataset.
-
-3. **Prediction Function**: Implement a function to traverse the decision tree based on input features and return the predicted output.
-
-4. **Stopping Conditions**: Define conditions to stop splitting and convert a node into a leaf node.
-
-5. **Splitting Criteria**: Implement functions to calculate impurity measures and select the best split.
-
-### Libraries
-
-While you can implement decision trees from scratch, many C++ libraries offer efficient implementations, such as:
-
-- **MLPACK**: Provides decision tree functionality along with other machine learning algorithms.
-- **Dlib**: Includes a decision tree implementation among its various machine learning tools.
-- **Scikit-Learn (with C++ Interface)**: Utilize the C++ interface of Scikit-Learn, a popular Python library, for decision tree functionality.
-
-### Example
-
-```cpp
-#include <iostream>
-#include <vector>
-
-// Define Node structure
-struct Node {
-    int featureIndex;
-    double splitValue;
-    std::vector<Node*> children;
-    double output; // For leaf nodes
-};
-
-// Function to build decision tree
-Node* buildDecisionTree(std::vector<std::vector<double>>& data) {
-    // Implement tree construction logic here
-}
-
-// Function to make predictions
-double predict(Node* root, std::vector<double>& input) {
-    // Implement prediction logic here
-}
-
-int main() {
-    // Example usage
-    // Define dataset
-    std::vector<std::vector<double>> data = {{2.0, 3.0}, {4.0, 5.0}, /*...*/};
-    
-    // Build decision tree
-    Node* root = buildDecisionTree(data);
-    
-    // Make predictions
-    std::vector<double> input = {1.0, 2.0};
-    double prediction = predict(root, input);
-    
-    std::cout << "Prediction: " << prediction << std::endl;
-    
-    return 0;
-}
-```
-
-In this example, you'd implement the `buildDecisionTree` function to construct the decision tree and the `predict` function to traverse the tree for predictions.
-
-### 1. Algorithms & Data Structures (C++): Analysis of n-Ary Trees
-
-Analyzing n-ary trees involves examining their properties, operations, and complexities. An n-ary tree is a hierarchical data structure where each node can have at most n children. Analyzing n-ary trees often involves understanding various operations like insertion, deletion, searching, and traversal, along with their associated time complexities.
-
-Let's dive into the analysis of n-ary trees:
-
-#### Properties of n-ary Trees
-
-1. **Node Structure**: Each node in an n-ary tree typically contains a key or value and pointers/references to its children nodes.
-2. **Root**: The topmost node in the tree.
-3. **Parent & Child Relationship**: Each node has at most n children, forming a parent-child relationship.
-4. **Height**: The height of an n-ary tree is the length of the longest path from the root to a leaf node.
-5. **Depth**: The depth of a node is the length of the path from the root to that node.
-6. **Degree**: Maximum number of children a node can have, which is 'n' in the case of an n-ary tree.
-
-#### Operations and Time Complexities
-
-1. **Insertion**: Inserting a node into an n-ary tree can be done by finding the appropriate parent node and adding the new node as its child. The time complexity depends on the tree's structure and insertion position. In the worst-case scenario, it can be O(n) if the tree is skewed.
-
-2. **Deletion**: Deleting a node from an n-ary tree involves finding the node to be deleted and removing its reference from its parent's child list. Similar to insertion, the time complexity can be O(n) in the worst case.
-
-3. **Searching**: Searching for a node in an n-ary tree involves traversing the tree. In the worst case, where the node is at the bottom-right corner of the tree, the time complexity is O(n).
-
-4. **Traversal**:
-   - **Depth-First Traversals**: Depth-first traversal methods like Pre-order, In-order, and Post-order traversals can be applied to n-ary trees. They have a time complexity of O(n).
-   - **Breadth-First Traversal**: Breadth-first traversal (Level-order traversal) involves visiting all nodes of a level before proceeding to the next level. It also has a time complexity of O(n).
-
-#### Space Complexity
-
-The space complexity of n-ary trees mainly depends on the maximum number of nodes at any level. In the worst case, where the tree is complete, the space complexity is O(n).
-
-#### Applications
-
-n-ary trees are used in various applications, including file systems, organization hierarchies, syntax trees in compiler design, and more. Their flexible structure makes them suitable for representing hierarchical data.
-
-Understanding the properties and operations of n-ary trees is essential for designing efficient algorithms and data structures in scenarios where hierarchical data needs to be managed and processed.
+### 1. Algorithms & Data Structures (C++): Data Structure: Tree: Theory
+
+A tree is a hierarchical data structure that consists of nodes connected by edges. It is a widely used abstract data type (ADT) that emulates a tree structure with a set of linked nodes.
+
+#### Basic Terminology
+
+1. **Node**: The fundamental part of a tree that stores data.
+2. **Root**: The topmost node in a tree, where the tree originates. There is only one root node in a tree.
+3. **Parent**: A node that has one or more children.
+4. **Child**: A node that descends from another node (parent).
+5. **Leaf**: A node that does not have any children.
+6. **Sibling**: Nodes that share the same parent.
+7. **Edge**: The connection between two nodes.
+8. **Path**: A sequence of nodes and edges connecting a node with a descendant.
+9. **Depth**: The length of the path from the root to the node.
+10. **Height**: The length of the path from the node to the deepest leaf.
+11. **Subtree**: A tree consisting of a node and its descendants.
+
+#### Types of Trees
+
+1. **Binary Tree**: Each node has at most two children, referred to as the left child and the right child.
+2. **Binary Search Tree (BST)**: A binary tree where for each node, the left subtree has values less than the node's value and the right subtree has values greater than the node's value.
+3. **AVL Tree**: A self-balancing binary search tree where the difference between the heights of the left and right subtrees of any node is at most one.
+4. **Red-Black Tree**: A self-balancing binary search tree where nodes have an extra bit for color (red or black) to ensure the tree remains balanced.
+5. **B-Tree**: A self-balancing search tree where nodes can have multiple children and keys, optimized for systems that read and write large blocks of data.
+6. **Heap**: A complete binary tree where each node's value is greater than or equal to (max-heap) or less than or equal to (min-heap) the values of its children.
+7. **Trie**: A tree-like data structure that stores a dynamic set of strings, where keys are usually strings.
+
+#### Tree Operations
+
+1. **Insertion**: Adding a node to the tree.
+2. **Deletion**: Removing a node from the tree.
+3. **Traversal**: Visiting all the nodes in a specific order. Common traversals include:
+   - **In-order Traversal**: Visit the left subtree, the root, and then the right subtree.
+   - **Pre-order Traversal**: Visit the root, the left subtree, and then the right subtree.
+   - **Post-order Traversal**: Visit the left subtree, the right subtree, and then the root.
+   - **Level-order Traversal**: Visit nodes level by level from top to bottom.
+
+#### Tree Properties
+
+1. **Balanced Tree**: A tree where the height of the left and right subtrees of any node differ by at most one.
+2. **Complete Tree**: All levels except possibly the last are completely filled, and all nodes are as far left as possible.
+3. **Full Tree**: Every node other than the leaves has two children.
+
+#### Conclusion
+
+Trees are a fundamental part of many algorithms and data structures. Understanding their properties, types, and operations is crucial for solving a wide range of computational problems efficiently.
 
 ### 1. Algorithms & Data Structures (C++): Building a Tree
 
@@ -1164,94 +858,6 @@ To detect backedges during DFS traversal, you can maintain additional informatio
 
 You can modify the DFS function to detect backedges by incorporating such logic. If you need more specific guidance on detecting backedges or have any other questions, feel free to ask!
 
-### 1. Algorithms & Data Structures (C++): Depth First Search Trees and Backedges
-
-Depth First Search (DFS) is a fundamental algorithm used to traverse or search tree or graph data structures. In the context of trees, DFS explores as far as possible along each branch before backtracking. This approach is often implemented using recursion.
-
-In C++, you can represent a basic tree using a structure or a class. Here's a simple example:
-
-```cpp
-#include <iostream>
-#include <vector>
-using namespace std;
-
-struct Node {
-    int data;
-    vector<Node*> children;
-    Node(int val) : data(val) {}
-};
-
-void dfs(Node* root) {
-    if (root == nullptr) return;
-    cout << root->data << " ";
-    for (Node* child : root->children) {
-        dfs(child);
-    }
-}
-
-int main() {
-    Node* root = new Node(1);
-    root->children.push_back(new Node(2));
-    root->children.push_back(new Node(3));
-    root->children[0]->children.push_back(new Node(4));
-    root->children[0]->children.push_back(new Node(5));
-    root->children[1]->children.push_back(new Node(6));
-
-    cout << "DFS Traversal: ";
-    dfs(root);
-
-    return 0;
-}
-```
-
-In DFS, backedges refer to the edges that connect a node to one of its ancestors in the DFS tree. Detecting backedges is essential in certain applications, such as cycle detection in graphs. In tree traversal, you typically won't have backedges, as trees don't contain cycles by definition. However, in a general graph traversal, you can encounter backedges.
-
-Here's how you can modify the DFS function to detect backedges in a graph represented by an adjacency list:
-
-```cpp
-#include <iostream>
-#include <vector>
-#include <unordered_set>
-using namespace std;
-
-void dfs(vector<vector<int>>& graph, int node, vector<bool>& visited, vector<int>& parent) {
-    visited[node] = true;
-    for (int neighbor : graph[node]) {
-        if (!visited[neighbor]) {
-            parent[neighbor] = node;
-            dfs(graph, neighbor, visited, parent);
-        } else if (parent[node] != neighbor) {
-            cout << "Backedge detected between " << node << " and " << neighbor << endl;
-        }
-    }
-}
-
-int main() {
-    int n = 6;
-    vector<vector<int>> graph(n);
-    graph[0].push_back(1);
-    graph[1].push_back(2);
-    graph[2].push_back(3);
-    graph[3].push_back(4);
-    graph[4].push_back(5);
-    graph[5].push_back(2); // introducing a backedge
-
-    vector<bool> visited(n, false);
-    vector<int> parent(n, -1);
-
-    cout << "Backedges: " << endl;
-    for (int i = 0; i < n; ++i) {
-        if (!visited[i]) {
-            dfs(graph, i, visited, parent);
-        }
-    }
-
-    return 0;
-}
-```
-
-In this example, the graph is represented using an adjacency list. The `parent` vector keeps track of the parent of each node in the DFS traversal. If a visited neighbor is encountered that is not the parent of the current node, it indicates the presence of a backedge.
-
 ### 1. Algorithms & Data Structures (C++): difference Height Level Depth tree
 
 In the context of trees, particularly in computer science and programming, the terms "height," "level," and "depth" refer to different characteristics of the tree structure. Let's break down each term:
@@ -1376,80 +982,6 @@ int main() {
 ```
 
 This code defines the structure of a TreeNode, which holds a string value representing either an operand or an operator. The `constructExpressionTree` function constructs the expression tree from a postfix expression, and the `evaluateExpressionTree` function recursively evaluates the expression tree. Finally, the `main` function demonstrates the usage of these functions by constructing an expression tree from a postfix expression and evaluating it.
-
-### 1. Algorithms & Data Structures (C++): Expression Trees
-
-Expression trees are a fundamental data structure used in computer science, particularly in the realm of compilers, parsing, and evaluation of mathematical expressions. In C++, you can implement expression trees using object-oriented programming principles. Here's a basic overview and implementation:
-
-1. **Node Structure**: Define a structure/class to represent nodes in the expression tree. Each node will contain either an operand (like a number or a variable) or an operator.
-
-```cpp
-struct TreeNode {
-    char data; // For simplicity, assuming operators are characters
-    TreeNode* left;
-    TreeNode* right;
-    
-    // Constructor for operator node
-    TreeNode(char data) : data(data), left(nullptr), right(nullptr) {}
-    
-    // Constructor for operand node
-    TreeNode(int data) : data(data), left(nullptr), right(nullptr) {}
-};
-```
-
-1. **Building the Tree**: Parse the expression (in postfix, prefix, or infix notation) and construct the expression tree accordingly.
-
-```cpp
-TreeNode* buildExpressionTree(string postfix) {
-    stack<TreeNode*> st;
-    for (char ch : postfix) {
-        if (isOperand(ch)) {
-            st.push(new TreeNode(ch));
-        } else {
-            TreeNode* op2 = st.top(); st.pop();
-            TreeNode* op1 = st.top(); st.pop();
-            TreeNode* newNode = new TreeNode(ch);
-            newNode->left = op1;
-            newNode->right = op2;
-            st.push(newNode);
-        }
-    }
-    return st.top();
-}
-```
-
-1. **Evaluation**: Once the expression tree is constructed, you can evaluate the expression recursively.
-
-```cpp
-int evaluate(TreeNode* root) {
-    if (!root) return 0;
-    if (isOperand(root->data)) {
-        return root->data - '0'; // Assuming operands are single digits
-    }
-    int left_val = evaluate(root->left);
-    int right_val = evaluate(root->right);
-    switch (root->data) {
-        case '+': return left_val + right_val;
-        case '-': return left_val - right_val;
-        case '*': return left_val * right_val;
-        case '/': return left_val / right_val;
-        default: return 0;
-    }
-}
-```
-
-1. **Traversal**: You can traverse the expression tree in various orders: Inorder, Preorder, Postorder.
-
-```cpp
-void inorderTraversal(TreeNode* root) {
-    if (!root) return;
-    inorderTraversal(root->left);
-    cout << root->data << " ";
-    inorderTraversal(root->right);
-}
-```
-
-This is a basic implementation. Depending on your requirements, you might need to handle more complex expressions, error checking, and additional functionalities.
 
 ### 1. Algorithms & Data Structures (C++): Fenwick Trees
 
@@ -1775,150 +1307,6 @@ int main() {
 
 This code first defines a structure `TreeNode` to represent each node in the tree. Then, it defines a function `treeHeight` to calculate the height of the tree recursively. Finally, in the `main` function, a sample tree is created and its height is calculated and printed.
 
-### 1. Algorithms & Data Structures (C++): Height of Tree
-
-To find the height of a tree, you typically use a depth-first search (DFS) or breadth-first search (BFS) algorithm. Here's a simple approach using depth-first search in C++:
-
-```cpp
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-using namespace std;
-
-struct Node {
-    int data;
-    vector<Node*> children;
-};
-
-// Function to create a new node
-Node* createNode(int data) {
-    Node* newNode = new Node;
-    newNode->data = data;
-    return newNode;
-}
-
-// Function to calculate the height of a tree
-int heightOfTree(Node* root) {
-    if (root == nullptr) return 0; // Base case: empty tree has height 0
-    int maxHeight = 0;
-    for (Node* child : root->children) {
-        maxHeight = max(maxHeight, heightOfTree(child));
-    }
-    return maxHeight + 1; // Adding 1 to account for the current node
-}
-
-int main() {
-    // Creating a sample tree
-    Node* root = createNode(1);
-    root->children.push_back(createNode(2));
-    root->children.push_back(createNode(3));
-    root->children[0]->children.push_back(createNode(4));
-    root->children[0]->children.push_back(createNode(5));
-    root->children[1]->children.push_back(createNode(6));
-    root->children[1]->children.push_back(createNode(7));
-    root->children[1]->children.push_back(createNode(8));
-    
-    // Calculating and printing the height of the tree
-    cout << "Height of the tree is: " << heightOfTree(root) << endl;
-    
-    return 0;
-}
-```
-
-In this code:
-
-- `Node` represents a node in the tree, containing data and a vector of child nodes.
-- `createNode` is a utility function to create a new node.
-- `heightOfTree` is a recursive function that calculates the height of the tree. It iterates through each child of the current node and recursively finds the height of each subtree. The height of the tree is the maximum height among its children plus one.
-- In the `main` function, a sample tree is created, and the height of the tree is calculated and printed.
-
-You can modify this code according to your requirements or the specific representation of your tree.
-
-### 1. Algorithms & Data Structures (C++): How to create basic tree
-
-Creating a basic tree data structure in C++ involves defining a node structure and implementing the necessary functions for insertion, deletion, traversal, and other operations. Here's a simple implementation of a binary tree:
-
-```cpp
-#include <iostream>
-
-struct TreeNode {
-    int data;
-    TreeNode* left;
-    TreeNode* right;
-
-    TreeNode(int value) : data(value), left(nullptr), right(nullptr) {}
-};
-
-class BinaryTree {
-private:
-    TreeNode* root;
-
-    // Helper function for recursive insertion
-    TreeNode* insertRecursive(TreeNode* root, int value) {
-        if (root == nullptr) {
-            root = new TreeNode(value);
-        } else if (value < root->data) {
-            root->left = insertRecursive(root->left, value);
-        } else {
-            root->right = insertRecursive(root->right, value);
-        }
-        return root;
-    }
-
-public:
-    BinaryTree() : root(nullptr) {}
-
-    // Function to insert a value into the tree
-    void insert(int value) {
-        root = insertRecursive(root, value);
-    }
-
-    // Function to perform an inorder traversal of the tree
-    void inorderTraversal(TreeNode* root) {
-        if (root != nullptr) {
-            inorderTraversal(root->left);
-            std::cout << root->data << " ";
-            inorderTraversal(root->right);
-        }
-    }
-
-    // Wrapper function for inorder traversal starting from the root
-    void inorderTraversal() {
-        inorderTraversal(root);
-    }
-};
-
-int main() {
-    BinaryTree tree;
-
-    // Insert some values into the tree
-    tree.insert(50);
-    tree.insert(30);
-    tree.insert(70);
-    tree.insert(20);
-    tree.insert(40);
-    tree.insert(60);
-    tree.insert(80);
-
-    // Perform inorder traversal
-    std::cout << "Inorder Traversal: ";
-    tree.inorderTraversal();
-    std::cout << std::endl;
-
-    return 0;
-}
-```
-
-In this implementation:
-
-- `TreeNode` represents each node in the tree and contains an integer value, along with pointers to its left and right child nodes.
-- `BinaryTree` is the binary tree class, which contains the root node pointer and functions for insertion and traversal.
-- `insert` function inserts a new value into the tree.
-- `inorderTraversal` function performs an inorder traversal of the tree, printing the values in sorted order.
-
-You can expand upon this implementation by adding more functionality like preorder and postorder traversals, deletion, searching, and balancing algorithms if needed.
-
 ### 1. Algorithms & Data Structures (C++): Huffman's Codes - Building Huffman Tree
 
 Huffman's algorithm is a popular method for generating minimum-redundancy prefix codes. It's often used for data compression. To build a Huffman tree, you typically follow these steps:
@@ -2004,187 +1392,6 @@ int main() {
 ```
 
 This code will build a Huffman tree for the given characters along with their frequencies and print the Huffman codes. Make sure to adjust it according to your specific requirements and error handling.
-
-### 1. Algorithms & Data Structures (C++): Huffman's Codes - Printing Huffman Codes
-
-In Huffman coding, each character in a text is assigned a variable-length prefix code where the characters that have a higher frequency are assigned a shorter code. This reduces the overall size of the encoded text. Here's how you can print Huffman codes in C++:
-
-```cpp
-#include <iostream>
-#include <queue>
-#include <unordered_map>
-
-using namespace std;
-
-// A Huffman tree node
-struct Node {
-    char data;
-    unsigned freq;
-    Node *left, *right;
-
-    Node(char data, unsigned freq) : data(data), freq(freq), left(nullptr), right(nullptr) {}
-};
-
-// Comparison object to be used to order the heap
-struct compare {
-    bool operator()(Node* l, Node* r) {
-        return (l->freq > r->freq);
-    }
-};
-
-// Traverse the Huffman tree and store codes in a map
-void encode(Node* root, string str, unordered_map<char, string>& huffmanCode) {
-    if (root == nullptr) return;
-
-    // Found a leaf node
-    if (!root->left && !root->right) {
-        huffmanCode[root->data] = str;
-    }
-
-    encode(root->left, str + "0", huffmanCode);
-    encode(root->right, str + "1", huffmanCode);
-}
-
-// Build Huffman Tree and generate codes
-unordered_map<char, string> buildHuffmanTree(string text) {
-    // Count frequency of characters
-    unordered_map<char, unsigned> freq;
-    for (char ch : text) {
-        freq[ch]++;
-    }
-
-    // Create a priority queue to store nodes of the Huffman tree
-    priority_queue<Node*, vector<Node*>, compare> pq;
-
-    // Create a leaf node for each character and add it to the priority queue
-    for (auto pair : freq) {
-        pq.push(new Node(pair.first, pair.second));
-    }
-
-    // Extract the two minimum frequency nodes from the priority queue and create a new internal node
-    // with these two nodes as children and add the new node to the priority queue until there's only one node left
-    while (pq.size() != 1) {
-        Node *left = pq.top(); pq.pop();
-        Node *right = pq.top(); pq.pop();
-
-        Node *internalNode = new Node('$', left->freq + right->freq);
-        internalNode->left = left;
-        internalNode->right = right;
-
-        pq.push(internalNode);
-    }
-
-    // Root of Huffman Tree
-    Node* root = pq.top();
-
-    // Traverse the Huffman tree and store codes in a map
-    unordered_map<char, string> huffmanCode;
-    encode(root, "", huffmanCode);
-
-    // Clean up memory
-    delete root;
-
-    return huffmanCode;
-}
-
-// Print the Huffman codes
-void printCodes(unordered_map<char, string>& huffmanCode) {
-    cout << "Huffman Codes:\n";
-    for (auto pair : huffmanCode) {
-        cout << pair.first << " : " << pair.second << "\n";
-    }
-}
-
-int main() {
-    string text = "Huffman coding is a data compression algorithm.";
-
-    unordered_map<char, string> huffmanCode = buildHuffmanTree(text);
-
-    printCodes(huffmanCode);
-
-    return 0;
-}
-```
-
-This code will output the characters in the text along with their corresponding Huffman codes. You can modify the `main()` function to take input from the user or from a file if needed.
-
-### 1. Algorithms & Data Structures (C++): Implementation of Expression Tree
-
-Sure, here's a basic implementation of an expression tree in C++:
-
-```cpp
-#include <iostream>
-#include <stack>
-#include <string>
-#include <cctype>
-
-using namespace std;
-
-// Node structure for the expression tree
-struct Node {
-    string data;
-    Node* left;
-    Node* right;
-
-    Node(string val) : data(val), left(nullptr), right(nullptr) {}
-};
-
-// Function to check if a character is an operator
-bool isOperator(char c) {
-    return (c == '+' || c == '-' || c == '*' || c == '/');
-}
-
-// Function to build the expression tree from postfix expression
-Node* buildExpressionTree(string postfix) {
-    stack<Node*> s;
-
-    for (char c : postfix) {
-        if (isspace(c)) // Skip whitespace
-            continue;
-
-        if (isOperator(c)) {
-            Node* rightOperand = s.top();
-            s.pop();
-            Node* leftOperand = s.top();
-            s.pop();
-
-            Node* newNode = new Node(string(1, c));
-            newNode->left = leftOperand;
-            newNode->right = rightOperand;
-
-            s.push(newNode);
-        } else {
-            Node* operand = new Node(string(1, c));
-            s.push(operand);
-        }
-    }
-
-    return s.top();
-}
-
-// Function to perform inorder traversal of the expression tree
-void inorderTraversal(Node* root) {
-    if (root) {
-        inorderTraversal(root->left);
-        cout << root->data << " ";
-        inorderTraversal(root->right);
-    }
-}
-
-int main() {
-    // Example postfix expression: "ab+c*"
-    string postfixExpression = "ab+c*";
-
-    Node* root = buildExpressionTree(postfixExpression);
-
-    // Inorder traversal to print infix expression
-    inorderTraversal(root);
-
-    return 0;
-}
-```
-
-This code builds an expression tree from a postfix expression and then performs an inorder traversal to print the corresponding infix expression. You can modify the `main` function to input a different postfix expression and observe the corresponding infix expression.
 
 ### 1. Algorithms & Data Structures (C++): Leaf Nodes in Trees
 
@@ -2837,74 +2044,6 @@ int main() {
 
 This implementation performs a depth-first search (DFS) traversal of the binary tree. The `hasPathSum` function recursively checks if there exists a path from the current node to a leaf node with the given sum.
 
-### 1. Algorithms & Data Structures (C++): Path Sum - Binary Trees
-
-Certainly! In C++, you can implement the path sum problem for binary trees using recursion. The problem statement usually goes like this: Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
-
-Here's a simple implementation:
-
-```cpp
-#include <iostream>
-
-// Definition for a binary tree node.
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-
-bool hasPathSum(TreeNode* root, int sum) {
-    if (!root) return false; // Base case: empty tree
-
-    // Subtract the current node's value from the sum
-    sum -= root->val;
-
-    // If it's a leaf node and the sum becomes 0, then we found a valid path
-    if (!root->left && !root->right) {
-        return sum == 0;
-    }
-
-    // Recursively check the left and right subtrees
-    return hasPathSum(root->left, sum) || hasPathSum(root->right, sum);
-}
-
-int main() {
-    // Example usage
-    TreeNode* root = new TreeNode(5);
-    root->left = new TreeNode(4);
-    root->right = new TreeNode(8);
-    root->left->left = new TreeNode(11);
-    root->left->left->left = new TreeNode(7);
-    root->left->left->right = new TreeNode(2);
-    root->right->left = new TreeNode(13);
-    root->right->right = new TreeNode(4);
-    root->right->right->right = new TreeNode(1);
-
-    int sum = 22;
-    if (hasPathSum(root, sum)) {
-        std::cout << "There exists a root-to-leaf path with sum " << sum << std::endl;
-    } else {
-        std::cout << "No root-to-leaf path with sum " << sum << " exists" << std::endl;
-    }
-
-    // Clean up memory (not necessary for the algorithm, but good practice)
-    delete root->right->right->right;
-    delete root->right->right;
-    delete root->right->left;
-    delete root->right;
-    delete root->left->left->right;
-    delete root->left->left->left;
-    delete root->left->left;
-    delete root->left;
-    delete root;
-
-    return 0;
-}
-```
-
-In this implementation, the `hasPathSum` function recursively checks whether there's a path from the root to a leaf node with the given sum. The base case is when we reach a leaf node, and the current `sum` equals the leaf node's value. If we find such a path, the function returns `true`. Otherwise, it returns `false`.
-
 ### 1. Algorithms & Data Structures (C++): Path Sum - Trees
 
 Sure, let's discuss the "Path Sum" problem for trees, a common question in algorithm interviews and a useful problem for practicing tree traversal techniques.
@@ -2973,101 +2112,6 @@ int main() {
 ```
 
 In this example, we traverse the tree recursively, subtracting the value of each node from the target sum as we go. If we reach a leaf node and the remaining sum is 0, we return true indicating that a path with the given sum exists. Otherwise, we return false.
-
-### 1. Algorithms & Data Structures (C++): Path Sum II
-
-Sure, I'd be happy to help with the Path Sum II problem. In this problem, you're typically given a binary tree and a target sum. The task is to find all root-to-leaf paths where each path's sum equals the given target.
-
-Here's how you can approach this problem using C++:
-
-```cpp
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
-// Definition for a binary tree node.
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
-void findPaths(TreeNode* root, int targetSum, vector<int>& path, vector<vector<int>>& result) {
-    if (!root)
-        return;
-
-    // Add current node to the path
-    path.push_back(root->val);
-
-    // If this is a leaf node and the path sum equals targetSum, add the path to the result
-    if (!root->left && !root->right && root->val == targetSum) {
-        result.push_back(path);
-    } else {
-        // Recur for left and right subtrees
-        findPaths(root->left, targetSum - root->val, path, result);
-        findPaths(root->right, targetSum - root->val, path, result);
-    }
-
-    // Remove the current node from the path to backtrack
-    path.pop_back();
-}
-
-vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-    vector<vector<int>> result;
-    vector<int> path;
-
-    findPaths(root, targetSum, path, result);
-
-    return result;
-}
-
-int main() {
-    // Example usage
-    TreeNode* root = new TreeNode(5);
-    root->left = new TreeNode(4);
-    root->right = new TreeNode(8);
-    root->left->left = new TreeNode(11);
-    root->left->left->left = new TreeNode(7);
-    root->left->left->right = new TreeNode(2);
-    root->right->left = new TreeNode(13);
-    root->right->right = new TreeNode(4);
-    root->right->right->left = new TreeNode(5);
-    root->right->right->right = new TreeNode(1);
-
-    int targetSum = 22;
-    vector<vector<int>> paths = pathSum(root, targetSum);
-
-    // Displaying the result
-    cout << "Root-to-leaf paths with sum " << targetSum << " are:\n";
-    for (const auto& path : paths) {
-        cout << "[";
-        for (int i = 0; i < path.size(); ++i) {
-            cout << path[i];
-            if (i != path.size() - 1)
-                cout << ", ";
-        }
-        cout << "]\n";
-    }
-
-    // Clean up memory
-    delete root->right->right->right;
-    delete root->right->right->left;
-    delete root->right->right;
-    delete root->right->left;
-    delete root->right;
-    delete root->left->left->right;
-    delete root->left->left->left;
-    delete root->left->left;
-    delete root->left;
-    delete root;
-
-    return 0;
-}
-```
-
-This code implements a recursive depth-first search (DFS) algorithm to traverse the binary tree. It keeps track of the current path from the root to the current node and calculates the sum of the path. If the current node is a leaf and the sum equals the target, the path is added to the result. Otherwise, the algorithm recursively explores the left and right subtrees, subtracting the current node's value from the target sum. Finally, it backtracks by removing the current node from the path before returning to the parent node.
 
 ### 1. Algorithms & Data Structures (C++): Path Xor
 
@@ -3204,55 +2248,22 @@ int main() {
 
 This code defines a binary tree node structure and a function `countPathsWithSum` to count the number of paths in the tree that sum up to a given target sum. It uses a prefix sum map to efficiently track the running sum of paths encountered so far.
 
-### 1. Algorithms & Data Structures (C++): Performance Analysis of Red-Black Trees
-
-Analyzing the performance of Red-Black Trees (RBTs) involves understanding their time complexity for various operations. Here's a rundown of the key operations and their time complexities in terms of Big O notation:
-
-1. **Search (Lookup)**:
-   - Time Complexity: O(log n)
-   - Explanation: Similar to binary search trees, RBTs maintain their properties through balancing, which ensures that the tree remains relatively balanced. As a result, the search operation has a time complexity of O(log n), where n is the number of nodes in the tree.
-
-2. **Insertion**:
-   - Time Complexity: O(log n)
-   - Explanation: Insertion in RBTs follows the same process as insertion in binary search trees, but with additional steps to maintain the properties of the RBT. This involves potentially restructuring the tree and recoloring nodes, which takes O(log n) time in the worst-case scenario.
-
-3. **Deletion**:
-   - Time Complexity: O(log n)
-   - Explanation: Deletion in RBTs also requires restructuring and recoloring to maintain the properties of the RBT. Similar to insertion, this process takes O(log n) time in the worst case.
-
-4. **Rotation**:
-   - Time Complexity: O(1)
-   - Explanation: Rotations are constant-time operations, as they involve only a few pointer manipulations to restructure the tree.
-
-5. **Fix-up Operations** (Color flips, rotations, etc.):
-   - Time Complexity: O(1)
-   - Explanation: Each fix-up operation (like recoloring and rotations) takes constant time, as they involve only a fixed number of pointer adjustments.
-
-6. **Space Complexity**:
-   - RBTs typically require additional space for storing color information (1 bit per node) compared to standard binary search trees. Therefore, the space complexity is O(n).
-
-It's essential to note that these time complexities are based on the assumption of a well-implemented RBT with proper balancing and adherence to the RBT properties. In practical scenarios, the performance can vary depending on factors such as the distribution of data and the efficiency of the implementation. However, on average, RBTs provide efficient operations for search, insertion, and deletion, making them suitable for various applications where balanced trees are required.
-
 ### 1. Algorithms & Data Structures (C++): Performance Analysis of Splay Trees
-
-Analyzing the performance of data structures like Splay Trees involves understanding their key operations, their time complexity, and how they behave in various scenarios. Let's break it down:
-
-### Splay Tree Overview
 
 Splay Tree is a self-adjusting binary search tree where every operation on the tree causes a restructuring, called "splaying," that brings the most recently accessed item to the root. This makes recently accessed items quicker to access in future operations.
 
-### Key Operations
+#### Key Operations
 
 1. **Insertion**: Insert a new element into the tree.
 2. **Deletion**: Remove an element from the tree.
 3. **Search**: Find an element in the tree.
 4. **Splaying**: Reorganize the tree to bring the most recently accessed element to the root.
 
-### Time Complexity
+#### Time Complexity
 
 The time complexity of the operations in a splay tree varies depending on the tree's shape after each operation. In the average case, the amortized time complexity of splay tree operations is O(log n), where n is the number of elements in the tree. However, in the worst case, the time complexity can be O(n), such as when the tree becomes degenerate (essentially a linked list).
 
-### Performance Analysis
+#### Performance Analysis
 
 1. **Amortized Performance**: Splay trees offer good amortized performance. Despite potential worst-case scenarios, the splay operation balances the tree during operations, leading to efficient average performance over many operations.
 
@@ -3264,7 +2275,7 @@ The time complexity of the operations in a splay tree varies depending on the tr
 
 5. **Space Complexity**: Splay trees have similar space complexity to other binary search trees, requiring O(n) space for n elements.
 
-### Conclusion
+#### Conclusion
 
 Splay trees are efficient for many practical scenarios due to their self-adjusting behavior and amortized O(log n) performance. However, their performance can degrade in specific worst-case scenarios. They are particularly useful when there is locality in the access patterns, as frequently accessed elements move closer to the root, improving overall performance. Nonetheless, in critical applications where worst-case performance is a concern, other balanced search trees may be preferred.
 
@@ -3809,134 +2820,6 @@ In this code:
 
 This is a simple example of finding a spanning tree using DFS. There are other algorithms like Prim's algorithm and Kruskal's algorithm that also find spanning trees, each with its own advantages and use cases.
 
-### 1. Algorithms & Data Structures (C++): Spanning Tree Algorithms
-
-Spanning tree algorithms are fundamental in graph theory and are used to find a minimum spanning tree (MST) of a connected, undirected graph. In C++, two popular algorithms for finding MSTs are Kruskal's algorithm and Prim's algorithm. Here's an overview of each:
-
-1. **Kruskal's Algorithm**:
-   - Kruskal's algorithm is a greedy algorithm that finds a minimum spanning tree for a connected weighted graph.
-   - It begins with an empty spanning tree and adds edges to it one at a time, always choosing the edge with the smallest weight that does not produce a cycle.
-   - This algorithm sorts all the edges of the graph in non-decreasing order of their weights and then iterates through the sorted edges, adding each edge to the spanning tree if it doesn't create a cycle.
-   - Disjoint Set Union (DSU) data structure is typically used to efficiently detect and merge cycles.
-
-   ```cpp
-   // C++ implementation of Kruskal's Algorithm
-   // Pseudocode:
-   // 1. Sort all the edges in non-decreasing order of their weight.
-   // 2. Pick the smallest edge. Check if it forms a cycle with the spanning tree formed so far. If not, include it in the spanning tree.
-   // 3. Repeat step 2 until there are V-1 edges in the spanning tree, where V is the number of vertices.
-
-   struct Edge {
-       int src, dest, weight;
-   };
-
-   class Graph {
-   public:
-       vector<Edge> edges;
-       // Function to find the MST using Kruskal's algorithm
-       void KruskalMST();
-   };
-
-   // Driver code
-   int main() {
-       Graph graph;
-       // Add edges to the graph
-       graph.KruskalMST();
-       return 0;
-   }
-   ```
-
-2. **Prim's Algorithm**:
-   - Prim's algorithm is another greedy algorithm that finds a minimum spanning tree for a connected weighted graph.
-   - It starts with an arbitrary vertex and grows the spanning tree from there by always selecting the smallest edge that connects a vertex in the spanning tree to a vertex outside the tree.
-   - Priority queues (typically implemented with heaps) are used to efficiently select the next edge to include in the MST.
-
-   ```cpp
-   // C++ implementation of Prim's Algorithm
-   // Pseudocode:
-   // 1. Create a set mstSet that keeps track of vertices already included in MST.
-   // 2. Assign a key value to all vertices in the input graph. Initialize all key values as INFINITE.
-   // 3. While mstSet doesn’t include all vertices:
-   //    a. Pick a vertex u which is not there in mstSet and has minimum key value.
-   //    b. Include u to mstSet.
-   //    c. Update key value of all adjacent vertices of u. To update the key values, iterate through all adjacent vertices. For every adjacent vertex v, if weight of edge u-v is less than the previous key value of v, update the key value as weight of u-v.
-
-   // Function to find the MST using Prim's algorithm
-   void Graph::PrimMST() {
-       // Create a priority queue to store vertices that are not yet included in MST
-       priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-
-       int src = 0; // Pick starting point
-       vector<int> key(V, INF); // Key values used to pick minimum weight edge in cut
-       vector<int> parent(V, -1); // Array to store constructed MST
-
-       vector<bool> inMST(V, false); // To represent set of vertices not yet included in MST
-
-       // Insert source vertex into priority queue and make its key 0
-       pq.push({0, src});
-       key[src] = 0;
-
-       while (!pq.empty()) {
-           int u = pq.top().second; // Extract minimum key vertex from priority queue
-           pq.pop();
-
-           inMST[u] = true; // Include vertex in MST
-
-           // Update key value and parent index of adjacent vertices of the extracted vertex
-           for (auto& edge : adj[u]) {
-               int v = edge.first;
-               int weight = edge.second;
-               if (!inMST[v] && weight < key[v]) {
-                   key[v] = weight;
-                   pq.push({key[v], v});
-                   parent[v] = u;
-               }
-           }
-       }
-       // Print edges of MST using parent array
-       for (int i = 1; i < V; ++i)
-           cout << parent[i] << " - " << i << endl;
-   }
-   ```
-
-Both Kruskal's and Prim's algorithms guarantee the generation of a minimum spanning tree. Kruskal's algorithm is often preferred when the graph is sparse, while Prim's algorithm can be more efficient for dense graphs.
-
-### 1. Algorithms & Data Structures (C++): Spanning Trees
-
-Spanning trees are fundamental concepts in graph theory and are widely used in various algorithms and applications. In the context of computer science, particularly in C++, spanning trees are often employed in network design, clustering, and optimization problems. Here's a brief overview of spanning trees and how they relate to algorithms and data structures in C++:
-
-#### Spanning Trees
-
-A spanning tree of a graph is a subgraph that includes all the vertices of the original graph with the minimum possible number of edges required to connect them. It is a tree because it is acyclic and connected.
-
-#### Algorithms
-
-Several algorithms exist to find spanning trees of graphs. The most common ones include:
-
-1. **Depth-First Search (DFS):** DFS is a graph traversal algorithm that can be used to find a spanning tree. By performing DFS from any starting vertex, we can construct a spanning tree that covers all the vertices reachable from that starting vertex.
-
-2. **Breadth-First Search (BFS):** Similar to DFS, BFS is another graph traversal algorithm that can be used to find a spanning tree. By performing BFS from any starting vertex, we can construct a spanning tree that covers all the vertices reachable from that starting vertex.
-
-3. **Kruskal's Algorithm:** Kruskal's algorithm is a greedy algorithm that finds a minimum spanning tree for a connected weighted graph. It repeatedly adds the smallest edge that doesn't form a cycle until all vertices are included.
-
-4. **Prim's Algorithm:** Prim's algorithm is another greedy algorithm that finds a minimum spanning tree for a connected weighted graph. It starts with an arbitrary vertex and grows the spanning tree by adding the cheapest edge that connects a vertex in the tree to a vertex outside the tree.
-
-#### Data Structures
-
-In C++, to implement algorithms for spanning trees, you may use various data structures such as:
-
-1. **Adjacency List:** This is the most common representation of a graph where each vertex maintains a list of its adjacent vertices.
-
-2. **Priority Queue (Min-Heap):** Priority queues are often used in algorithms like Prim's and Dijkstra's. In Prim's algorithm, it helps to efficiently select the next edge to add to the spanning tree based on the weight of the edges.
-
-3. **Union-Find (Disjoint Set):** Union-Find data structure is used in Kruskal's algorithm to efficiently determine whether adding an edge creates a cycle in the spanning tree so that only non-cyclic edges are added.
-
-4. **Custom Data Structures:** Depending on the specific requirements and optimizations, you may need to design custom data structures to improve the efficiency of your algorithms.
-
-In C++, you can implement these algorithms and data structures using standard libraries like STL (Standard Template Library) or by implementing them from scratch.
-
-Understanding spanning trees and the associated algorithms and data structures is crucial for solving various graph-related problems efficiently.
-
 ### 1. Algorithms & Data Structures (C++): Subtree Checker
 
 Sure, a subtree checker is a common problem in computer science and is often encountered in tree data structures. Here's how you can implement it in C++:
@@ -4206,471 +3089,6 @@ int main() {
 
 This code defines a `TreeNode` struct and a `Solution` class. The `isSymmetric` function checks if the tree is symmetric by calling the `isMirror` function which recursively compares corresponding nodes in the left and right subtrees. If the values match and their respective children subtrees are also mirrors, the tree is symmetric.
 
-### 1. Algorithms & Data Structures (C++): Symmetric Tree - Binary Trees
-
-Sure, let's dive into the Symmetric Tree problem in the context of binary trees using C++.
-
-A binary tree is symmetric if the left subtree is a mirror reflection of the right subtree. To solve this problem, we can use a recursive approach to compare the left and right subtrees of the root node.
-
-Here's a C++ implementation:
-
-```cpp
-#include <iostream>
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-
-class Solution {
-public:
-    bool isSymmetric(TreeNode* root) {
-        if (!root) return true;
-        return isSymmetricHelper(root->left, root->right);
-    }
-
-private:
-    bool isSymmetricHelper(TreeNode* leftSubtree, TreeNode* rightSubtree) {
-        // Base case: both subtrees are null, they are symmetric
-        if (!leftSubtree && !rightSubtree) return true;
-        
-        // If one subtree is null but the other is not, they are not symmetric
-        if (!leftSubtree || !rightSubtree) return false;
-        
-        // Compare values and recursively check subtrees for symmetry
-        return (leftSubtree->val == rightSubtree->val) &&
-               isSymmetricHelper(leftSubtree->left, rightSubtree->right) &&
-               isSymmetricHelper(leftSubtree->right, rightSubtree->left);
-    }
-};
-
-// Test the implementation
-int main() {
-    // Example tree:
-    //      1
-    //     / \
-    //    2   2
-    //   / \ / \
-    //  3  4 4  3
-    TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(2);
-    root->left->left = new TreeNode(3);
-    root->left->right = new TreeNode(4);
-    root->right->left = new TreeNode(4);
-    root->right->right = new TreeNode(3);
-
-    Solution sol;
-    std::cout << "Is the tree symmetric? " << (sol.isSymmetric(root) ? "Yes" : "No") << std::endl;
-
-    // Clean up memory
-    delete root->left->left;
-    delete root->left->right;
-    delete root->right->left;
-    delete root->right->right;
-    delete root->left;
-    delete root->right;
-    delete root;
-
-    return 0;
-}
-```
-
-In this implementation, `isSymmetric` is the main function to check if the tree is symmetric. It calls a helper function `isSymmetricHelper` which takes two subtrees and recursively checks if they are symmetric. If both subtrees are `null`, they are considered symmetric. Otherwise, it compares the values of the nodes and recursively checks the subtrees.
-
-In the `main` function, I've provided an example of how to use this implementation by creating a binary tree and checking if it's symmetric.
-
-Feel free to run and test the code! Let me know if you have any questions.
-
-### 1. Algorithms & Data Structures (C++): Symmetric Tree - Trees
-
-Sure, let's delve into implementing a solution for checking if a binary tree is symmetric using C++.
-
-Here's a basic approach:
-
-1. We'll define a recursive function that takes two nodes as arguments. These two nodes represent the corresponding nodes in the left and right subtrees.
-2. At each step, we'll compare if the values of these two nodes are equal. If they are not, the tree is not symmetric.
-3. Then, we'll recursively check if the left subtree of the left node is symmetric with the right subtree of the right node, and if the right subtree of the left node is symmetric with the left subtree of the right node.
-4. We'll continue this process until we reach the leaves of the tree.
-
-Here's how you could implement it in C++:
-
-```cpp
-#include <iostream>
-#include <queue>
-
-using namespace std;
-
-// Definition for a binary tree node.
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
-bool isSymmetric(TreeNode* leftNode, TreeNode* rightNode) {
-    if (leftNode == nullptr && rightNode == nullptr)
-        return true;
-    if (leftNode == nullptr || rightNode == nullptr)
-        return false;
-
-    return (leftNode->val == rightNode->val) &&
-           isSymmetric(leftNode->left, rightNode->right) &&
-           isSymmetric(leftNode->right, rightNode->left);
-}
-
-bool isSymmetric(TreeNode* root) {
-    if (root == nullptr)
-        return true;
-    return isSymmetric(root->left, root->right);
-}
-
-int main() {
-    // Example usage
-    TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(2);
-    root->left->left = new TreeNode(3);
-    root->left->right = new TreeNode(4);
-    root->right->left = new TreeNode(4);
-    root->right->right = new TreeNode(3);
-
-    if (isSymmetric(root))
-        cout << "The tree is symmetric." << endl;
-    else
-        cout << "The tree is not symmetric." << endl;
-
-    return 0;
-}
-```
-
-This code defines the `TreeNode` structure and implements the `isSymmetric` function. The `main` function demonstrates how to create a binary tree and check if it's symmetric.
-
-### 1. Algorithms & Data Structures (C++): Terminologies of Trees
-
-Sure, let's explore some common terminologies used in trees, a fundamental data structure in computer science:
-
-1. **Node**: Each element in a tree is called a node. A node can have a value associated with it and may also have references (links) to other nodes, called child nodes.
-
-2. **Root**: The topmost node in a tree. It's the starting point for traversing the tree. Every tree has exactly one root node.
-
-3. **Parent**: A node that has child nodes. It's the immediate predecessor of its children.
-
-4. **Child**: A node directly connected to another node when moving away from the root. Every node in a tree, except the root, is a child of some other node.
-
-5. **Sibling**: Nodes that share the same parent are called siblings.
-
-6. **Leaf**: Nodes that have no children. They are the terminal nodes of the tree.
-
-7. **Internal Node**: A node with at least one child. It's any node in the tree that is not a leaf.
-
-8. **Depth**: The depth of a node is the length of the path from the root to that node. The depth of the root node is 0.
-
-9. **Height**: The height of a node is the length of the longest path from that node to a leaf. The height of a tree is the height of its root node.
-
-10. **Subtree**: A subtree is a tree formed by considering a node and all its descendants. Every node in a tree can be considered as the root of a subtree.
-
-11. **Binary Tree**: A tree in which each node has at most two children, typically referred to as the left child and the right child.
-
-12. **Binary Search Tree (BST)**: A binary tree in which the left child of a node contains only values less than or equal to the node's value, and the right child contains only values greater than the node's value.
-
-13. **Balanced Tree**: A tree in which the height of the left and right subtrees of any node differ by at most one.
-
-14. **Complete Binary Tree**: A binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
-
-15. **Full Binary Tree**: A binary tree in which every node has either 0 or 2 children.
-
-16. **Perfect Binary Tree**: A binary tree in which all interior nodes have two children and all leaf nodes are at the same level.
-
-17. **Traversal**: The process of visiting all the nodes of a tree systematically. Common traversal algorithms include in-order, pre-order, post-order, and level-order traversals.
-
-Understanding these terminologies is essential for effectively working with trees and implementing algorithms and data structures based on them.
-
-### 1. Algorithms & Data Structures (C++): Terms related to trees
-
-Certainly! Here are some terms related to trees in the context of algorithms and data structures:
-
-1. **Tree**: A hierarchical data structure consisting of nodes connected by edges. It consists of a root node, which has zero or more child nodes, where each child node may have its own children.
-
-2. **Node**: An individual element of a tree data structure, containing a value and references (pointers) to its children nodes.
-
-3. **Root**: The topmost node in a tree, from which all other nodes are descended. A tree has only one root.
-
-4. **Parent**: A node that has one or more child nodes connected to it via edges.
-
-5. **Child**: A node that has a parent node connected to it via an edge.
-
-6. **Leaf**: A node in a tree that has no children, i.e., it is at the end of a branch.
-
-7. **Internal node**: A node in a tree data structure that has at least one child.
-
-8. **Siblings**: Nodes that share the same parent in a tree.
-
-9. **Depth**: The level of a node in a tree. The depth of the root node is 0, and the depth increases by 1 as you move away from the root towards the leaves.
-
-10. **Height**: The maximum depth of any node in a tree. It is the length of the longest path from the root to a leaf node.
-
-11. **Subtree**: A tree formed by selecting a node (and all of its descendants) from a larger tree.
-
-12. **Binary Tree**: A tree in which each node has at most two children, referred to as the left child and the right child.
-
-13. **Binary Search Tree (BST)**: A binary tree in which the left child of a node contains a value less than the node's value, and the right child contains a value greater than the node's value. This property facilitates efficient searching, insertion, and deletion operations.
-
-14. **Balanced Tree**: A tree in which the heights of the subtrees of any node differ by at most one. Examples include AVL trees, red-black trees, and B-trees.
-
-15. **Complete Binary Tree**: A binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
-
-16. **Full Binary Tree**: A binary tree in which every node has either zero or two children.
-
-17. **Perfect Binary Tree**: A binary tree in which all interior nodes have two children and all leaves have the same depth or same level.
-
-18. **Traversal**: The process of visiting and examining all nodes in a tree data structure. Common tree traversal algorithms include inorder, preorder, and postorder traversals.
-
-19. **Inorder Traversal**: Traverses the tree in a left-root-right manner.
-
-20. **Preorder Traversal**: Traverses the tree in a root-left-right manner.
-
-21. **Postorder Traversal**: Traverses the tree in a left-right-root manner.
-
-These are some fundamental terms related to trees in the context of algorithms and data structures.
-
-### 1. Algorithms & Data Structures (C++): The Directed And Undirected Graph
-
-Directed and undirected graphs are fundamental concepts in computer science and are often used in various applications such as network routing, social network analysis, and scheduling algorithms. Let's dive into each type:
-
-#### Directed Graphs
-
-A directed graph, also known as a digraph, consists of a set of vertices/nodes connected by edges, where the edges have a direction associated with them. This means that the relationship between vertices is one-way. If there is an edge from vertex \( A \) to vertex \( B \), it doesn't necessarily imply the existence of an edge from \( B \) to \( A \).
-
-In C++, you can represent a directed graph using adjacency lists or adjacency matrices. Here's a brief overview of both representations:
-
-1. **Adjacency List**: Each vertex maintains a list of vertices that it is connected to.
-
-    ```cpp
-    #include <vector>
-    using namespace std;
-
-    vector<vector<int>> adjList(n); // n is the number of vertices
-
-    // Add edge from u to v
-    adjList[u].push_back(v);
-    ```
-
-2. **Adjacency Matrix**: A 2D matrix where \( \text{matrix}[i][j] \) is true if there's a direct edge from \( i \) to \( j \).
-
-    ```cpp
-    const int MAXN = 100; // Maximum number of vertices
-    bool adjMatrix[MAXN][MAXN] = {false}; // Initialize with no edges
-
-    // Add edge from u to v
-    adjMatrix[u][v] = true;
-    ```
-
-#### Undirected Graphs
-
-An undirected graph is a graph in which edges have no direction. If there is an edge between vertices \( A \) and \( B \), it implies the existence of an edge between \( B \) and \( A \), and the relationship is bidirectional.
-
-Similarly to directed graphs, you can represent undirected graphs using adjacency lists or adjacency matrices.
-
-```cpp
-#include <vector>
-using namespace std;
-
-vector<vector<int>> adjList(n); // n is the number of vertices
-
-// Add edge between u and v
-adjList[u].push_back(v);
-adjList[v].push_back(u); // Since the graph is undirected
-```
-
-For adjacency matrix representation, it's symmetric:
-
-```cpp
-const int MAXN = 100; // Maximum number of vertices
-bool adjMatrix[MAXN][MAXN] = {false}; // Initialize with no edges
-
-// Add edge between u and v
-adjMatrix[u][v] = true;
-adjMatrix[v][u] = true; // Since the graph is undirected
-```
-
-Both directed and undirected graphs have their own set of algorithms and operations that can be performed on them, such as depth-first search (DFS), breadth-first search (BFS), shortest path algorithms (Dijkstra's, Bellman-Ford), and minimum spanning tree algorithms (Prim's, Kruskal's). Understanding these concepts and their implementations is crucial for solving graph-related problems efficiently.
-
-### 1. Algorithms & Data Structures (C++): Tree
-
-Sure, I can provide an overview of trees in the context of algorithms and data structures in C++.
-
-In computer science, a tree is a widely used abstract data type (ADT) that simulates a hierarchical tree structure, with a root value and subtrees of children, represented as a set of linked nodes. Trees are used for various purposes, including organizing hierarchical data and facilitating efficient searching, sorting, and retrieval operations.
-
-In C++, trees can be implemented using classes and pointers. Here's a basic outline of a tree implementation in C++:
-
-```cpp
-#include <iostream>
-
-// Define a TreeNode structure
-template <typename T>
-struct TreeNode {
-    T data;
-    TreeNode<T>* left;
-    TreeNode<T>* right;
-
-    TreeNode(const T& value) : data(value), left(nullptr), right(nullptr) {}
-};
-
-// Define a BinaryTree class
-template <typename T>
-class BinaryTree {
-private:
-    TreeNode<T>* root;
-
-public:
-    BinaryTree() : root(nullptr) {}
-
-    // Insertion function
-    void insert(const T& value) {
-        root = insertHelper(root, value);
-    }
-
-    // Helper function to insert a value into the tree
-    TreeNode<T>* insertHelper(TreeNode<T>* node, const T& value) {
-        if (node == nullptr) {
-            return new TreeNode<T>(value);
-        }
-
-        if (value < node->data) {
-            node->left = insertHelper(node->left, value);
-        } else {
-            node->right = insertHelper(node->right, value);
-        }
-
-        return node;
-    }
-
-    // Other tree operations like deletion, searching, traversal, etc. can be implemented here
-};
-
-int main() {
-    BinaryTree<int> tree;
-
-    // Insert some elements into the tree
-    tree.insert(50);
-    tree.insert(30);
-    tree.insert(70);
-    tree.insert(20);
-    tree.insert(40);
-    tree.insert(60);
-    tree.insert(80);
-
-    // Perform tree operations as needed
-
-    return 0;
-}
-```
-
-This is a basic implementation of a binary search tree (BST) in C++. Binary search trees are a type of binary tree where the left child of a node contains only values less than the node's value, and the right child contains only values greater than the node's value. This property enables efficient searching, insertion, and deletion operations.
-
-Feel free to ask if you have any questions or if you'd like to know more about specific operations or variations of trees!
-
-### 1. Algorithms & Data Structures (C++): Tree / Binary Tree
-
-Certainly! Trees and binary trees are fundamental data structures in computer science and are used to store hierarchical data. Here's an overview of trees and binary trees in C++:
-
-#### Trees
-
-A tree is a hierarchical data structure consisting of nodes connected by edges. The top node is called the root, and each node can have zero or more child nodes. Here's a simple implementation of a tree node in C++:
-
-```cpp
-#include <vector>
-
-template<typename T>
-struct TreeNode {
-    T data;
-    std::vector<TreeNode*> children;
-    
-    TreeNode(const T& value) : data(value) {}
-};
-```
-
-This is a basic tree node structure that can hold any type of data. The `children` vector stores pointers to child nodes.
-
-#### Binary Trees
-
-A binary tree is a special type of tree where each node has at most two children, referred to as the left child and the right child. Here's a simple implementation of a binary tree node in C++:
-
-```cpp
-template<typename T>
-struct BinaryTreeNode {
-    T data;
-    BinaryTreeNode* left;
-    BinaryTreeNode* right;
-    
-    BinaryTreeNode(const T& value) : data(value), left(nullptr), right(nullptr) {}
-};
-```
-
-This structure represents a node in a binary tree. Each node contains data and pointers to its left and right children.
-
-#### Traversing a Binary Tree
-
-Traversing a binary tree involves visiting each node exactly once. Common traversal algorithms include:
-
-- **Inorder Traversal**: Visit left subtree, then current node, then right subtree.
-- **Preorder Traversal**: Visit current node, then left subtree, then right subtree.
-- **Postorder Traversal**: Visit left subtree, then right subtree, then current node.
-
-Here's an example of inorder traversal of a binary tree:
-
-```cpp
-template<typename T>
-void inorderTraversal(BinaryTreeNode<T>* root) {
-    if (root == nullptr) return;
-    
-    inorderTraversal(root->left);
-    std::cout << root->data << " ";
-    inorderTraversal(root->right);
-}
-```
-
-#### Binary Search Tree (BST)
-
-A binary search tree is a binary tree in which for each node, all nodes in its left subtree have values less than the node's value, and all nodes in its right subtree have values greater than the node's value. This property enables efficient search, insertion, and deletion operations.
-
-Here's a basic implementation of a binary search tree in C++:
-
-```cpp
-template<typename T>
-class BinarySearchTree {
-private:
-    BinaryTreeNode<T>* root;
-    
-public:
-    BinarySearchTree() : root(nullptr) {}
-    
-    void insert(const T& value) {
-        root = insertRecursive(root, value);
-    }
-    
-    BinaryTreeNode<T>* insertRecursive(BinaryTreeNode<T>* node, const T& value) {
-        if (node == nullptr)
-            return new BinaryTreeNode<T>(value);
-        
-        if (value < node->data)
-            node->left = insertRecursive(node->left, value);
-        else if (value > node->data)
-            node->right = insertRecursive(node->right, value);
-        
-        return node;
-    }
-};
-```
-
-This code defines a basic binary search tree with an `insert` method.
-
-These are just the basics. Trees and binary trees have many variations and extensions, such as balanced trees (AVL trees, red-black trees), binary heaps, and more. Understanding these structures and their algorithms is crucial for various applications in computer science and software development.
-
 ### 1. Algorithms & Data Structures (C++): Tree 2 Linked List
 
 In C++, converting a binary tree to a doubly linked list involves traversing the tree in a specific order and linking the nodes accordingly. Here's a general outline of how you can achieve this using the in-order traversal technique:
@@ -4770,135 +3188,6 @@ int main() {
 ```
 
 This code performs an in-order traversal of the binary tree and converts it to a doubly linked list. The `convert()` function recursively traverses the tree, and for each node, it creates a new linked list node and links it to the previous node (if any) and updates the tail pointer to the newly created node. Finally, it returns the head of the resulting linked list.
-
-### 1. Algorithms & Data Structures (C++): Tree and Forest
-
-Sure, let's dive into trees and forests in the context of algorithms and data structures using C++.
-
-#### Trees
-
-A tree is a hierarchical data structure consisting of nodes connected by edges. Here are some key concepts:
-
-1. **Node**: Each element in a tree is called a node. Each node contains a value and may have a link to other nodes, called children nodes.
-  
-2. **Root**: The topmost node in a tree is called the root node. It is the starting point for traversing the tree.
-
-3. **Parent and Child**: Nodes in a tree are connected in parent-child relationships. A node may have zero or more children, and it has exactly one parent (except the root, which has no parent).
-
-4. **Leaf**: A node with no children is called a leaf node. It is at the bottom of the tree hierarchy.
-
-5. **Depth and Height**: The depth of a node is the number of edges from the root to that node. The height of a node is the number of edges on the longest path from the node to a leaf. The height of the tree is the height of the root node.
-
-##### Implementation of a basic Tree in C++
-
-```cpp
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
-struct TreeNode {
-    int val;
-    vector<TreeNode*> children;
-
-    TreeNode(int x) : val(x) {}
-};
-
-class Tree {
-private:
-    TreeNode* root;
-
-public:
-    Tree() : root(nullptr) {}
-
-    TreeNode* getRoot() {
-        return root;
-    }
-
-    void insert(int val, TreeNode* parent) {
-        TreeNode* newNode = new TreeNode(val);
-        if (!root) {
-            root = newNode;
-            return;
-        }
-        parent->children.push_back(newNode);
-    }
-};
-
-int main() {
-    Tree tree;
-
-    // Insertion
-    TreeNode* root = tree.getRoot();
-    tree.insert(1, root);  // root node
-    tree.insert(2, root);  // child of root
-    tree.insert(3, root);  // child of root
-    tree.insert(4, root->children[0]);  // child of first child
-    tree.insert(5, root->children[0]);  // child of first child
-
-    return 0;
-}
-```
-
-#### Forest
-
-A forest is a collection of disjoint trees. In other words, it's a set of trees with no common roots. Each tree in a forest follows the same structure as described above.
-
-##### Implementation of a Forest in C++
-
-Creating a forest involves creating multiple trees and managing them as a collection.
-
-```cpp
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
-struct TreeNode {
-    int val;
-    vector<TreeNode*> children;
-
-    TreeNode(int x) : val(x) {}
-};
-
-class Forest {
-private:
-    vector<TreeNode*> trees;
-
-public:
-    void addTree(TreeNode* root) {
-        trees.push_back(root);
-    }
-
-    void insert(int val, TreeNode* parent, int treeIndex) {
-        TreeNode* newNode = new TreeNode(val);
-        parent->children.push_back(newNode);
-        trees[treeIndex] = parent;
-    }
-};
-
-int main() {
-    Forest forest;
-
-    // First Tree
-    TreeNode* root1 = new TreeNode(1);
-    forest.addTree(root1);
-    forest.insert(2, root1, 0);
-    forest.insert(3, root1, 0);
-
-    // Second Tree
-    TreeNode* root2 = new TreeNode(4);
-    forest.addTree(root2);
-    forest.insert(5, root2, 1);
-    forest.insert(6, root2, 1);
-
-    return 0;
-}
-```
-
-This code creates a forest with two trees. You can extend it to handle more trees as needed.
-
-These are the basics of trees and forests in C++. They are fundamental data structures used in various algorithms, such as tree traversal, searching, and sorting.
 
 ### 1. Algorithms & Data Structures (C++): Tree breadth first search
 
@@ -5173,6 +3462,7 @@ Here's how you can understand and calculate the diameter of a tree:
    - The distance between these two farthest nodes is the diameter of the tree.
 
 3. **Pseudocode**:
+
    ```
    Function diameter(tree, node):
        If tree is empty or node is null:
@@ -5189,6 +3479,7 @@ Here's how you can understand and calculate the diameter of a tree:
    ```
 
 4. **Implementation in C++**:
+
    ```cpp
    struct TreeNode {
        int val;
@@ -5362,341 +3653,6 @@ In this code:
 
 This algorithm runs in O(N^2) time complexity, where N is the number of nodes in the tree.
 
-### 1. Algorithms & Data Structures (C++): Tree Implementation
-
-Sure, I can give you a basic implementation of a binary tree in C++. Here's a simple example:
-
-```cpp
-#include <iostream>
-
-using namespace std;
-
-// Define the structure of a tree node
-struct TreeNode {
-    int data;
-    TreeNode* left;
-    TreeNode* right;
-
-    TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
-};
-
-// Function to insert a new node into the binary tree
-TreeNode* insert(TreeNode* root, int val) {
-    if (root == nullptr) {
-        return new TreeNode(val);
-    }
-
-    if (val < root->data) {
-        root->left = insert(root->left, val);
-    } else {
-        root->right = insert(root->right, val);
-    }
-
-    return root;
-}
-
-// Function to perform inorder traversal of the binary tree
-void inorder(TreeNode* root) {
-    if (root == nullptr) {
-        return;
-    }
-
-    inorder(root->left);
-    cout << root->data << " ";
-    inorder(root->right);
-}
-
-int main() {
-    TreeNode* root = nullptr;
-
-    // Insert some values into the tree
-    root = insert(root, 5);
-    insert(root, 3);
-    insert(root, 7);
-    insert(root, 2);
-    insert(root, 4);
-    insert(root, 6);
-    insert(root, 8);
-
-    // Print the inorder traversal of the tree
-    cout << "Inorder traversal: ";
-    inorder(root);
-    cout << endl;
-
-    return 0;
-}
-```
-
-This code defines a simple binary tree structure with `TreeNode` containing data and pointers to left and right child nodes. The `insert` function inserts a new node into the tree while maintaining its binary search tree property. The `inorder` function performs an inorder traversal of the tree, printing the node values in sorted order. Finally, in the `main` function, we create a binary tree, insert some values, and then print the inorder traversal.
-
-### 1. Algorithms & Data Structures (C++): Tree Recursion
-
-Tree recursion is a fundamental concept in algorithms and data structures, particularly in the context of recursive algorithms operating on hierarchical data structures like trees. In C++, you can implement tree recursion to traverse, search, modify, or perform other operations on trees efficiently.
-
-Here's a basic example of tree recursion in C++:
-
-```cpp
-#include <iostream>
-
-// Define the structure of a binary tree node
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-
-// Function to perform a recursive traversal of a binary tree (In-order traversal)
-void inorderTraversal(TreeNode* root) {
-    if (root == nullptr) return;
-    inorderTraversal(root->left);    // Recursively traverse left subtree
-    std::cout << root->val << " ";   // Process current node
-    inorderTraversal(root->right);   // Recursively traverse right subtree
-}
-
-// Function to perform a recursive traversal of a binary tree (Pre-order traversal)
-void preorderTraversal(TreeNode* root) {
-    if (root == nullptr) return;
-    std::cout << root->val << " ";   // Process current node
-    preorderTraversal(root->left);   // Recursively traverse left subtree
-    preorderTraversal(root->right);  // Recursively traverse right subtree
-}
-
-// Function to perform a recursive traversal of a binary tree (Post-order traversal)
-void postorderTraversal(TreeNode* root) {
-    if (root == nullptr) return;
-    postorderTraversal(root->left);  // Recursively traverse left subtree
-    postorderTraversal(root->right); // Recursively traverse right subtree
-    std::cout << root->val << " ";   // Process current node
-}
-
-int main() {
-    // Constructing a binary tree
-    TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(3);
-    root->left->left = new TreeNode(4);
-    root->left->right = new TreeNode(5);
-
-    std::cout << "In-order traversal: ";
-    inorderTraversal(root);
-    std::cout << std::endl;
-
-    std::cout << "Pre-order traversal: ";
-    preorderTraversal(root);
-    std::cout << std::endl;
-
-    std::cout << "Post-order traversal: ";
-    postorderTraversal(root);
-    std::cout << std::endl;
-
-    // Deallocate memory
-    delete root->left->left;
-    delete root->left->right;
-    delete root->left;
-    delete root->right;
-    delete root;
-
-    return 0;
-}
-```
-
-In this example, `TreeNode` represents a node in a binary tree with an integer value and pointers to its left and right children. The `inorderTraversal`, `preorderTraversal`, and `postorderTraversal` functions perform in-order, pre-order, and post-order traversals of the binary tree, respectively, using recursive calls.
-
-These traversal methods are just a few examples of how you can apply tree recursion in algorithms. Depending on the problem you're solving, you might implement other recursive algorithms such as tree search, tree modification, or tree-based dynamic programming.
-
-### 1. Algorithms & Data Structures (C++): Tree Terminology
-
-Sure, I'd be happy to explain some tree terminology in the context of algorithms and data structures in C++!
-
-1. **Node**: A fundamental unit of a tree, representing a single element. Each node contains a value and references to its child nodes (if any).
-
-2. **Root**: The topmost node of a tree, from which all other nodes are descended. It is the only node in the tree that has no parent.
-
-3. **Parent**: A node that has child nodes.
-
-4. **Child**: A node directly connected to another node when moving away from the root.
-
-5. **Leaf**: A node that has no children. It's at the "end" of the tree branches.
-
-6. **Sibling**: Nodes that share the same parent.
-
-7. **Depth**: The level of a node in a tree. The root node is at depth 0, its children are at depth 1, and so on.
-
-8. **Height**: The maximum depth of the tree, i.e., the length of the longest path from the root node to a leaf node.
-
-9. **Subtree**: A tree contained within another tree. It consists of a node in the main tree and all of its descendants.
-
-10. **Binary Tree**: A tree data structure in which each node has at most two children, referred to as the left child and the right child.
-
-11. **Binary Search Tree (BST)**: A binary tree in which for each node, all elements in its left subtree are less than or equal to the node's value, and all elements in its right subtree are greater than the node's value. This property allows for efficient searching, insertion, and deletion operations.
-
-12. **Balanced Tree**: A tree in which the height of the left and right subtrees of any node differ by at most one, ensuring that the tree remains relatively balanced and operations are efficient.
-
-13. **Traversal**: The process of visiting all the nodes in a tree in a specific order. Common traversal algorithms include in-order, pre-order, and post-order traversals.
-
-14. **In-order Traversal**: A depth-first traversal algorithm that visits nodes in the order left, root, right. It is commonly used in binary search trees to visit nodes in sorted order.
-
-15. **Pre-order Traversal**: A depth-first traversal algorithm that visits nodes in the order root, left, right.
-
-16. **Post-order Traversal**: A depth-first traversal algorithm that visits nodes in the order left, right, root.
-
-17. **Level-order Traversal**: A breadth-first traversal algorithm that visits nodes level by level, starting from the root and moving down through each level.
-
-18. **Complete Binary Tree**: A binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
-
-19. **Full Binary Tree**: A binary tree in which every node other than the leaves has two children.
-
-20. **Perfect Binary Tree**: A binary tree in which all internal nodes have exactly two children and all leaf nodes are at the same level.
-
-Understanding these terms is crucial for implementing and working with tree-based algorithms and data structures effectively in C++ or any other programming language.
-
-### 1. Algorithms & Data Structures (C++): Tree Terms
-
-Certainly! Trees are fundamental data structures in computer science with various terms associated with them. Here are some key terms related to trees in the context of algorithms and data structures, explained in C++:
-
-1. **Node**: The basic building block of a tree that contains data and links to other nodes (child nodes).
-
-    ```cpp
-    template <typename T>
-    struct TreeNode {
-        T data;
-        TreeNode<T>* left;
-        TreeNode<T>* right;
-        // Constructors, etc.
-    };
-    ```
-
-2. **Root**: The topmost node in a tree hierarchy. It has no parent.
-
-3. **Parent**: A node that has one or more child nodes.
-
-4. **Child**: Nodes directly connected to another node when moving away from the root.
-
-5. **Leaf**: Nodes that have no children in the tree.
-
-6. **Internal Node**: A node that has at least one child.
-
-7. **Subtree**: A tree within a tree. It consists of a node in the original tree and all of its descendants.
-
-8. **Height**: The length of the longest path from the root to a leaf node. The height of a tree is the height of its root node.
-
-9. **Depth**: The length of the path from the root to a particular node.
-
-10. **Binary Tree**: A tree in which each node has at most two children, commonly referred to as the left child and the right child.
-
-11. **Binary Search Tree (BST)**: A binary tree in which the left child of a node contains only nodes with values less than the node's value, and the right child contains only nodes with values greater than the node's value.
-
-12. **Balanced Tree**: A tree in which the heights of the two subtrees of any node differ by at most one.
-
-13. **Complete Binary Tree**: A binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
-
-14. **Full Binary Tree**: A binary tree in which every node other than the leaves has two children.
-
-15. **Perfect Binary Tree**: A binary tree in which all interior nodes have two children and all leaves have the same depth or same level.
-
-16. **Traversal**:
-    - **Preorder**: Visit the root node, then recursively do a preorder traversal of the left subtree, followed by a preorder traversal of the right subtree.
-    - **Inorder**: Recursively do an inorder traversal of the left subtree, visit the root node, then recursively do an inorder traversal of the right subtree. In BSTs, inorder traversal visits nodes in sorted order.
-    - **Postorder**: Recursively do a postorder traversal of the left subtree, then recursively do a postorder traversal of the right subtree, followed by visiting the root node.
-
-These are some of the fundamental terms related to trees in the context of algorithms and data structures using C++. Let me know if you need further clarification on any of these terms!
-
-### 1. Algorithms & Data Structures (C++): Tree to Linked List
-
-Converting a binary tree into a singly linked list is a common algorithmic problem in computer science. Here's a simple approach to do this in C++:
-
-```cpp
-#include <iostream>
-
-using namespace std;
-
-// Definition for a binary tree node.
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-
-// Definition for a singly-linked list node.
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(nullptr) {}
-};
-
-class Solution {
-public:
-    void flatten(TreeNode* root) {
-        if (!root) return;
-        
-        // Save the right subtree
-        TreeNode* rightSubtree = root->right;
-        
-        // If the left subtree is not empty, move it to the right
-        if (root->left) {
-            root->right = root->left;
-            root->left = nullptr;
-            
-            // Find the rightmost node of the new right subtree
-            TreeNode* temp = root->right;
-            while (temp->right) {
-                temp = temp->right;
-            }
-            
-            // Attach the saved right subtree to the rightmost node
-            temp->right = rightSubtree;
-        }
-        
-        // Flatten the right subtree
-        flatten(root->right);
-    }
-    
-    // Helper function to print the linked list
-    void printList(ListNode* head) {
-        while (head) {
-            cout << head->val << " -> ";
-            head = head->next;
-        }
-        cout << "null" << endl;
-    }
-};
-
-int main() {
-    Solution solution;
-    
-    // Create a sample binary tree
-    TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->left->left = new TreeNode(3);
-    root->left->right = new TreeNode(4);
-    root->right = new TreeNode(5);
-    root->right->right = new TreeNode(6);
-    
-    // Flatten the binary tree
-    solution.flatten(root);
-    
-    // Print the linked list
-    cout << "Linked list after flattening the binary tree: " << endl;
-    solution.printList(root);
-    
-    return 0;
-}
-```
-
-In this code:
-
-- We define a binary tree node `TreeNode` and a singly linked list node `ListNode`.
-- The `flatten` function converts the binary tree into a linked list in place using a recursive approach.
-- We traverse the tree in a preorder manner and for each node, we:
-  - Save the right subtree.
-  - If the left subtree exists, we move it to the right side and attach the saved right subtree to the rightmost node of the new right subtree.
-  - Recursively flatten the right subtree.
-- Finally, we print the linked list to verify the result.
-
-This algorithm has a time complexity of O(n), where n is the number of nodes in the binary tree.
-
 ### 1. Algorithms & Data Structures (C++): Tree Traversal
 
 Tree traversal is a fundamental operation in computer science used to visit all the nodes of a tree. There are several methods to traverse a tree, each with its own use case. In C++, you can implement these traversals using recursion or iterative approaches.
@@ -5775,148 +3731,6 @@ int main() {
 ```
 
 This code demonstrates the three types of tree traversals using a simple binary tree structure. You can modify it according to your requirements or extend it to work with other types of trees as well.
-
-### 1. Algorithms & Data Structures (C++): Tree Traversal Techniques of a Binary Tree
-
-In C++, there are several ways to traverse a binary tree, each with its own advantages and use cases. Here are the three main traversal techniques: **in-order**, **pre-order**, and **post-order** traversal.
-
-#### In-order Traversal
-
-In in-order traversal, the left subtree is recursively visited first, then the root node, and finally the right subtree. In a binary search tree (BST), this traversal would visit the nodes in ascending order.
-
-```cpp
-struct Node {
-    int data;
-    Node* left;
-    Node* right;
-};
-
-void inOrderTraversal(Node* root) {
-    if (root == nullptr)
-        return;
-    inOrderTraversal(root->left);
-    cout << root->data << " ";
-    inOrderTraversal(root->right);
-}
-```
-
-#### Pre-order Traversal
-
-In pre-order traversal, the root node is visited first, followed by the left subtree, and finally the right subtree.
-
-```cpp
-void preOrderTraversal(Node* root) {
-    if (root == nullptr)
-        return;
-    cout << root->data << " ";
-    preOrderTraversal(root->left);
-    preOrderTraversal(root->right);
-}
-```
-
-#### Post-order Traversal
-
-In post-order traversal, the left and right subtrees are recursively visited before visiting the root node.
-
-```cpp
-void postOrderTraversal(Node* root) {
-    if (root == nullptr)
-        return;
-    postOrderTraversal(root->left);
-    postOrderTraversal(root->right);
-    cout << root->data << " ";
-}
-```
-
-#### Usage Example
-
-To use these traversal functions, you can create a binary tree and call the respective traversal function with the root node.
-
-```cpp
-int main() {
-    Node* root = new Node{1};
-    root->left = new Node{2};
-    root->right = new Node{3};
-    root->left->left = new Node{4};
-    root->left->right = new Node{5};
-
-    cout << "In-order traversal: ";
-    inOrderTraversal(root);
-    cout << endl;
-
-    cout << "Pre-order traversal: ";
-    preOrderTraversal(root);
-    cout << endl;
-
-    cout << "Post-order traversal: ";
-    postOrderTraversal(root);
-    cout << endl;
-
-    return 0;
-}
-```
-
-This will output:
-
-```bash
-In-order traversal: 4 2 5 1 3 
-Pre-order traversal: 1 2 4 5 3 
-Post-order traversal: 4 5 2 3 1 
-```
-
-These traversal techniques are fundamental in many tree-related algorithms and are commonly used in problems involving binary trees.
-
-### 1. Algorithms & Data Structures (C++): Tree Traversals
-
-Tree traversals are fundamental operations in dealing with tree data structures. In C++, you can implement tree traversals using various techniques such as recursion or iterative methods. Here's how you can perform the three main types of tree traversals: preorder, inorder, and postorder.
-
-Let's assume you have a basic binary tree node structure defined like this:
-
-```cpp
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-```
-
-Now, let's implement the three types of traversals:
-
-1. **Preorder Traversal**: Visit the current node, then traverse the left subtree, and finally traverse the right subtree.
-
-```cpp
-void preorderTraversal(TreeNode* root) {
-    if (root == nullptr) return;
-    cout << root->val << " "; // Visit current node
-    preorderTraversal(root->left); // Traverse left subtree
-    preorderTraversal(root->right); // Traverse right subtree
-}
-```
-
-1. **Inorder Traversal**: Traverse the left subtree, visit the current node, and then traverse the right subtree.
-
-```cpp
-void inorderTraversal(TreeNode* root) {
-    if (root == nullptr) return;
-    inorderTraversal(root->left); // Traverse left subtree
-    cout << root->val << " "; // Visit current node
-    inorderTraversal(root->right); // Traverse right subtree
-}
-```
-
-1. **Postorder Traversal**: Traverse the left subtree, traverse the right subtree, and then visit the current node.
-
-```cpp
-void postorderTraversal(TreeNode* root) {
-    if (root == nullptr) return;
-    postorderTraversal(root->left); // Traverse left subtree
-    postorderTraversal(root->right); // Traverse right subtree
-    cout << root->val << " "; // Visit current node
-}
-```
-
-These are the basic recursive implementations of tree traversals in C++. Depending on your needs, you might also consider implementing iterative versions of these traversals using stacks or queues to achieve the same results.
 
 ### 1. Algorithms & Data Structures (C++): Tree with Maximum Cost
 
@@ -6256,76 +4070,6 @@ int main() {
 
 This code defines a `TreeNode` struct and implements the `inorderTraversal` function to perform an inorder traversal of a binary tree. In the `main` function, a sample binary tree is created and its inorder traversal is printed.
 
-### 1. Algorithms & Data Structures (C++): Tree: Level Order
-
-Sure, I can provide you with an example implementation of the level order traversal of a binary tree in C++:
-
-```cpp
-#include <iostream>
-#include <queue>
-
-using namespace std;
-
-// Definition for a binary tree node.
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
-void levelOrder(TreeNode* root) {
-    if (root == NULL)
-        return;
-    
-    // Create a queue to store nodes at each level
-    queue<TreeNode*> q;
-    q.push(root);
-    
-    while (!q.empty()) {
-        // Get the current size of the queue
-        int size = q.size();
-        
-        // Traverse all nodes at the current level
-        for (int i = 0; i < size; i++) {
-            TreeNode* current = q.front();
-            q.pop();
-            
-            // Process the current node
-            cout << current->val << " ";
-            
-            // Enqueue the left child, if exists
-            if (current->left != NULL)
-                q.push(current->left);
-            
-            // Enqueue the right child, if exists
-            if (current->right != NULL)
-                q.push(current->right);
-        }
-        cout << endl; // Move to the next level
-    }
-}
-
-// Sample usage
-int main() {
-    // Create a sample binary tree
-    TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(3);
-    root->left->left = new TreeNode(4);
-    root->left->right = new TreeNode(5);
-    root->right->left = new TreeNode(6);
-    root->right->right = new TreeNode(7);
-
-    // Print level order traversal
-    levelOrder(root);
-
-    return 0;
-}
-```
-
-This code demonstrates the level order traversal of a binary tree using a queue data structure. The `levelOrder` function takes the root of the binary tree as input and prints the nodes in level order, i.e., starting from the root, then printing all nodes at level 1, then all nodes at level 2, and so on.
-
 ### 1. Algorithms & Data Structures (C++): Tree: Level Order Traversal
 
 In C++, performing a level order traversal on a tree typically involves using a queue to traverse the tree level by level. Here's how you can implement it:
@@ -6450,56 +4194,6 @@ In this code:
 
 Remember to deallocate memory properly to avoid memory leaks.
 
-### 1. Algorithms & Data Structures (C++): Tree: PostOrder Traversal
-
-In C++, a post-order traversal of a tree involves visiting the nodes in the following order: left subtree, right subtree, root node. Here's how you can implement post-order traversal for a binary tree using recursion:
-
-```cpp
-#include <iostream>
-
-// Definition for a binary tree node.
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-
-void postorderTraversal(TreeNode* root) {
-    if (root == nullptr) {
-        return;
-    }
-    postorderTraversal(root->left);    // Visit left subtree
-    postorderTraversal(root->right);   // Visit right subtree
-    std::cout << root->val << " ";     // Visit root node
-}
-
-int main() {
-    // Example usage:
-    // Constructing a simple binary tree
-    TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(3);
-    root->left->left = new TreeNode(4);
-    root->left->right = new TreeNode(5);
-
-    std::cout << "Postorder traversal: ";
-    postorderTraversal(root);
-    std::cout << std::endl;
-
-    // Remember to deallocate memory to prevent memory leaks
-    delete root->left->right;
-    delete root->left->left;
-    delete root->left;
-    delete root->right;
-    delete root;
-
-    return 0;
-}
-```
-
-This code defines a simple binary tree structure (`TreeNode`) and a function `postorderTraversal` to traverse the tree in post-order. In the `main()` function, an example tree is created, and its post-order traversal is printed. Finally, memory allocated for the tree nodes is deallocated to prevent memory leaks.
-
 ### 1. Algorithms & Data Structures (C++): Tree: Pre Order Traversal
 
 In C++, a pre-order traversal of a tree means visiting the root node first, then recursively visiting the left subtree, followed by visiting the right subtree. Here's a basic implementation of a binary tree node and the pre-order traversal algorithm:
@@ -6555,76 +4249,6 @@ int main() {
 ```
 
 This code demonstrates a simple binary tree node structure and the pre-order traversal algorithm applied to it. The `preOrderTraversal` function takes a pointer to the root of the tree and prints the nodes in pre-order. Finally, remember to deallocate the memory allocated for the tree nodes to avoid memory leaks.
-
-### 1. Algorithms & Data Structures (C++): Tree: PreOrder Traversal
-
-Sure, I can help you with that! Preorder traversal is a type of tree traversal algorithm where each node is processed before (pre) its child nodes. In C++, you can implement pre-order traversal using recursion. Here's how you can do it:
-
-```cpp
-#include <iostream>
-
-using namespace std;
-
-// Define a structure for the tree node
-struct TreeNode {
-    int data;
-    TreeNode* left;
-    TreeNode* right;
-
-    TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
-};
-
-// Function to perform pre-order traversal
-void preOrderTraversal(TreeNode* root) {
-    if (root == nullptr)
-        return;
-
-    // Process the current node
-    cout << root->data << " ";
-
-    // Traverse left subtree
-    preOrderTraversal(root->left);
-
-    // Traverse right subtree
-    preOrderTraversal(root->right);
-}
-
-int main() {
-    // Create a binary tree
-    TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(3);
-    root->left->left = new TreeNode(4);
-    root->left->right = new TreeNode(5);
-    root->right->left = new TreeNode(6);
-    root->right->right = new TreeNode(7);
-
-    // Perform pre-order traversal
-    cout << "Preorder traversal: ";
-    preOrderTraversal(root);
-    cout << endl;
-
-    // Clean up memory (not necessary for algorithm demonstration)
-    // Implement cleanup as needed for your application
-    delete root->right->right;
-    delete root->right->left;
-    delete root->left->right;
-    delete root->left->left;
-    delete root->right;
-    delete root->left;
-    delete root;
-
-    return 0;
-}
-```
-
-In this code:
-
-- We define a structure `TreeNode` to represent each node of the binary tree.
-- The `preOrderTraversal` function takes a pointer to the root of the tree and recursively traverses the tree in pre-order fashion, printing the data of each node.
-- In the `main` function, we create a binary tree and call the `preOrderTraversal` function with the root node to perform pre-order traversal.
-
-This code will output the pre-order traversal of the binary tree.
 
 ### 1. Algorithms & Data Structures (C++): Tree: Print All Nodes at Level K
 
@@ -6947,191 +4571,6 @@ In this implementation:
 
 You can use this `TreeNode` class to build various tree structures and perform operations on them.
 
-### 1. Algorithms & Data Structures (C++): Trees
-
-Trees are fundamental data structures in computer science and are widely used in various applications, including hierarchical data representation, searching, and sorting. In C++, you can implement trees using classes and structures. Here's a brief overview of some common tree types and their implementations:
-
-1. **Binary Tree**:
-   - Each node has at most two children: left and right.
-   - In C++, you can implement a binary tree using a class that has pointers to the left and right child nodes.
-   - Operations like insertion, deletion, and traversal (inorder, preorder, postorder) are commonly implemented for binary trees.
-
-2. **Binary Search Tree (BST)**:
-   - A binary tree with the property that for each node, all nodes in its left subtree have values less than the node's value, and all nodes in its right subtree have values greater than the node's value.
-   - In C++, you need to ensure that when inserting a node into a BST, it's inserted in the correct position based on its value.
-   - Operations like search, insertion, and deletion are commonly implemented for BSTs.
-
-3. **AVL Tree**:
-   - A self-balancing binary search tree where the height difference between the left and right subtrees of any node is at most 1.
-   - In C++, you can implement AVL trees using rotations to maintain balance during insertion and deletion operations.
-   - Operations are similar to those of BSTs but may involve additional rotations to maintain balance.
-
-4. **Red-Black Tree**:
-   - Another self-balancing binary search tree with additional properties that ensure balance.
-   - Red-black trees maintain balance using colorings and rotations.
-   - In C++, you can implement red-black trees by augmenting regular binary search tree operations with color changes and rotations.
-
-5. **Heap**:
-   - A specialized tree-based data structure that satisfies the heap property.
-   - In a max-heap, for any given node, the value of the node is greater than or equal to the values of its children.
-   - In a min-heap, for any given node, the value of the node is less than or equal to the values of its children.
-   - In C++, you can implement heaps using arrays or binary trees.
-
-6. **Trie (Prefix Tree)**:
-   - A tree-like data structure used to store a dynamic set of strings where the keys are usually strings.
-   - Each node of the trie represents a common prefix of some strings.
-   - In C++, you can implement tries using nodes with links to child nodes representing the next character in the string.
-
-These are just some of the common tree types and their implementations in C++. Depending on the specific requirements of your application, you may choose different types of trees or even design custom tree structures.
-
-### 1. Algorithms & Data Structures (C++): Trees - Height and Levels
-
-In C++, you can implement algorithms to find the height and levels of a tree using various tree traversal techniques. Here's a basic implementation of a binary tree along with functions to find its height and the number of levels:
-
-```cpp
-#include <iostream>
-#include <queue>
-using namespace std;
-
-// Node structure for the binary tree
-struct Node {
-    int data;
-    Node* left;
-    Node* right;
-
-    Node(int value) {
-        data = value;
-        left = nullptr;
-        right = nullptr;
-    }
-};
-
-// Function to find the height of a binary tree
-int height(Node* root) {
-    if (root == nullptr)
-        return 0;
-    else {
-        int leftHeight = height(root->left);
-        int rightHeight = height(root->right);
-
-        // Return the maximum of leftHeight and rightHeight, plus 1 for the current node
-        return max(leftHeight, rightHeight) + 1;
-    }
-}
-
-// Function to find the number of levels in a binary tree
-int levels(Node* root) {
-    if (root == nullptr)
-        return 0;
-    else {
-        queue<Node*> q;
-        q.push(root);
-        int levelCount = 0;
-
-        while (!q.empty()) {
-            int nodeCount = q.size(); // Number of nodes at current level
-
-            // Process all nodes at this level and add their children to the queue
-            while (nodeCount > 0) {
-                Node* node = q.front();
-                q.pop();
-                if (node->left)
-                    q.push(node->left);
-                if (node->right)
-                    q.push(node->right);
-                nodeCount--;
-            }
-            levelCount++; // Increment the level count after processing all nodes at the current level
-        }
-
-        return levelCount;
-    }
-}
-
-int main() {
-    // Create a sample binary tree
-    Node* root = new Node(1);
-    root->left = new Node(2);
-    root->right = new Node(3);
-    root->left->left = new Node(4);
-    root->left->right = new Node(5);
-    root->right->left = new Node(6);
-    root->right->right = new Node(7);
-
-    // Calculate and print the height and levels of the binary tree
-    cout << "Height of the binary tree: " << height(root) << endl;
-    cout << "Levels of the binary tree: " << levels(root) << endl;
-
-    // Clean up memory
-    delete root->right->right;
-    delete root->right->left;
-    delete root->left->right;
-    delete root->left->left;
-    delete root->right;
-    delete root->left;
-    delete root;
-
-    return 0;
-}
-```
-
-In this code:
-
-- The `Node` structure represents each node in the binary tree.
-- The `height` function calculates the height of the tree recursively by finding the maximum height of the left and right subtrees and adding 1 for the current node.
-- The `levels` function calculates the number of levels in the tree using a level-order traversal (BFS). It keeps track of the number of nodes at each level and increments the level count accordingly.
-- In the `main` function, a sample binary tree is created, and the height and levels are calculated and printed.
-
-Remember to deallocate the memory allocated for the nodes after their usage to avoid memory leaks.
-
-### 1. Algorithms & Data Structures (C++): Trees - Terminology
-
-Sure, let's delve into some terminology related to trees in the context of algorithms and data structures:
-
-1. **Node**: The fundamental building block of a tree, consisting of a value and references to its child nodes, if any.
-
-2. **Root**: The topmost node of a tree, serving as the entry point for accessing the tree's structure.
-
-3. **Parent**: A node from which another node originates. Each node, except the root, has exactly one parent.
-
-4. **Child**: A node directly connected to another node when moving away from the root.
-
-5. **Siblings**: Nodes that share the same parent.
-
-6. **Leaf**: A node with no children, i.e., a node at the end of a branch.
-
-7. **Internal Node**: A node with at least one child.
-
-8. **Depth**: The level of a node in the tree. The root has depth 0, its children have depth 1, and so on.
-
-9. **Height**: The maximum depth of any node in the tree. The height of a tree with a single node (the root) is 0.
-
-10. **Subtree**: A tree formed by considering a node and all of its descendants, including the node itself.
-
-11. **Binary Tree**: A tree in which each node has at most two children, conventionally referred to as the left child and the right child.
-
-12. **Binary Search Tree (BST)**: A binary tree where for each node, all elements in its left subtree are less than or equal to the node's value, and all elements in its right subtree are greater than the node's value. This structure facilitates efficient searching, insertion, and deletion operations.
-
-13. **Balanced Tree**: A tree in which the heights of the two subtrees of any node never differ by more than one. Common balanced trees include AVL trees and Red-Black trees.
-
-14. **Complete Binary Tree**: A binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
-
-15. **Full Binary Tree**: A binary tree in which every node other than the leaves has two children.
-
-16. **Perfect Binary Tree**: A binary tree that is both full and complete, meaning all interior nodes have two children and all leaves are at the same depth.
-
-17. **Traversal**: The process of visiting all the nodes in a tree in a specific order. Common traversal methods include in-order, pre-order, post-order, and level-order traversals.
-
-18. **In-order Traversal**: Visit the left subtree, then the root, then the right subtree.
-
-19. **Pre-order Traversal**: Visit the root, then the left subtree, then the right subtree.
-
-20. **Post-order Traversal**: Visit the left subtree, then the right subtree, then the root.
-
-21. **Level-order Traversal**: Visit nodes level by level, starting from the root and moving down.
-
-These terms provide a solid foundation for understanding and working with trees in the realm of algorithms and data structures.
-
 ### 1. Algorithms & Data Structures (C++): Trees and Lowest Common Ancestors (Dynammic Programming)
 
 Sure! Trees and Lowest Common Ancestors (LCA) are fundamental concepts in computer science and are frequently used in various algorithms and data structures. Let's break down these topics.
@@ -7234,165 +4673,6 @@ Vectors are part of the Standard Template Library (STL) in C++, and they offer a
 
 In C++, trees are usually implemented using pointers, while vectors are provided as part of the standard library. Combining these two data structures can lead to efficient solutions for various programming problems, especially when dealing with data that has hierarchical relationships or when dynamic resizing is required.
 
-### 1. Algorithms & Data Structures (C++): Trees Definition and Properties
-
-In C++, trees are a fundamental data structure widely used in computer science and programming. They're hierarchical data structures composed of nodes, with each node having a value and a set of references (or pointers) to its child nodes. Here's a breakdown of the key components and properties of trees:
-
-#### Definition
-
-A tree is a collection of nodes organized hierarchically. It consists of a root node, which is the topmost node in the hierarchy, and zero or more sub-trees, each of which is also a tree.
-
-#### Components
-
-1. **Node**: Each element in a tree is called a node. A node contains a value and may have references (pointers) to its child nodes.
-
-2. **Root**: The topmost node in a tree. It's the entry point for accessing the tree's data.
-
-3. **Parent Node**: A node that has one or more child nodes.
-
-4. **Child Node**: A node directly connected to another node when moving away from the root.
-
-5. **Leaf Node**: A node with no children.
-
-6. **Internal Node**: A node with at least one child.
-
-7. **Depth**: The length of the path from the root to a particular node. The depth of the root node is 0.
-
-8. **Height**: The length of the longest path from a node to a leaf. The height of a tree is the height of its root node.
-
-#### Properties
-
-1. **Hierarchical Structure**: Nodes are organized in a hierarchical manner, with each node having zero or more child nodes.
-
-2. **One Root**: A tree has exactly one root node that serves as the entry point to access the entire tree.
-
-3. **Connectedness**: Every node (except the root) is connected by exactly one edge to a unique parent node.
-
-4. **Acyclic**: There are no cycles in a tree; that is, there is exactly one path between any two nodes.
-
-5. **N-1 Edges**: A tree with 'n' nodes will have exactly 'n-1' edges.
-
-6. **Height**: The height of a tree is the maximum depth of any node in the tree.
-
-7. **Balanced vs. Unbalanced**: Trees can be classified as balanced or unbalanced based on how evenly the nodes are distributed among levels.
-
-8. **Binary Tree**: A special type of tree where each node has at most two children, commonly referred to as the left child and the right child.
-
-Trees are used in a wide range of applications, including representing hierarchical data structures like file systems, organizing data for efficient searching and sorting algorithms, and implementing various data structures like binary search trees, AVL trees, red-black trees, etc. Understanding trees and their properties is crucial for designing efficient algorithms and data structures.
-
-### 1. Algorithms & Data Structures (C++): Trees Implementation
-
-Sure! Implementing trees in C++ involves defining classes for different types of trees and their nodes, as well as methods for various tree operations. Here's a basic implementation of a binary tree:
-
-```cpp
-#include <iostream>
-
-// Node class for binary tree
-class TreeNode {
-public:
-    int data;
-    TreeNode* left;
-    TreeNode* right;
-
-    // Constructor
-    TreeNode(int value) : data(value), left(nullptr), right(nullptr) {}
-};
-
-// Binary tree class
-class BinaryTree {
-private:
-    TreeNode* root;
-
-    // Helper function for inserting a node recursively
-    TreeNode* insertHelper(TreeNode* node, int value) {
-        if (node == nullptr) {
-            return new TreeNode(value);
-        }
-
-        if (value < node->data) {
-            node->left = insertHelper(node->left, value);
-        } else if (value > node->data) {
-            node->right = insertHelper(node->right, value);
-        }
-
-        return node;
-    }
-
-public:
-    // Constructor
-    BinaryTree() : root(nullptr) {}
-
-    // Method to insert a value into the binary tree
-    void insert(int value) {
-        root = insertHelper(root, value);
-    }
-
-    // Helper function for searching a value recursively
-    bool searchHelper(TreeNode* node, int value) {
-        if (node == nullptr) {
-            return false;
-        }
-
-        if (node->data == value) {
-            return true;
-        } else if (value < node->data) {
-            return searchHelper(node->left, value);
-        } else {
-            return searchHelper(node->right, value);
-        }
-    }
-
-    // Method to search for a value in the binary tree
-    bool search(int value) {
-        return searchHelper(root, value);
-    }
-
-    // Helper function for inorder traversal recursively
-    void inorderHelper(TreeNode* node) {
-        if (node != nullptr) {
-            inorderHelper(node->left);
-            std::cout << node->data << " ";
-            inorderHelper(node->right);
-        }
-    }
-
-    // Method to perform inorder traversal of the binary tree
-    void inorderTraversal() {
-        inorderHelper(root);
-        std::cout << std::endl;
-    }
-};
-
-int main() {
-    BinaryTree tree;
-
-    // Inserting elements into the tree
-    tree.insert(50);
-    tree.insert(30);
-    tree.insert(20);
-    tree.insert(40);
-    tree.insert(70);
-    tree.insert(60);
-    tree.insert(80);
-
-    // Perform inorder traversal
-    std::cout << "Inorder traversal: ";
-    tree.inorderTraversal();
-
-    // Search for a value in the tree
-    int searchValue = 40;
-    if (tree.search(searchValue)) {
-        std::cout << searchValue << " found in the tree." << std::endl;
-    } else {
-        std::cout << searchValue << " not found in the tree." << std::endl;
-    }
-
-    return 0;
-}
-```
-
-This code demonstrates the implementation of a basic binary tree in C++. You can extend this implementation to include other tree types like binary search trees (BST), balanced trees like AVL or Red-Black trees, or n-ary trees by defining appropriate node and tree classes and implementing necessary methods for insertion, deletion, searching, and traversal.
-
 ### 1. Algorithms & Data Structures (C++): Trees Vectors
 
 In C++, a tree data structure can be implemented using various techniques, with one of the most common being the use of classes and pointers. Here's a basic implementation of a binary tree using classes and vectors for dynamic memory allocation:
@@ -7493,244 +4773,6 @@ int main() {
 ```
 
 This code implements a basic binary tree with insertion and printing capabilities. Instead of using pointers for left and right child nodes, it uses vectors to store child nodes. You can extend this implementation by adding other functionalities like deletion, searching, etc., as per your requirements.
-
-### 1. Algorithms & Data Structures (C++): Trees: Binary Trees
-
-Binary trees are fundamental data structures in computer science and are extensively used in various algorithms and applications. They consist of nodes where each node has at most two children, referred to as the left child and the right child. Here's an overview of binary trees in C++:
-
-#### Binary Tree Node
-
-First, you define a structure for the node of the binary tree:
-
-```cpp
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-```
-
-#### Binary Tree Operations
-
-1. **Insertion:**
-
-```cpp
-TreeNode* insert(TreeNode* root, int val) {
-    if (root == nullptr)
-        return new TreeNode(val);
-    if (val < root->val)
-        root->left = insert(root->left, val);
-    else if (val > root->val)
-        root->right = insert(root->right, val);
-    return root;
-}
-```
-
-1. **Search:**
-
-```cpp
-TreeNode* search(TreeNode* root, int val) {
-    if (root == nullptr || root->val == val)
-        return root;
-    if (val < root->val)
-        return search(root->left, val);
-    return search(root->right, val);
-}
-```
-
-1. **Deletion:**
-
-```cpp
-TreeNode* minValueNode(TreeNode* node) {
-    TreeNode* current = node;
-    while (current && current->left != nullptr)
-        current = current->left;
-    return current;
-}
-
-TreeNode* deleteNode(TreeNode* root, int key) {
-    if (root == nullptr)
-        return root;
-    if (key < root->val)
-        root->left = deleteNode(root->left, key);
-    else if (key > root->val)
-        root->right = deleteNode(root->right, key);
-    else {
-        if (root->left == nullptr) {
-            TreeNode* temp = root->right;
-            delete root;
-            return temp;
-        }
-        else if (root->right == nullptr) {
-            TreeNode* temp = root->left;
-            delete root;
-            return temp;
-        }
-        TreeNode* temp = minValueNode(root->right);
-        root->val = temp->val;
-        root->right = deleteNode(root->right, temp->val);
-    }
-    return root;
-}
-```
-
-1. **Traversal:**
-
-   - **Inorder Traversal:** Left, Root, Right
-   - **Preorder Traversal:** Root, Left, Right
-   - **Postorder Traversal:** Left, Right, Root
-
-```cpp
-void inorderTraversal(TreeNode* root) {
-    if (root != nullptr) {
-        inorderTraversal(root->left);
-        cout << root->val << " ";
-        inorderTraversal(root->right);
-    }
-}
-
-void preorderTraversal(TreeNode* root) {
-    if (root != nullptr) {
-        cout << root->val << " ";
-        preorderTraversal(root->left);
-        preorderTraversal(root->right);
-    }
-}
-
-void postorderTraversal(TreeNode* root) {
-    if (root != nullptr) {
-        postorderTraversal(root->left);
-        postorderTraversal(root->right);
-        cout << root->val << " ";
-    }
-}
-```
-
-These are some basic operations on binary trees in C++. You can extend this further by implementing additional functionalities like tree height, checking if a binary tree is balanced, finding the lowest common ancestor, etc.
-
-### 1. Algorithms & Data Structures (C++): Trees: Breadth First Traversal
-
-Breadth-first traversal is a technique used to visit all the nodes of a tree or graph level by level. In the context of trees, it starts at the root node, then moves to its child nodes, and so on, visiting nodes level by level.
-
-In C++, you can implement breadth-first traversal of a tree using a queue data structure to keep track of the nodes at each level. Here's a basic implementation using a queue:
-
-```cpp
-#include <iostream>
-#include <queue>
-
-using namespace std;
-
-// Define the structure of a tree node
-struct TreeNode {
-    int data;
-    TreeNode* left;
-    TreeNode* right;
-
-    TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
-};
-
-// Breadth-first traversal function
-void breadthFirstTraversal(TreeNode* root) {
-    if (root == nullptr)
-        return;
-
-    queue<TreeNode*> q;
-    q.push(root);
-
-    while (!q.empty()) {
-        TreeNode* current = q.front();
-        q.pop();
-
-        cout << current->data << " ";
-
-        if (current->left != nullptr)
-            q.push(current->left);
-
-        if (current->right != nullptr)
-            q.push(current->right);
-    }
-}
-
-int main() {
-    // Create a sample binary tree
-    TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(3);
-    root->left->left = new TreeNode(4);
-    root->left->right = new TreeNode(5);
-    root->right->left = new TreeNode(6);
-    root->right->right = new TreeNode(7);
-
-    // Perform breadth-first traversal
-    cout << "Breadth First Traversal: ";
-    breadthFirstTraversal(root);
-    cout << endl;
-
-    return 0;
-}
-```
-
-This code snippet demonstrates breadth-first traversal of a binary tree. It uses a queue to traverse the tree level by level, starting from the root node.
-
-### 1. Algorithms & Data Structures (C++): Trees: Depth First Traversal
-
-Depth-first traversal is a fundamental technique used to explore tree-like data structures, such as binary trees or graphs. In a depth-first traversal, the algorithm starts at the root node and explores as far as possible along each branch before backtracking.
-
-There are three common variants of depth-first traversal: pre-order, in-order, and post-order. Let's discuss each of them:
-
-1. **Pre-order traversal**: In pre-order traversal, the algorithm visits the current node before its child nodes. This means that for each node, it first processes the node itself, then recursively processes its left subtree, and finally recursively processes its right subtree.
-
-   Here's how pre-order traversal can be implemented in C++:
-
-   ```cpp
-   struct TreeNode {
-       int val;
-       TreeNode* left;
-       TreeNode* right;
-       TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-   };
-
-   void preOrderTraversal(TreeNode* root) {
-       if (root == nullptr) return;
-       // Process current node
-       cout << root->val << " ";
-       // Recursive call for left subtree
-       preOrderTraversal(root->left);
-       // Recursive call for right subtree
-       preOrderTraversal(root->right);
-   }
-   ```
-
-2. **In-order traversal**: In in-order traversal, the algorithm visits the current node between its left and right child nodes. For binary search trees (BST), in-order traversal visits nodes in ascending order.
-
-   ```cpp
-   void inOrderTraversal(TreeNode* root) {
-       if (root == nullptr) return;
-       // Recursive call for left subtree
-       inOrderTraversal(root->left);
-       // Process current node
-       cout << root->val << " ";
-       // Recursive call for right subtree
-       inOrderTraversal(root->right);
-   }
-   ```
-
-3. **Post-order traversal**: In post-order traversal, the algorithm visits the current node after its child nodes. This means that for each node, it first recursively processes its left subtree, then recursively processes its right subtree, and finally processes the node itself.
-
-   ```cpp
-   void postOrderTraversal(TreeNode* root) {
-       if (root == nullptr) return;
-       // Recursive call for left subtree
-       postOrderTraversal(root->left);
-       // Recursive call for right subtree
-       postOrderTraversal(root->right);
-       // Process current node
-       cout << root->val << " ";
-   }
-   ```
-
-These are the basic implementations of depth-first traversal algorithms in C++. They are widely used in various applications, including tree manipulation, searching, and sorting.
 
 ### 1. Algorithms & Data Structures (C++): Trees: Level Width
 
@@ -7921,40 +4963,6 @@ In this example:
 
 Remember, this is a basic implementation. Depending on the type of tree (binary, binary search tree, AVL tree, etc.), you may need to add additional members and methods to the `TreeNode` struct or class.
 
-### 1. Algorithms & Data Structures (C++): Trees: Terminology
-
-In the realm of algorithms and data structures, trees are hierarchical data structures that consist of nodes connected by edges. Here are some fundamental terminologies related to trees in the context of C++:
-
-1. **Node**: The basic building block of a tree, containing data and references (pointers) to its child nodes.
-
-2. **Root**: The topmost node of the tree, representing the starting point for traversing the tree. A tree can have only one root node.
-
-3. **Parent**: A node that has child nodes connected to it.
-
-4. **Child**: Nodes directly connected to another node when moving away from the root.
-
-5. **Leaf**: A node that has no children. It resides at the bottommost level of the tree.
-
-6. **Internal Node**: A node that has at least one child node.
-
-7. **Siblings**: Nodes that share the same parent node.
-
-8. **Depth**: The depth of a node is the length of the path from the root to that node. The depth of the root node is 0.
-
-9. **Height**: The height of a tree is the length of the longest path from the root to a leaf node.
-
-10. **Subtree**: A tree formed by selecting a node (and all of its descendants) from a tree and treating it as the root of a new tree.
-
-11. **Binary Tree**: A tree in which each node has at most two children, commonly referred to as the left child and the right child.
-
-12. **Binary Search Tree (BST)**: A binary tree in which the left child of a node contains only nodes with values less than the node's value, and the right child contains only nodes with values greater than the node's value. This property allows for efficient searching, insertion, and deletion operations.
-
-13. **Traversal**: The process of visiting all the nodes of a tree in a specific order. Common traversal algorithms include in-order, pre-order, post-order, and level-order traversal.
-
-14. **Balanced Tree**: A tree in which the heights of the two subtrees of any node differ by at most one. This property helps in maintaining efficient operations.
-
-These are some of the key terminologies associated with trees in C++. Understanding these terms is essential for effectively working with tree-based algorithms and data structures.
-
 ### 1. Algorithms & Data Structures (C++): Trees: Traverse By Breadth
 
 Traversing a tree by breadth-first search (BFS) is a common way to explore or search through the nodes of a tree. It visits all the nodes at a particular depth level before moving on to the nodes at the next depth level. Here's how you can implement breadth-first traversal in C++ using a queue:
@@ -8107,60 +5115,6 @@ In C++, trees are a fundamental data structure used in various algorithms and ap
 
 These are just a few examples of the types of trees used in C++ programming. Each type has its own advantages and use cases, so choosing the right one depends on the specific requirements of the problem at hand.
 
-### 1. Algorithms & Data Structures (C++): What are trees
-
-In computer science, a tree is a widely used data structure that simulates a hierarchical tree structure, with a root value and subtrees of children with a parent node. Trees are recursive data structures composed of nodes. Each node contains a value and a list of references to its children nodes.
-
-Here are some key concepts related to trees:
-
-1. **Root**: The topmost node in a tree, which does not have a parent.
-
-2. **Node**: Each element in a tree structure that contains a value and references to its child nodes.
-
-3. **Parent**: A node that has child nodes connected to it.
-
-4. **Child**: Nodes directly connected to another node when moving away from the root.
-
-5. **Leaf**: Nodes at the bottom of the tree hierarchy, which do not have any children.
-
-6. **Subtree**: A tree structure within the main tree, rooted at some node.
-
-7. **Depth**: The length of the path from the root to a particular node.
-
-8. **Height**: The maximum depth of any node in the tree. It is the length of the longest path from the root to a leaf.
-
-9. **Binary Tree**: A tree data structure in which each node has at most two children, referred to as the left child and the right child.
-
-10. **Binary Search Tree (BST)**: A binary tree in which for each node, all elements in its left subtree are less than the node's value, and all elements in its right subtree are greater than the node's value.
-
-11. **Balanced Tree**: A tree in which the heights of the two subtrees of any node never differ by more than one. This ensures that the tree remains relatively balanced, improving the efficiency of various operations.
-
-12. **Traversal**: A method for visiting all the nodes in a tree. Common traversal algorithms include in-order, pre-order, and post-order traversals.
-
-Trees are used in various algorithms and applications, including organizing hierarchical data (e.g., file systems), implementing associative arrays (e.g., binary search trees), and providing efficient searching and sorting operations.
-
-### 1. Algorithms & Data Structures (C++): What is a Tree?
-
-In computer science, a tree is a widely used data structure that resembles an inverted tree, with a root node at the top and branching out into multiple nodes, referred to as children nodes. Here are some key points about trees:
-
-1. **Root**: The topmost node in a tree, from which all other nodes are descended. It has no parent.
-
-2. **Node**: Each element or entity in a tree is called a node. Each node can have zero or more child nodes, and each child node has exactly one parent node.
-
-3. **Parent and Child Nodes**: In a tree, nodes are connected in a hierarchical manner. A node that is connected to another node directly above it is considered its parent, while the node connected directly below is its child.
-
-4. **Leaf Node**: A leaf node is a node that does not have any children. It's at the "end" of a branch in the tree.
-
-5. **Internal Node**: An internal node is any node in the tree that has at least one child.
-
-6. **Degree of a Node**: The degree of a node in a tree is the number of children it has.
-
-7. **Depth and Height**: The depth of a node in a tree is the length of the path from the root to that node. The height of a node is the length of the longest path from that node to a leaf. The height of the tree is the height of the root node.
-
-8. **Binary Trees**: A binary tree is a special type of tree in which each node can have at most two children, commonly referred to as the left child and the right child.
-
-Trees are used in various applications such as hierarchical data representation (like file systems), searching algorithms (like binary search trees), and in implementing advanced data structures like AVL trees, red-black trees, and B-trees. They provide efficient operations for insertion, deletion, and searching when appropriately balanced and utilized.
-
 ### 1. Algorithms & Data Structures (C++): Why Do You Need Balanced Trees?
 
 Balanced trees, such as AVL trees, Red-Black trees, and B-trees, are crucial in computer science and programming for several reasons:
@@ -8278,3 +5232,316 @@ int main() {
 ```
 
 This code does a breadth-first traversal of the binary tree, but it alternates the direction in which it reads each level, going from left to right on odd levels and from right to left on even levels.
+
+### 1. Algorithms & Data Structures (C++): Graphs: Exercise: Minimal Tree
+
+Certainly! The exercise "Minimal Tree" typically involves constructing a binary search tree from a sorted array with minimal height. Here's a general approach in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+TreeNode* minimalTree(const vector<int>& sortedArray, int start, int end) {
+    if (start > end) {
+        return nullptr;
+    }
+    
+    int mid = (start + end) / 2;
+    TreeNode* root = new TreeNode(sortedArray[mid]);
+    
+    root->left = minimalTree(sortedArray, start, mid - 1);
+    root->right = minimalTree(sortedArray, mid + 1, end);
+    
+    return root;
+}
+
+TreeNode* minimalTree(const vector<int>& sortedArray) {
+    return minimalTree(sortedArray, 0, sortedArray.size() - 1);
+}
+
+// Function to print inorder traversal of the tree (for testing)
+void inorderTraversal(TreeNode* root) {
+    if (root == nullptr) {
+        return;
+    }
+    
+    inorderTraversal(root->left);
+    cout << root->val << " ";
+    inorderTraversal(root->right);
+}
+
+int main() {
+    vector<int> sortedArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    TreeNode* root = minimalTree(sortedArray);
+    
+    // Print inorder traversal of the tree (to verify)
+    inorderTraversal(root);
+    
+    // Don't forget to free the memory to avoid memory leaks
+    // Implementation of freeing memory is left out for simplicity
+    
+    return 0;
+}
+```
+
+This code defines a struct `TreeNode` for the binary tree nodes and provides a function `minimalTree` to construct the minimal binary search tree from a sorted array. The `main` function demonstrates how to use this function with a sorted array of integers. You can add more functionality or modify it according to your requirements.
+
+### 1. Algorithms & Data Structures (C++): Editing Sorted Trees
+
+Editing sorted trees in C++ typically involves operations such as insertion, deletion, and searching while maintaining the sorted order of the tree. One common data structure for this purpose is the binary search tree (BST). Here's a brief overview of how you can perform these operations:
+
+1. **Insertion**:
+   - To insert a new node into a BST while maintaining the sorted order, you start at the root and compare the value of the new node with the current node.
+   - If the new node's value is less than the current node's value, you move to the left subtree; if it's greater, you move to the right subtree.
+   - Repeat this process until you reach a leaf node (a node with no children) where the new node should be inserted. Then, insert the new node as a child of that leaf node.
+
+2. **Deletion**:
+   - Deleting a node from a BST while maintaining the sorted order requires special consideration to preserve the properties of a BST.
+   - If the node to be deleted has no children, simply remove it from the tree.
+   - If the node has only one child, replace the node with its child.
+   - If the node has two children, find the node with the next highest value (successor) in the tree (typically the leftmost node in the right subtree or the rightmost node in the left subtree).
+   - Replace the node to be deleted with its successor, and then delete the successor node from its original location.
+
+3. **Searching**:
+   - Searching in a BST is straightforward. Start at the root and compare the target value with the value of the current node.
+   - If the target value is equal to the current node's value, you've found the node.
+   - If the target value is less than the current node's value, move to the left subtree.
+   - If the target value is greater than the current node's value, move to the right subtree.
+   - Repeat this process until you find the node or reach a leaf node (indicating the target value is not in the tree).
+
+When implementing these operations, remember to consider edge cases such as handling duplicates (depending on the requirements of your application), handling empty trees, and ensuring proper memory management (e.g., deallocating memory for deleted nodes). Additionally, you might want to consider balancing techniques like AVL trees or Red-Black trees to maintain the tree's height balance, which can improve the efficiency of operations.
+
+### 1. Algorithms & Data Structures (C++): 2-3 Trees
+
+2-3 trees are balanced search trees that provide efficient insertion, deletion, and searching operations. They are a type of self-balancing binary search tree where each node can contain either one or two keys and has two or three children nodes.
+
+Here's a brief overview of the properties and operations of 2-3 trees:
+
+#### Properties
+
+1. **Binary Search Tree Property**: For any node, all keys in its left subtree are less than its key, and all keys in its right subtree are greater than its key.
+2. **Balanced Structure**: All leaf nodes are at the same level, ensuring a balanced tree.
+3. **Node Structure**:
+   - Each node can have either one key and two children or two keys and three children.
+   - For a node with one key, it has two child nodes.
+   - For a node with two keys, it has three child nodes.
+
+#### Operations
+
+1. **Insertion**:
+   - Start from the root and recursively traverse down the tree to find the appropriate leaf node for insertion.
+   - If the leaf node has only one key, insert the new key into it.
+   - If the leaf node has two keys, split the node into three and promote the middle key to its parent.
+   - Continue splitting and promoting keys upwards until the tree's balance is restored.
+
+2. **Deletion**:
+   - Start from the root and recursively traverse down the tree to find the node containing the key to be deleted.
+   - If the node is a leaf node, simply remove the key from it.
+   - If the node is an internal node, replace the key to be deleted with its predecessor or successor, then delete the predecessor or successor from its appropriate leaf node.
+   - If necessary, perform rotations or merges to maintain the properties of the 2-3 tree.
+
+3. **Search**:
+   - Start from the root and recursively traverse down the tree, comparing the search key with the keys in each node.
+   - If the key is found, return the corresponding value.
+   - If the key is not found, continue searching in the appropriate subtree until a leaf node is reached.
+
+#### C++ Implementation
+
+```cpp
+// Node structure for 2-3 tree
+struct Node {
+    int key1;
+    int key2;
+    Node* child1;
+    Node* child2;
+    Node* child3;
+    bool isTwoNode; // true if node has one key, false if node has two keys
+};
+
+class TwoThreeTree {
+private:
+    Node* root;
+
+    // Helper functions for insertion, deletion, and search
+
+public:
+    TwoThreeTree() : root(nullptr) {}
+
+    // Function declarations for insertion, deletion, and search
+};
+```
+
+Implementing 2-3 trees in C++ involves managing the node structure and implementing the insertion, deletion, and search algorithms while maintaining the balance and properties of the tree. These operations can be a bit complex due to the need for node splitting, merging, and promotions.
+
+### 1. Algorithms & Data Structures (C++): 2-3-4 Trees
+
+2-3-4 trees are a type of self-balancing search tree where each node can have 2, 3, or 4 child nodes. They are similar to red-black trees but are more generalized and can hold more keys per node.
+
+In a 2-3-4 tree:
+
+1. **Node Structure**: Each node can hold 1, 2, or 3 keys and 2, 3, or 4 child pointers respectively.
+2. **Balanced Structure**: All leaf nodes are at the same level, ensuring a balanced tree.
+3. **Search Operation**: Searching for an element in a 2-3-4 tree follows the same principles as in a binary search tree. You compare the search key with the keys in the nodes, and based on the comparison, you traverse either the left or right child subtree.
+4. **Insertion Operation**: Insertion in a 2-3-4 tree involves finding the appropriate leaf node for the new key and then inserting it into that node. If the node becomes overfull (i.e., has more than 3 keys after insertion), it splits into two nodes, and the middle key is moved up to the parent node. This process may propagate up the tree if necessary.
+5. **Deletion Operation**: Deleting a key from a 2-3-4 tree involves similar steps to insertion. If a node becomes underfull after deletion (i.e., has fewer than 2 keys), it may borrow a key from a sibling node or merge with a sibling node, redistributing keys appropriately.
+6. **Splitting and Merging**: When a node splits, the middle key moves up to the parent node, and the remaining keys form two new nodes. When merging nodes, a key from the parent node moves down to the merged node, and the two nodes combine to form a single node.
+7. **Complexity**: The height of a balanced 2-3-4 tree containing \( n \) keys is \( O(\log n) \), resulting in efficient search, insertion, and deletion operations.
+
+Implementing a 2-3-4 tree involves handling various cases during insertion and deletion to maintain the properties of the tree. It's slightly more complex compared to binary search trees but offers better balance and guarantees logarithmic time complexity for operations.
+
+### 1. Algorithms & Data Structures (C++): Decision Trees
+
+Decision trees are a fundamental concept in both machine learning and computer science. They are versatile tools used for classification and regression tasks, among others. Here's an overview of decision trees in the context of algorithms and data structures in C++:
+
+#### Decision Tree Structure
+
+1. **Node Structure**: Each node in a decision tree contains:
+   - A decision (or split) based on a feature.
+   - References (pointers or indices) to child nodes.
+
+2. **Leaf Nodes**: Terminal nodes that represent the output (classification or regression result).
+
+#### Construction of Decision Trees
+
+1. **Splitting Criteria**:
+   - Choose the best feature to split on at each node. Common criteria include Gini impurity, entropy, or information gain for classification; mean squared error reduction for regression.
+
+2. **Stopping Criteria**:
+   - Define conditions to stop splitting, like maximum tree depth, minimum samples per leaf, or minimum impurity decrease.
+
+3. **Recursive Splitting**:
+   - Recursively split the dataset based on selected features until stopping criteria are met.
+
+#### Key Operations
+
+1. **Tree Construction**:
+   - Build the decision tree by recursively selecting the best split at each node until termination conditions are satisfied.
+
+2. **Prediction**:
+   - Traverse the decision tree based on input features until reaching a leaf node, then return the output.
+
+#### Implementation in C++
+
+1. **Node Structure**: Define a struct or class representing each node, storing feature index, split value, pointers to child nodes, and output value for leaf nodes.
+
+2. **Construction Functions**: Write functions to recursively construct the decision tree by selecting the best split and partitioning the dataset.
+
+3. **Prediction Function**: Implement a function to traverse the decision tree based on input features and return the predicted output.
+
+4. **Stopping Conditions**: Define conditions to stop splitting and convert a node into a leaf node.
+
+5. **Splitting Criteria**: Implement functions to calculate impurity measures and select the best split.
+
+#### Libraries
+
+While you can implement decision trees from scratch, many C++ libraries offer efficient implementations, such as:
+
+- **MLPACK**: Provides decision tree functionality along with other machine learning algorithms.
+- **Dlib**: Includes a decision tree implementation among its various machine learning tools.
+- **Scikit-Learn (with C++ Interface)**: Utilize the C++ interface of Scikit-Learn, a popular Python library, for decision tree functionality.
+
+#### Example
+
+```cpp
+#include <iostream>
+#include <vector>
+
+// Define Node structure
+struct Node {
+    int featureIndex;
+    double splitValue;
+    std::vector<Node*> children;
+    double output; // For leaf nodes
+};
+
+// Function to build decision tree
+Node* buildDecisionTree(std::vector<std::vector<double>>& data) {
+    // Implement tree construction logic here
+}
+
+// Function to make predictions
+double predict(Node* root, std::vector<double>& input) {
+    // Implement prediction logic here
+}
+
+int main() {
+    // Example usage
+    // Define dataset
+    std::vector<std::vector<double>> data = {{2.0, 3.0}, {4.0, 5.0}, /*...*/};
+    
+    // Build decision tree
+    Node* root = buildDecisionTree(data);
+    
+    // Make predictions
+    std::vector<double> input = {1.0, 2.0};
+    double prediction = predict(root, input);
+    
+    std::cout << "Prediction: " << prediction << std::endl;
+    
+    return 0;
+}
+```
+
+In this example, you'd implement the `buildDecisionTree` function to construct the decision tree and the `predict` function to traverse the tree for predictions.
+
+### 1. Algorithms & Data Structures (C++): Analysis of n-Ary Trees
+
+Analyzing n-ary trees involves examining their properties, operations, and complexities. An n-ary tree is a hierarchical data structure where each node can have at most n children. Analyzing n-ary trees often involves understanding various operations like insertion, deletion, searching, and traversal, along with their associated time complexities.
+
+Let's dive into the analysis of n-ary trees:
+
+#### Properties of n-ary Trees
+
+1. **Node Structure**: Each node in an n-ary tree typically contains a key or value and pointers/references to its children nodes.
+2. **Root**: The topmost node in the tree.
+3. **Parent & Child Relationship**: Each node has at most n children, forming a parent-child relationship.
+4. **Height**: The height of an n-ary tree is the length of the longest path from the root to a leaf node.
+5. **Depth**: The depth of a node is the length of the path from the root to that node.
+6. **Degree**: Maximum number of children a node can have, which is 'n' in the case of an n-ary tree.
+
+#### Operations and Time Complexities
+
+1. **Insertion**: Inserting a node into an n-ary tree can be done by finding the appropriate parent node and adding the new node as its child. The time complexity depends on the tree's structure and insertion position. In the worst-case scenario, it can be O(n) if the tree is skewed.
+
+2. **Deletion**: Deleting a node from an n-ary tree involves finding the node to be deleted and removing its reference from its parent's child list. Similar to insertion, the time complexity can be O(n) in the worst case.
+
+3. **Searching**: Searching for a node in an n-ary tree involves traversing the tree. In the worst case, where the node is at the bottom-right corner of the tree, the time complexity is O(n).
+
+4. **Traversal**:
+   - **Depth-First Traversals**: Depth-first traversal methods like Pre-order, In-order, and Post-order traversals can be applied to n-ary trees. They have a time complexity of O(n).
+   - **Breadth-First Traversal**: Breadth-first traversal (Level-order traversal) involves visiting all nodes of a level before proceeding to the next level. It also has a time complexity of O(n).
+
+#### Space Complexity
+
+The space complexity of n-ary trees mainly depends on the maximum number of nodes at any level. In the worst case, where the tree is complete, the space complexity is O(n).
+
+#### Applications
+
+n-ary trees are used in various applications, including file systems, organization hierarchies, syntax trees in compiler design, and more. Their flexible structure makes them suitable for representing hierarchical data.
+
+Understanding the properties and operations of n-ary trees is essential for designing efficient algorithms and data structures in scenarios where hierarchical data needs to be managed and processed.
+
+### 1. Algorithms & Data Structures (C++): Balanced Trees
+
+Balanced trees are fundamental data structures in computer science that help maintain efficient search, insertion, and deletion operations. They aim to keep the tree balanced to ensure that the height of the tree remains relatively small, leading to faster operations.
+
+In C++, some commonly used balanced trees include:
+
+1. **AVL Trees**: Named after their inventors Adelson-Velsky and Landis, AVL trees are self-balancing binary search trees. In an AVL tree, the heights of the two child subtrees of any node differ by at most one. If this condition is violated after an insertion or deletion operation, rotations are performed to rebalance the tree.
+
+2. **Red-Black Trees**: Red-Black trees are another type of self-balancing binary search trees. They ensure that the tree remains approximately balanced by enforcing five properties, including coloring nodes either red or black and performing rotations and color flips to maintain balance.
+
+3. **Splay Trees**: Splay trees are self-adjusting binary search trees where recently accessed elements are quickly accessed again. In a splay tree, whenever an element is accessed, it is moved to the root of the tree by performing a series of rotations called "splays". Splay trees do not strictly maintain a specific balance criterion but have good amortized performance.
+
+4. **B-Trees**: B-Trees are balanced search trees designed to work well on disk or other secondary storage devices. They are widely used in databases and file systems for efficient insertion, deletion, and searching. B-Trees maintain a sorted order and balance by allowing each node to have more than two children.
+
+Each type of balanced tree has its advantages and use cases. Choosing the appropriate balanced tree depends on factors such as the specific requirements of the application, the frequency of insertion and deletion operations, memory constraints, and expected performance characteristics.

@@ -1,49 +1,4 @@
 
-### 1. Algorithms & Data Structures (C++): Depth First - In-Order and Post-Order Traversal
-
-Sure, let's discuss Depth-First Traversal, specifically In-Order and Post-Order traversals in the context of binary trees using C++.
-
-1. **In-Order Traversal**:
-   - In an in-order traversal, the left subtree is recursively traversed first, then the root node is visited, and finally, the right subtree is traversed recursively.
-   - For a binary search tree (BST), in-order traversal visits nodes in non-decreasing order.
-   - In C++, the in-order traversal can be implemented using recursion.
-   - Here's how you can implement in-order traversal:
-
-```cpp
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-
-void inOrderTraversal(TreeNode* root) {
-    if (root) {
-        inOrderTraversal(root->left);
-        cout << root->val << " ";
-        inOrderTraversal(root->right);
-    }
-}
-```
-
-1. **Post-Order Traversal**:
-   - In a post-order traversal, the left subtree is recursively traversed first, then the right subtree is traversed, and finally, the root node is visited.
-   - Post-order traversal is commonly used in deleting a tree from memory, as it ensures that a parent node is deleted only after its children.
-   - In C++, post-order traversal can also be implemented using recursion.
-   - Here's how you can implement post-order traversal:
-
-```cpp
-void postOrderTraversal(TreeNode* root) {
-    if (root) {
-        postOrderTraversal(root->left);
-        postOrderTraversal(root->right);
-        cout << root->val << " ";
-    }
-}
-```
-
-You can call these functions passing the root of your binary tree. These functions will print out the values of the nodes in the desired traversal order. If you want to do something other than printing (e.g., store the values in a vector), you can modify the functions accordingly.
-
 ### 1. Algorithms & Data Structures (C++): Dictionaries
 
 In C++, the equivalent of dictionaries in other languages is the `std::map` or `std::unordered_map` from the Standard Template Library (STL). These containers provide a way to associate keys with values, allowing for efficient lookup, insertion, and deletion. Here's a brief overview of both:
@@ -838,3 +793,49 @@ int main() {
 ```
 
 Associative arrays are very useful for quickly accessing values based on unique keys, making them essential for various algorithms and data manipulation tasks.
+
+
+### 1. Algorithms & Data Structures (C++): Depth First - In-Order and Post-Order Traversal
+
+Sure, let's discuss Depth-First Traversal, specifically In-Order and Post-Order traversals in the context of binary trees using C++.
+
+1. **In-Order Traversal**:
+   - In an in-order traversal, the left subtree is recursively traversed first, then the root node is visited, and finally, the right subtree is traversed recursively.
+   - For a binary search tree (BST), in-order traversal visits nodes in non-decreasing order.
+   - In C++, the in-order traversal can be implemented using recursion.
+   - Here's how you can implement in-order traversal:
+
+```cpp
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+void inOrderTraversal(TreeNode* root) {
+    if (root) {
+        inOrderTraversal(root->left);
+        cout << root->val << " ";
+        inOrderTraversal(root->right);
+    }
+}
+```
+
+1. **Post-Order Traversal**:
+   - In a post-order traversal, the left subtree is recursively traversed first, then the right subtree is traversed, and finally, the root node is visited.
+   - Post-order traversal is commonly used in deleting a tree from memory, as it ensures that a parent node is deleted only after its children.
+   - In C++, post-order traversal can also be implemented using recursion.
+   - Here's how you can implement post-order traversal:
+
+```cpp
+void postOrderTraversal(TreeNode* root) {
+    if (root) {
+        postOrderTraversal(root->left);
+        postOrderTraversal(root->right);
+        cout << root->val << " ";
+    }
+}
+```
+
+You can call these functions passing the root of your binary tree. These functions will print out the values of the nodes in the desired traversal order. If you want to do something other than printing (e.g., store the values in a vector), you can modify the functions accordingly.

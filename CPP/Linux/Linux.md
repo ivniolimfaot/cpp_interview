@@ -15608,7 +15608,37 @@ Using environment variables in this way keeps your sensitive information separat
 
 ### 1. Linux: Retrieve the Default Shell: the Variable SHELL
 
-Enable to get response this time. Exiting
+In Linux, the default shell for a user can be found using the `SHELL` environment variable. You can retrieve this variable by using the `echo` command in the terminal. Here’s how you can do it:
+
+1. Open a terminal window.
+2. Type the following command and press Enter:
+
+   ```sh
+   echo $SHELL
+   ```
+
+This command will output the path of the default shell for the current user. For example, you might see something like `/bin/bash` or `/bin/zsh`.
+
+Here’s a breakdown of the command:
+- `echo`: This command is used to display a line of text.
+- `$SHELL`: This is an environment variable that holds the path to the default shell for the user. The `$` sign is used to reference the value of this variable.
+
+If you want to retrieve the default shell for another user, you can check their entry in the `/etc/passwd` file. Here's how you can do it:
+
+1. Open a terminal window.
+2. Use the `grep` command to find the user's entry in the `/etc/passwd` file:
+
+   ```sh
+   grep username /etc/passwd
+   ```
+
+Replace `username` with the actual username you want to check. The output will be a line that contains several fields separated by colons. The last field in this line indicates the default shell for that user. For example:
+
+```bash
+username:x:1001:1001:User Name,,,:/home/username:/bin/bash
+```
+
+In this example, `/bin/bash` is the default shell for the user `username`.
 
 ### 1. Linux: Storing Custom Shell Configurations: .bashrc and other Bash Startup Files
 
@@ -21804,7 +21834,25 @@ By following these best practices, you can ensure that your cron jobs are schedu
 
 ### 1. Linux: What is the Internet?
 
-Enable to get response this time. Exiting
+The Internet is a global network of interconnected computers and other devices that communicate with each other using standardized protocols. It enables the exchange of data and access to a vast array of information and services. Here are the key components and concepts that define the Internet:
+
+1. **Network of Networks**: The Internet is often described as a "network of networks." It consists of many smaller networks, including those owned by governments, businesses, educational institutions, and private individuals, all interconnected to form a single, vast network.
+
+2. **Protocols**: Communication over the Internet is made possible by a set of rules and conventions known as protocols. The most fundamental of these is the Internet Protocol (IP), which is responsible for addressing and routing data packets between devices. Other important protocols include the Transmission Control Protocol (TCP), which ensures reliable data transmission, and the Hypertext Transfer Protocol (HTTP), which is used for transferring web pages.
+
+3. **IP Addresses**: Every device connected to the Internet has a unique IP address, which serves as its identifier. IP addresses can be static (permanently assigned) or dynamic (assigned temporarily by a network).
+
+4. **Domain Name System (DNS)**: The DNS translates human-readable domain names (like www.example.com) into IP addresses that computers use to identify each other on the network. This system makes it easier for users to access websites and other resources without needing to remember numerical IP addresses.
+
+5. **Data Transmission**: Information on the Internet is broken into smaller pieces called packets. These packets are sent independently across the network and reassembled at the destination. This method, known as packet switching, allows for efficient and flexible data transfer.
+
+6. **Infrastructure**: The Internet relies on a physical infrastructure of hardware components, including routers, switches, servers, and cables (fiber optic, copper, etc.). This infrastructure is maintained by various entities, including Internet Service Providers (ISPs), telecommunications companies, and data centers.
+
+7. **Services and Applications**: The Internet supports a wide range of services and applications, such as email, web browsing, file sharing, online gaming, streaming media, social networking, and cloud computing. These services are built on top of the basic communication capabilities provided by the Internet's protocols and infrastructure.
+
+8. **World Wide Web (WWW)**: The Web is a collection of interconnected documents and resources, linked by hyperlinks and accessed through web browsers. It is one of the most popular services provided by the Internet but is not synonymous with the Internet itself.
+
+In summary, the Internet is a vast, decentralized network that enables digital communication and access to information and services on a global scale. Its standardized protocols and collaborative infrastructure make it one of the most transformative technologies of the modern era.
 
 ### 1. Linux: The `ip` command: Inspecting Network Configurations
 

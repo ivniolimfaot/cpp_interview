@@ -53,101 +53,6 @@ int main() {
 
 This is a basic implementation, and you might need to modify it based on specific constraints or requirements of the problem you're solving.
 
-### 1. Algorithms & Data Structures (C++): Balanced Paranthesis
-
-Balanced parentheses are a common problem in computer science, particularly in the realm of algorithms and data structures. The problem is to determine whether a given string of parentheses is balanced. This means that for every opening parenthesis, there is a corresponding closing parenthesis, and they occur in the correct order.
-
-Here's a simple C++ implementation using a stack data structure:
-
-```cpp
-#include <iostream>
-#include <stack>
-#include <string>
-
-bool isBalanced(const std::string& str) {
-    std::stack<char> st;
-
-    for (char bracket : str) {
-        if (bracket == '(' || bracket == '[' || bracket == '{') {
-            st.push(bracket);
-        } else {
-            if (st.empty()) {
-                return false; // There's no corresponding opening bracket
-            }
-            char top = st.top();
-            st.pop();
-            if ((bracket == ')' && top != '(') ||
-                (bracket == ']' && top != '[') ||
-                (bracket == '}' && top != '{')) {
-                return false; // Mismatched opening and closing brackets
-            }
-        }
-    }
-
-    return st.empty(); // Check if there are any unclosed opening brackets
-}
-
-int main() {
-    std::string input;
-    std::cout << "Enter a string of parentheses: ";
-    std::cin >> input;
-
-    if (isBalanced(input)) {
-        std::cout << "Balanced" << std::endl;
-    } else {
-        std::cout << "Not Balanced" << std::endl;
-    }
-
-    return 0;
-}
-```
-
-This code defines a function `isBalanced` that takes a string of parentheses and returns `true` if they are balanced and `false` otherwise. It iterates through the string, pushing opening parentheses onto the stack and popping them off when a closing parenthesis is encountered, checking for matches as it goes. If the stack is empty at the end, it means all opening parentheses were matched with closing ones, and the string is balanced.
-
-### 1. Algorithms & Data Structures (C++): Balanced Parenthesis
-
-Balanced parenthesis is a classic problem in computer science involving algorithms and data structures. The goal is to determine whether a given string of parentheses is "balanced," meaning that every opening parenthesis has a corresponding closing parenthesis in the correct order. Here's a common approach to solving this problem in C++ using a stack data structure:
-
-```cpp
-#include <iostream>
-#include <stack>
-#include <string>
-
-bool isBalanced(const std::string& str) {
-    std::stack<char> stk;
-    
-    for (char c : str) {
-        if (c == '(') {
-            stk.push(c);
-        } else if (c == ')') {
-            if (stk.empty() || stk.top() != '(') {
-                return false; // Unbalanced
-            }
-            stk.pop();
-        }
-    }
-    
-    // If stack is empty, all parentheses are balanced
-    return stk.empty();
-}
-
-int main() {
-    std::string input;
-    std::cout << "Enter a string with parentheses: ";
-    std::cin >> input;
-
-    if (isBalanced(input)) {
-        std::cout << "The parentheses are balanced.\n";
-    } else {
-        std::cout << "The parentheses are not balanced.\n";
-    }
-
-    return 0;
-}
-```
-
-This code uses a stack to keep track of opening parentheses encountered. Whenever a closing parenthesis is found, it checks if the stack is empty or if the top of the stack contains the corresponding opening parenthesis. If not, the parentheses are unbalanced. Finally, it checks if the stack is empty at the end; if it is, the parentheses are balanced.
-
 ### 1. Algorithms & Data Structures (C++): Minimum Steps in Infinite Grid
 
 To find the minimum steps required to reach a point on an infinite grid, you can use the concept of Manhattan distance. The Manhattan distance between two points \((x_1, y_1)\) and \((x_2, y_2)\) on a grid is given by \(|x_1 - x_2| + |y_1 - y_2|\).
@@ -425,46 +330,6 @@ This code defines a function `isBeautiful` that takes an integer `num` as input 
 
 You can modify the definition of beauty according to other criteria if needed. For instance, you might define beauty differently for prime numbers or for numbers with other specific properties.
 
-### 1. Algorithms & Data Structures (C++): Bernaulli's Trial
-
-Bernoulli's trial is a fundamental concept in probability theory, named after the Swiss mathematician Jacob Bernoulli. It refers to a random experiment with only two possible outcomes, typically labeled as "success" and "failure". Each trial is independent of the others, meaning the outcome of one trial does not affect the outcomes of subsequent trials. Bernoulli's trial is often used as the basis for understanding more complex probability distributions and processes.
-
-In C++, you can simulate Bernoulli's trial using random number generation. Here's a simple example using the C++ standard library:
-
-```cpp
-#include <iostream>
-#include <random>
-
-// Function to simulate Bernoulli's trial
-bool bernoulliTrial(double successProbability) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::bernoulli_distribution distribution(successProbability);
-    return distribution(gen);
-}
-
-int main() {
-    // Probability of success
-    double p = 0.5; // Change this value as needed
-
-    // Number of trials
-    int numTrials = 10;
-
-    // Perform Bernoulli trials
-    std::cout << "Results of " << numTrials << " Bernoulli trials with probability of success " << p << ":\n";
-    for (int i = 0; i < numTrials; ++i) {
-        bool result = bernoulliTrial(p);
-        std::cout << (result ? "Success" : "Failure") << "\n";
-    }
-
-    return 0;
-}
-```
-
-In this example, `bernoulliTrial` function simulates a single Bernoulli trial with the given success probability. Inside the `main` function, you can specify the probability of success `p` and the number of trials `numTrials`. The program then performs the specified number of trials and prints the results.
-
-You can adjust the success probability `p` and the number of trials `numTrials` as needed for your specific use case.
-
 ### 1. Algorithms & Data Structures (C++): Bernoulli's Trial
 
 Bernoulli's trial is a fundamental concept in probability theory, named after the Swiss mathematician Jacob Bernoulli. It refers to a random experiment with exactly two possible outcomes: success and failure. Success has a probability of \( p \) and failure has a probability of \( 1 - p \), where \( 0 \leq p \leq 1 \).
@@ -603,40 +468,6 @@ int main() {
 
 In this implementation, we iterate through the prices array once. For each day, we update the minimum price seen so far (`minPrice`) and calculate the potential profit if we were to sell the stock on that day (`prices[i] - minPrice`). We update the maximum profit (`maxProfit`) whenever we find a greater profit. Finally, we return the maximum profit.
 
-### 1. Algorithms & Data Structures (C++): Best Time to Buy and Sell Stock
-
-The "Best Time to Buy and Sell Stock" problem is a classic algorithmic problem in computer science. Given an array of stock prices where the element at index `i` represents the price of a given stock on day `i`, the task is to find the maximum profit that can be obtained by buying and selling the stock. Here's a C++ implementation of a solution to this problem using a simple approach:
-
-```cpp
-#include <vector>
-#include <iostream>
-
-int maxProfit(std::vector<int>& prices) {
-    int minPrice = INT_MAX;
-    int maxProfit = 0;
-
-    for (int i = 0; i < prices.size(); ++i) {
-        if (prices[i] < minPrice) {
-            minPrice = prices[i]; // Update minimum price seen so far
-        } else if (prices[i] - minPrice > maxProfit) {
-            maxProfit = prices[i] - minPrice; // Update max profit if selling at this price yields higher profit
-        }
-    }
-
-    return maxProfit;
-}
-
-int main() {
-    std::vector<int> prices = {7, 1, 5, 3, 6, 4};
-    std::cout << "Maximum profit: " << maxProfit(prices) << std::endl;
-    return 0;
-}
-```
-
-In this implementation, we iterate through the array of prices and keep track of the minimum price seen so far (`minPrice`) and the maximum profit (`maxProfit`). At each step, we update `minPrice` if the current price is lower than the minimum seen so far. Then, we check if the difference between the current price and `minPrice` is greater than the `maxProfit`. If it is, we update `maxProfit`.
-
-This algorithm has a time complexity of O(n), where n is the number of elements in the prices array, as it requires only a single pass through the array.
-
 ### 1. Algorithms & Data Structures (C++): Big Addition Concepts
 
 In C++, adding large numbers involves handling numbers that exceed the capacity of standard data types like `int` or `long long`. You typically tackle this by using strings or arrays to represent numbers and perform addition digit by digit, just like you would manually. Here's a concept of how you can implement big addition in C++:
@@ -738,11 +569,11 @@ Make sure to include `<iostream>`, `<vector>`, and `<climits>` headers at the be
 
 The Mixtures problem on SPOJ is a classic dynamic programming problem that can be solved using dynamic programming with memoization or tabulation. Here's a brief explanation of the problem and how you can approach it:
 
-### Problem Statement
+#### Problem Statement
 
 Given a sequence of mixtures, each with a specific color and smoke intensity, you need to mix them optimally to minimize the total smoke produced. When mixing two mixtures with colors A and B, the resulting mixture has a color of (A + B) % 100 and its smoke intensity is the product of the two mixture's colors. You need to find the minimum total smoke produced when mixing all the mixtures optimally.
 
-### Approach
+#### Approach
 
 Let's define a function `solve(i, j)` as the minimum total smoke produced by mixing mixtures from index `i` to `j` (inclusive). The base case is when `i == j`, where the minimum total smoke produced is 0 because there's only one mixture.
 
@@ -750,7 +581,7 @@ For any other case, we can try all possible split points `k` between `i` and `j`
 
 We can implement this recursively, but since there will be overlapping subproblems, it's better to use memoization or tabulation to avoid redundant calculations.
 
-### Pseudocode (Memoization)
+#### Pseudocode (Memoization)
 
 ```plaintext
 function solveMemo(i, j):
@@ -772,7 +603,7 @@ Initialize memoization table memo with -1
 min_total_smoke = solveMemo(0, N-1) // N is the number of mixtures
 ```
 
-### Implementation in C++
+#### Implementation in C++
 
 ```cpp
 #include <iostream>
@@ -1410,120 +1241,6 @@ int main() {
 ```
 
 This code defines a function `longestSubstringWithoutRepeating` which takes a string `s` as input and returns the length of the longest substring without repeating characters. It iterates through the string using a sliding window approach. The `left` and `right` pointers define the current window, and `charSet` keeps track of characters within the window. If a repeating character is encountered, the left pointer is moved to the right until the repeating character is removed from the window. The maximum length of the substring is updated as the window moves. Finally, the function returns the maximum length found.
-
-### 1. Algorithms & Data Structures (C++): Amazon Backtracking question: Letter Combination of a Phone Number
-
-Sure, the "Letter Combinations of a Phone Number" problem is a classic backtracking problem. Here's the problem statement and a possible solution in C++:
-
-**Problem Statement:**
-
-Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
-
-![Phone Number to Letters Mapping](https://leetcode.com/problems/letter-combinations-of-a-phone-number/Figures/17/17_telephone_keypad.png)
-
-**Example:**
-
-Input: "23"
-
-Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
-
-**Solution in C++:**
-
-```cpp
-#include <iostream>
-#include <vector>
-#include <string>
-
-using namespace std;
-
-class Solution {
-public:
-    vector<string> letterCombinations(string digits) {
-        if (digits.empty()) return {};
-        
-        vector<string> result;
-        string combination;
-        backtrack(digits, 0, combination, result);
-        return result;
-    }
-    
-    void backtrack(const string& digits, int index, string& combination, vector<string>& result) {
-        // Base case: if the combination is of full length, add it to the result.
-        if (index == digits.length()) {
-            result.push_back(combination);
-            return;
-        }
-        
-        // Mapping of digits to letters
-        const vector<string> letters = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        
-        // Get the current digit
-        char digit = digits[index];
-        // Get the corresponding letters for the current digit
-        string possibleLetters = letters[digit - '0'];
-        
-        // Iterate through each letter and backtrack
-        for (char letter : possibleLetters) {
-            combination.push_back(letter); // Choose
-            backtrack(digits, index + 1, combination, result); // Explore
-            combination.pop_back(); // Un-choose
-        }
-    }
-};
-
-int main() {
-    Solution sol;
-    string input = "23";
-    vector<string> result = sol.letterCombinations(input);
-    cout << "Letter Combinations: ";
-    for (const string& comb : result) {
-        cout << comb << " ";
-    }
-    cout << endl;
-    return 0;
-}
-```
-
-This solution utilizes backtracking to generate all possible combinations of letters corresponding to the given digits. We start with an empty combination and iterate through each digit of the input string. For each digit, we retrieve the corresponding letters and recursively explore all possible combinations. Once we reach the end of the input string, we add the combination to the result.
-
-### 1. Algorithms & Data Structures (C++): Amazon Dynamic Programming Question: Bottom up optimization: Climbing Stairs
-
-Certainly! The "Climbing Stairs" problem is a classic dynamic programming question. The problem statement goes like this:
-
-You are climbing a staircase. It takes `n` steps to reach the top. Each time you can either climb `1` or `2` steps. In how many distinct ways can you climb to the top?
-
-Here's a C++ solution using bottom-up dynamic programming:
-
-```cpp
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
-int climbStairs(int n) {
-    if (n <= 1) return 1; // Base cases: 0 step or 1 step, there is only one way to climb
-    
-    vector<int> dp(n + 1, 0); // Create a DP table to store the number of ways to reach each step
-    dp[0] = 1; // Base case: There is one way to reach step 0
-    dp[1] = 1; // Base case: There is one way to reach step 1
-    
-    for (int i = 2; i <= n; ++i) {
-        dp[i] = dp[i - 1] + dp[i - 2]; // Number of ways to reach step i is sum of ways to reach step i-1 and i-2
-    }
-    
-    return dp[n]; // Return the number of ways to reach the top
-}
-
-int main() {
-    int n;
-    cout << "Enter the number of steps: ";
-    cin >> n;
-    cout << "Number of distinct ways to climb the stairs: " << climbStairs(n) << endl;
-    return 0;
-}
-```
-
-This solution has a time complexity of O(n) and a space complexity of O(n), where n is the number of steps. It's efficient and can handle large values of n easily.
 
 ### 1. Algorithms & Data Structures (C++): Amazon Dynamic Programming Question: Climbing Stairs
 
@@ -3332,7 +3049,7 @@ int main() {
 }
 ```
 
-This solution has a time complexity of O(m * n) and space complexity of O(m * n), where m is the number of rows and n is the number of columns in the grid.
+This solution has a time complexity of O(m *n) and space complexity of O(m* n), where m is the number of rows and n is the number of columns in the grid.
 
 ### 1. Algorithms & Data Structures (C++): Blocked Roads
 
@@ -8594,7 +8311,7 @@ Explanation:
 - We push the original word into the corresponding vector stored in the hash table.
 - Finally, we iterate through the hash table and push each vector of anagrams into the result vector.
 
-This solution has a time complexity of O(n * k * log(k)), where n is the number of words and k is the maximum length of a word. This is because we sort each word, which takes O(k * log(k)) time, and we do this for each of the n words.
+This solution has a time complexity of O(n *k* log(k)), where n is the number of words and k is the maximum length of a word. This is because we sort each word, which takes O(k * log(k)) time, and we do this for each of the n words.
 
 ### 1. Algorithms & Data Structures (C++): Facebook Interview Questions
 
@@ -11673,7 +11390,7 @@ In this code:
 - We fill up the `dp` array iteratively using dynamic programming. The number of paths to reach cell `(i, j)` is the sum of the paths to reach the cell above `(i-1, j)` and the cell to the left `(i, j-1)`.
 - Finally, we return the number of unique paths stored in the bottom-right cell of the `dp` array.
 
-This algorithm has a time complexity of O(m * n) and a space complexity of O(m * n), where m and n are the dimensions of the grid.
+This algorithm has a time complexity of O(m *n) and a space complexity of O(m* n), where m and n are the dimensions of the grid.
 
 ### 1. Algorithms & Data Structures (C++): Grid Ways
 
@@ -14494,7 +14211,7 @@ In this code:
 - We define a function `factorial` that calculates the factorial of a given integer `n`. It uses `mp::cpp_int` from Boost Multiprecision to handle large integers.
 - In the `main` function, we prompt the user to enter a number and then calculate its factorial using the `factorial` function.
 
-Remember to link against the Boost library when compiling your code. If you don't have the Boost library installed, you can download it from the official website (https://www.boost.org/) and follow the installation instructions. Alternatively, you can use other arbitrary-precision arithmetic libraries like GMP (GNU Multiple Precision Arithmetic Library) or implement your own algorithms for handling large integers.
+Remember to link against the Boost library when compiling your code. If you don't have the Boost library installed, you can download it from the official website (<https://www.boost.org/>) and follow the installation instructions. Alternatively, you can use other arbitrary-precision arithmetic libraries like GMP (GNU Multiple Precision Arithmetic Library) or implement your own algorithms for handling large integers.
 
 ### 1. Algorithms & Data Structures (C++): Largest Island
 
@@ -15005,7 +14722,7 @@ Here's an algorithm to solve linear Diophantine equations of the form ax + by = 
 
 2. **Find one solution**: Use the Extended Euclidean Algorithm to find one solution (x0, y0) to the equation ax + by = gcd(a, b).
 
-3. **Generalize the solution**: Any other solution can be found by adding (b/gcd(a, b)) * k to x0 and subtracting (a/gcd(a, b)) * k from y0, where k is an integer. This step ensures that the solution remains valid.
+3. **Generalize the solution**: Any other solution can be found by adding (b/gcd(a, b)) *k to x0 and subtracting (a/gcd(a, b))* k from y0, where k is an integer. This step ensures that the solution remains valid.
 
 Here's how you can implement this algorithm in C++:
 
@@ -22245,7 +21962,7 @@ Polish notation (also known as prefix notation) and Reverse Polish Notation (RPN
    ```
 
 2. **Reverse Polish Notation (RPN or Postfix Notation)**:
-   In Reverse Polish Notation, the operator follows its operands. For example, instead of writing "3 + 4", you would write "3 4 +". Similarly, instead of "(5 + 3) * 4", you would write "5 3 + 4 *".
+   In Reverse Polish Notation, the operator follows its operands. For example, instead of writing "3 + 4", you would write "3 4 +". Similarly, instead of "(5 + 3) *4", you would write "5 3 + 4*".
 
    RPN is particularly useful in evaluating expressions because it can be evaluated easily using a stack-based algorithm.
 
@@ -28517,8 +28234,8 @@ Here's how you can solve this problem efficiently using a Fenwick Tree:
 1. Create a Fenwick Tree of size \( N \) to store the frequencies of elements in the array.
 2. Initialize another array to keep track of the last occurrence of each element.
 3. Process each query:
-   * For each query \( l, r \), iterate from \( l \) to \( r \) and update the Fenwick Tree and the last occurrence array.
-   * Count the distinct elements by subtracting the cumulative frequency at the last occurrence of each element before \( l \) from the cumulative frequency at \( r \).
+   - For each query \( l, r \), iterate from \( l \) to \( r \) and update the Fenwick Tree and the last occurrence array.
+   - Count the distinct elements by subtracting the cumulative frequency at the last occurrence of each element before \( l \) from the cumulative frequency at \( r \).
 
 Here's a sample implementation in C++:
 
@@ -28601,3 +28318,1148 @@ int main() {
 ```
 
 This code first reads the input array, then processes the queries one by one using Fenwick Tree to efficiently compute the number of distinct elements in each subarray. Finally, it prints the results of all queries.
+
+### 1. Algorithms & Data Structures (C++): WebCrawler (core of search engines)
+
+Building a web crawler, which is indeed at the core of many search engines, involves several key algorithms and data structures. Here's a basic outline of how you might implement a web crawler in C++, focusing on the core components:
+
+#### Data Structures
+
+1. **Graph Representation**: Websites and their links can be represented as a graph. You can use an adjacency list or adjacency matrix to represent this graph.
+
+2. **Queue or Stack**: You'll need a data structure to store URLs that need to be crawled. A queue or a stack (depending on whether you want breadth-first or depth-first crawling) can be used for this purpose.
+
+3. **Set or Hash Table**: To keep track of visited URLs and avoid revisiting them, you'll need a data structure to store visited URLs efficiently. A set or hash table is suitable for this.
+
+#### Algorithms
+
+1. **Breadth-First Search (BFS) or Depth-First Search (DFS)**: These are the core graph traversal algorithms that you'll use to visit web pages starting from a given seed URL. BFS is usually preferred for web crawling to ensure a more systematic exploration of the web.
+
+2. **HTML Parsing**: You'll need an HTML parser to extract links from web pages. Libraries like libxml2 or Boost's Spirit parser can be helpful here.
+
+3. **URL Normalization and Canonicalization**: URLs can have various formats and representations. Normalizing and canonicalizing URLs help in ensuring that duplicate URLs are detected accurately.
+
+#### Steps
+
+1. **Seed URL**: Start with a seed URL that you want to crawl.
+
+2. **Fetch Web Page**: Fetch the HTML content of the seed URL.
+
+3. **Parse HTML**: Extract links from the fetched HTML content.
+
+4. **Normalize and Canonicalize URLs**: Normalize and canonicalize the extracted URLs to avoid duplicates.
+
+5. **Add to Queue**: Add the extracted URLs to the queue (or stack) for further crawling.
+
+6. **Repeat**: Repeat steps 2-5 until you reach the desired depth or until there are no more URLs to crawl.
+
+7. **Store Data**: Store the crawled data (e.g., web page content, metadata) in a suitable data structure or database.
+
+8. **Respect Robots.txt**: Follow the guidelines specified in the `robots.txt` file of websites to avoid crawling disallowed pages.
+
+9. **Politeness**: Implement politeness policies to avoid overloading servers with requests. This may include adding delays between requests or limiting the number of requests per second.
+
+10. **Error Handling**: Implement error handling mechanisms to deal with cases such as unreachable URLs, server errors, etc.
+
+Here's a simplified example code snippet in C++ for a basic web crawler:
+
+```cpp
+#include <iostream>
+#include <queue>
+#include <set>
+#include <string>
+
+// Function to fetch HTML content of a URL
+std::string fetchHTML(const std::string& url) {
+    // Code to fetch HTML content from URL
+}
+
+// Function to extract links from HTML content
+std::set<std::string> extractLinks(const std::string& html) {
+    // Code to parse HTML and extract links
+}
+
+// Function to normalize and canonicalize URLs
+std::string normalizeURL(const std::string& url) {
+    // Code to normalize URL
+}
+
+void crawl(const std::string& seedURL, int maxDepth) {
+    std::queue<std::string> urlQueue;
+    std::set<std::string> visited;
+
+    urlQueue.push(seedURL);
+    visited.insert(seedURL);
+
+    while (!urlQueue.empty() && maxDepth > 0) {
+        std::string currentURL = urlQueue.front();
+        urlQueue.pop();
+        
+        std::string html = fetchHTML(currentURL);
+        std::set<std::string> links = extractLinks(html);
+
+        for (const std::string& link : links) {
+            std::string normalizedURL = normalizeURL(link);
+            if (visited.find(normalizedURL) == visited.end()) {
+                urlQueue.push(normalizedURL);
+                visited.insert(normalizedURL);
+            }
+        }
+
+        maxDepth--;
+    }
+}
+
+int main() {
+    std::string seedURL = "https://example.com";
+    int maxDepth = 3;
+    crawl(seedURL, maxDepth);
+    return 0;
+}
+```
+
+This is a very basic implementation. Real-world web crawlers would need to handle various edge cases, such as handling redirects, dealing with different types of links (relative, absolute, etc.), handling different content types, and respecting web standards and conventions. Additionally, concurrency and distributed crawling are also essential considerations for efficient web crawling at scale.
+
+### 1. Algorithms & Data Structures (C++): MMI
+
+MMI (Maximal Matching Interface) typically refers to a concept in graph theory and combinatorial optimization, particularly in the context of matching algorithms. In algorithms and data structures, it often relates to finding the largest possible matching in a graph.
+
+Here's a basic approach to implement MMI in C++ using the maximum cardinality matching algorithm (e.g., using Ford-Fulkerson algorithm):
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <cstring>
+
+using namespace std;
+
+const int MAXN = 1005; // Maximum number of vertices
+
+vector<int> adj[MAXN]; // Adjacency list representation
+
+bool visited[MAXN];
+int match[MAXN];
+
+bool dfs(int u) {
+    if (visited[u]) return false;
+    visited[u] = true;
+    for (int v : adj[u]) {
+        if (match[v] == -1 || dfs(match[v])) {
+            match[v] = u;
+            return true;
+        }
+    }
+    return false;
+}
+
+int maximumMatching(int n) {
+    memset(match, -1, sizeof(match));
+    int matching = 0;
+    for (int i = 0; i < n; ++i) {
+        memset(visited, false, sizeof(visited));
+        if (dfs(i)) ++matching;
+    }
+    return matching;
+}
+
+int main() {
+    int n, m; // Number of vertices and edges respectively
+    cin >> n >> m;
+
+    // Input edges
+    for (int i = 0; i < m; ++i) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u); // Assuming undirected graph
+    }
+
+    // Compute maximal matching
+    int matching = maximumMatching(n);
+
+    cout << "Size of Maximal Matching: " << matching << endl;
+
+    return 0;
+}
+```
+
+In this implementation, `adj` is the adjacency list representation of the graph, and the `maximumMatching` function computes the size of the maximal matching using a DFS-based algorithm. The `main` function takes input for the graph and outputs the size of the maximal matching. You can further extend or optimize this code depending on your specific requirements and constraints.
+
+### 1. Algorithms & Data Structures (C++): Surrounded Regions
+
+The Surrounded Regions problem is a classic problem in algorithms and data structures. The problem usually involves a 2D grid of characters where some cells are filled with 'X' (representing walls) and some cells are filled with 'O' (representing regions). The task is to capture all regions surrounded by 'X' with 'O'.
+
+Here's a typical approach to solve this problem using depth-first search (DFS) or breadth-first search (BFS) algorithms:
+
+1. First, iterate through the border of the grid. For each 'O' cell found on the border, perform a DFS or BFS to mark all connected 'O' cells as safe (not surrounded by 'X').
+2. Next, iterate through the entire grid. For each 'O' cell encountered:
+   - If it's marked as safe, leave it as 'O' (not surrounded).
+   - If it's not marked as safe, change it to 'X' (surrounded by 'X').
+
+Here's a high-level implementation in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void dfs(vector<vector<char>>& board, int i, int j) {
+    int m = board.size();
+    int n = board[0].size();
+
+    if (i < 0 || j < 0 || i >= m || j >= n || board[i][j] != 'O')
+        return;
+
+    board[i][j] = 'Y'; // Mark as safe temporarily
+
+    // Explore neighboring cells
+    dfs(board, i + 1, j);
+    dfs(board, i - 1, j);
+    dfs(board, i, j + 1);
+    dfs(board, i, j - 1);
+}
+
+void solve(vector<vector<char>>& board) {
+    int m = board.size();
+    if (m == 0) return;
+    int n = board[0].size();
+
+    // Mark safe cells connected to the border
+    for (int i = 0; i < m; ++i) {
+        dfs(board, i, 0);          // Left border
+        dfs(board, i, n - 1);      // Right border
+    }
+    for (int j = 0; j < n; ++j) {
+        dfs(board, 0, j);          // Top border
+        dfs(board, m - 1, j);      // Bottom border
+    }
+
+    // Change remaining 'O's to 'X's and revert 'Y's back to 'O's
+    for (int i = 0; i < m; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (board[i][j] == 'O') board[i][j] = 'X';
+            else if (board[i][j] == 'Y') board[i][j] = 'O';
+        }
+    }
+}
+
+// Helper function to print the board
+void printBoard(const vector<vector<char>>& board) {
+    for (const auto& row : board) {
+        for (char cell : row) {
+            cout << cell << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    vector<vector<char>> board = {
+        {'X', 'X', 'X', 'X'},
+        {'X', 'O', 'O', 'X'},
+        {'X', 'X', 'O', 'X'},
+        {'X', 'O', 'X', 'X'}
+    };
+
+    cout << "Original Board:" << endl;
+    printBoard(board);
+
+    solve(board);
+
+    cout << "\nSurrounded Regions Board:" << endl;
+    printBoard(board);
+
+    return 0;
+}
+```
+
+This code first marks all the safe 'O' regions connected to the border, then changes the remaining 'O's to 'X's as they are surrounded by 'X's, and finally reverts the temporarily marked 'Y's back to 'O's.
+
+### 1. Algorithms & Data Structures (C++): Surrounded Regions - Graphs
+
+The "Surrounded Regions" problem is a classic algorithmic problem where you're given a 2D board containing 'X's and 'O's. Your task is to capture all regions surrounded by 'X's. A region is captured by flipping all 'O's into 'X's if it's surrounded by 'X's.
+
+To solve this problem efficiently, you can use graph traversal techniques like Depth-First Search (DFS) or Breadth-First Search (BFS). Here's a basic outline of how you can approach this problem using DFS:
+
+1. **Traverse the boundary**: Start traversing the boundary of the board. Whenever you encounter an 'O', perform a DFS from that position to mark all connected 'O's as safe (not surrounded by 'X's). Mark them temporarily as something like 'Y'.
+
+2. **Flip**: After traversing the boundary, iterate through the entire board. For every 'O' encountered, it means it's not connected to the boundary, so flip it to 'X'. And every 'Y' encountered, change it back to 'O' (as it's not surrounded by 'X's).
+
+Here's a sample implementation in C++:
+
+```cpp
+#include <vector>
+
+using namespace std;
+
+// Helper function to perform DFS
+void dfs(vector<vector<char>>& board, int i, int j) {
+    if (i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || board[i][j] != 'O') {
+        return;
+    }
+    board[i][j] = 'Y'; // Mark the 'O' as safe temporarily
+    // Explore its neighbors
+    dfs(board, i + 1, j);
+    dfs(board, i - 1, j);
+    dfs(board, i, j + 1);
+    dfs(board, i, j - 1);
+}
+
+void solve(vector<vector<char>>& board) {
+    if (board.empty()) return;
+    int rows = board.size();
+    int cols = board[0].size();
+
+    // Traverse the boundary and mark connected 'O's as safe
+    for (int i = 0; i < rows; ++i) {
+        dfs(board, i, 0);            // left side
+        dfs(board, i, cols - 1);     // right side
+    }
+    for (int j = 0; j < cols; ++j) {
+        dfs(board, 0, j);            // top side
+        dfs(board, rows - 1, j);     // bottom side
+    }
+
+    // Flip the 'O's to 'X's and 'Y's back to 'O's
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            if (board[i][j] == 'O') {
+                board[i][j] = 'X';
+            } else if (board[i][j] == 'Y') {
+                board[i][j] = 'O';
+            }
+        }
+    }
+}
+```
+
+This code performs a DFS traversal starting from the boundary cells, marking all 'O's connected to the boundary as 'Y'. Then, it iterates over the entire board, flipping 'O's to 'X's and 'Y's back to 'O's. This ensures that only 'O's that are not surrounded by 'X's are flipped.
+
+### 1. Algorithms & Data Structures (C++): Connected Cities
+
+Certainly! Let's discuss how to approach a problem involving connected cities using algorithms and data structures in C++.
+
+#### Problem Statement
+
+You have a list of cities and a list of connections between those cities. Each connection has a distance associated with it. You need to determine the shortest path between two given cities or whether it's even possible to travel between them.
+
+#### Key Concepts
+
+1. **Graph Representation:** Cities and their connections can be represented as a graph where cities are nodes and connections are edges.
+2. **Shortest Path Algorithm:** Dijkstra’s algorithm or the A* algorithm are typically used to find the shortest path in weighted graphs.
+3. **Graph Traversal:** Breadth-First Search (BFS) or Depth-First Search (DFS) can be used to determine if a path exists between two cities.
+
+##### Graph Representation
+
+We'll represent the graph using an adjacency list, which is efficient in terms of space and allows quick access to the neighbors of any node.
+
+##### Implementation Plan
+
+1. **Graph Class:** Create a class to represent the graph with methods to add edges and find the shortest path.
+2. **Dijkstra’s Algorithm:** Implement Dijkstra's algorithm to find the shortest path between two cities.
+3. **BFS/DFS:** Implement BFS or DFS to check if a path exists between two cities.
+
+##### Example Code
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <limits>
+#include <utility>
+
+class Graph {
+public:
+    // Add a connection (edge) between two cities (nodes)
+    void addEdge(const std::string& city1, const std::string& city2, int distance) {
+        adjList[city1].push_back({city2, distance});
+        adjList[city2].push_back({city1, distance}); // Since the graph is undirected
+    }
+
+    // Dijkstra's algorithm to find the shortest path
+    int shortestPath(const std::string& start, const std::string& end) {
+        std::unordered_map<std::string, int> distances;
+        for (const auto& pair : adjList) {
+            distances[pair.first] = std::numeric_limits<int>::max();
+        }
+        distances[start] = 0;
+
+        std::priority_queue<std::pair<int, std::string>, std::vector<std::pair<int, std::string>>, std::greater<>> pq;
+        pq.push({0, start});
+
+        while (!pq.empty()) {
+            auto [currentDist, currentCity] = pq.top();
+            pq.pop();
+
+            if (currentCity == end) {
+                return currentDist;
+            }
+
+            for (const auto& [neighbor, weight] : adjList[currentCity]) {
+                int distance = currentDist + weight;
+                if (distance < distances[neighbor]) {
+                    distances[neighbor] = distance;
+                    pq.push({distance, neighbor});
+                }
+            }
+        }
+        return -1; // Return -1 if there is no path from start to end
+    }
+
+    // BFS to check if a path exists between two cities
+    bool pathExists(const std::string& start, const std::string& end) {
+        std::set<std::string> visited;
+        std::queue<std::string> q;
+        q.push(start);
+
+        while (!q.empty()) {
+            std::string currentCity = q.front();
+            q.pop();
+
+            if (currentCity == end) {
+                return true;
+            }
+
+            visited.insert(currentCity);
+
+            for (const auto& [neighbor, _] : adjList[currentCity]) {
+                if (visited.find(neighbor) == visited.end()) {
+                    q.push(neighbor);
+                }
+            }
+        }
+        return false;
+    }
+
+private:
+    std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> adjList;
+};
+
+int main() {
+    Graph g;
+    g.addEdge("CityA", "CityB", 5);
+    g.addEdge("CityB", "CityC", 3);
+    g.addEdge("CityC", "CityD", 1);
+    g.addEdge("CityA", "CityD", 10);
+
+    std::string start = "CityA";
+    std::string end = "CityD";
+
+    int distance = g.shortestPath(start, end);
+    if (distance != -1) {
+        std::cout << "Shortest path from " << start << " to " << end << " is " << distance << std::endl;
+    } else {
+        std::cout << "No path exists between " << start << " and " << end << std::endl;
+    }
+
+    bool exists = g.pathExists(start, end);
+    if (exists) {
+        std::cout << "A path exists between " << start << " and " << end << std::endl;
+    } else {
+        std::cout << "No path exists between " << start << " and " << end << std::endl;
+    }
+
+    return 0;
+}
+```
+
+##### Explanation
+
+1. **Graph Class:**
+   - `addEdge` method adds a bidirectional edge between two cities.
+   - `shortestPath` method implements Dijkstra’s algorithm using a priority queue to find the shortest path between two cities.
+   - `pathExists` method implements BFS to check if a path exists between two cities.
+
+2. **Main Function:**
+   - The main function demonstrates adding cities and connections, and then finding the shortest path and checking for path existence.
+
+This example covers the basic functionalities needed for handling connected cities using C++ with a focus on graph algorithms.
+
+### 1. Algorithms & Data Structures (C++): Exercise: Guess The Graph
+
+#### Problem Statement
+
+Given a hidden graph, you are tasked with guessing the structure of this graph. You can ask the system questions about the graph, such as the degree of a specific node, whether there is an edge between two nodes, and so on. Your goal is to reconstruct the graph with the fewest possible questions.
+
+#### Steps to Implement the Exercise
+
+1. **Define the Graph Class**: Create a class to represent the graph. This class will include methods to add edges, check for the existence of edges, get the degree of a node, etc.
+
+2. **Question Interface**: Implement an interface for asking questions about the graph. This can be a set of functions that simulate the process of querying the hidden graph.
+
+3. **Reconstruction Logic**: Write the logic to reconstruct the graph by asking a series of questions. This involves using the interface functions effectively to deduce the graph structure.
+
+4. **Main Function**: Combine all the parts together in a main function where you simulate the guessing process.
+
+Here’s a simplified example in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <queue>
+using namespace std;
+
+class Graph {
+private:
+    int V; // Number of vertices
+    unordered_map<int, unordered_set<int>> adjList;
+
+public:
+    Graph(int V) : V(V) {}
+
+    void addEdge(int u, int v) {
+        adjList[u].insert(v);
+        adjList[v].insert(u);
+    }
+
+    bool isEdge(int u, int v) {
+        return adjList[u].find(v) != adjList[u].end();
+    }
+
+    int degree(int u) {
+        return adjList[u].size();
+    }
+
+    vector<int> getNeighbors(int u) {
+        vector<int> neighbors;
+        for (int v : adjList[u]) {
+            neighbors.push_back(v);
+        }
+        return neighbors;
+    }
+
+    int getVertices() const {
+        return V;
+    }
+};
+
+class GuessTheGraph {
+private:
+    Graph hiddenGraph;
+    Graph guessedGraph;
+
+public:
+    GuessTheGraph(Graph &hiddenGraph) : hiddenGraph(hiddenGraph), guessedGraph(hiddenGraph.getVertices()) {}
+
+    void reconstructGraph() {
+        int V = hiddenGraph.getVertices();
+
+        // Simple BFS to reconstruct the graph
+        vector<bool> visited(V, false);
+        queue<int> q;
+        q.push(0); // Start from node 0
+        visited[0] = true;
+
+        while (!q.empty()) {
+            int u = q.front();
+            q.pop();
+
+            int degree = hiddenGraph.degree(u);
+            vector<int> neighbors = hiddenGraph.getNeighbors(u);
+
+            for (int v : neighbors) {
+                if (!visited[v]) {
+                    guessedGraph.addEdge(u, v);
+                    visited[v] = true;
+                    q.push(v);
+                }
+            }
+        }
+    }
+
+    void printGuessedGraph() {
+        int V = guessedGraph.getVertices();
+        for (int i = 0; i < V; ++i) {
+            vector<int> neighbors = guessedGraph.getNeighbors(i);
+            cout << "Node " << i << ": ";
+            for (int neighbor : neighbors) {
+                cout << neighbor << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    int V = 5;
+    Graph hiddenGraph(V);
+    hiddenGraph.addEdge(0, 1);
+    hiddenGraph.addEdge(0, 2);
+    hiddenGraph.addEdge(1, 2);
+    hiddenGraph.addEdge(1, 3);
+    hiddenGraph.addEdge(3, 4);
+
+    GuessTheGraph game(hiddenGraph);
+    game.reconstructGraph();
+    game.printGuessedGraph();
+
+    return 0;
+}
+```
+
+#### Explanation
+
+1. **Graph Class**:
+   - `addEdge`: Adds an edge between two vertices.
+   - `isEdge`: Checks if there's an edge between two vertices.
+   - `degree`: Returns the degree of a vertex.
+   - `getNeighbors`: Returns a list of neighbors for a vertex.
+   - `getVertices`: Returns the number of vertices.
+
+2. **GuessTheGraph Class**:
+   - **Constructor**: Initializes the hidden graph and a graph to store the guessed structure.
+   - **reconstructGraph**: Uses BFS to reconstruct the graph. This is a simplified version; more sophisticated algorithms can be used to minimize the number of questions.
+   - **printGuessedGraph**: Prints the structure of the guessed graph.
+
+3. **Main Function**:
+   - Creates a hidden graph.
+   - Initializes the guessing game.
+   - Reconstructs and prints the guessed graph.
+
+#### Notes
+
+- This implementation assumes that the graph is undirected.
+- The `reconstructGraph` method uses BFS, which may not be optimal. Depending on the specific problem constraints, more efficient algorithms can be applied.
+- This code provides a framework. Depending on your exact requirements, you might need to adjust the question interface and reconstruction logic.
+
+### 1. Algorithms & Data Structures (C++): Graph: Find Star in the graph
+
+To find a star in a graph using C++, you need to understand the properties of a star graph. A star graph is a type of graph where one central node is connected to all other nodes, and those other nodes have no connections between them. In other words, the central node has a degree of \( n-1 \) (where \( n \) is the total number of nodes in the graph), and all other nodes have a degree of 1.
+
+Here's a step-by-step approach to find the star in the graph:
+
+1. **Read the graph input**: This can be an adjacency list or an edge list.
+2. **Calculate the degree of each node**: This involves counting the number of edges incident to each node.
+3. **Identify the central node**: The central node will be the one with a degree of \( n-1 \).
+4. **Verify the structure**: Ensure all other nodes have a degree of 1.
+
+Let's write the C++ code for this process. We'll assume the graph is given as an edge list.
+
+#### C++ Code
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
+// Function to find the star node
+int findStar(const vector<pair<int, int>>& edges, int n) {
+    // Initialize a map to store the degree of each node
+    unordered_map<int, int> degree;
+
+    // Iterate over the edges to count degrees
+    for (const auto& edge : edges) {
+        degree[edge.first]++;
+        degree[edge.second]++;
+    }
+
+    // Identify the central node (which has degree n-1)
+    for (const auto& node : degree) {
+        if (node.second == n - 1) {
+            return node.first;
+        }
+    }
+
+    // If no star node found, return -1 (invalid star graph)
+    return -1;
+}
+
+int main() {
+    // Number of nodes (example)
+    int n = 5;
+
+    // Edge list (example)
+    vector<pair<int, int>> edges = {
+        {1, 2}, {1, 3}, {1, 4}, {1, 5}
+    };
+
+    // Find the star node
+    int starNode = findStar(edges, n);
+
+    // Output the result
+    if (starNode != -1) {
+        cout << "The star node is: " << starNode << endl;
+    } else {
+        cout << "No star graph found." << endl;
+    }
+
+    return 0;
+}
+```
+
+#### Explanation
+
+1. **Data Structures**:
+    - `vector<pair<int, int>> edges`: Stores the edges of the graph.
+    - `unordered_map<int, int> degree`: Maps each node to its degree.
+
+2. **Degree Calculation**:
+    - Iterate through each edge and increment the degree for both nodes in the edge.
+
+3. **Identify Central Node**:
+    - Iterate through the degree map and find the node with degree \( n-1 \).
+
+4. **Output**:
+    - If a node with degree \( n-1 \) is found, it is the central node of the star graph.
+    - If no such node is found, print that no star graph exists.
+
+This algorithm works in \( O(E) \) time, where \( E \) is the number of edges, which is efficient for this problem. The space complexity is \( O(V) \), where \( V \) is the number of vertices, due to the degree map.
+
+### 1. Algorithms & Data Structures (C++): Graph: Keys and Rooms
+
+The "Keys and Rooms" problem is a common problem in graph theory and can be solved using various graph traversal techniques such as Depth-First Search (DFS) or Breadth-First Search (BFS). Here's the problem statement and how to solve it using DFS in C++.
+
+#### Problem Statement
+
+You are in a building with `n` rooms. Each room is numbered from `0` to `n-1` and each room may have some keys to access other rooms. Initially, you have access to room `0` only. Each room `i` has a list of keys `rooms[i]`, where each key `rooms[i][j]` is an integer representing the index of the room that you can access with that key. The goal is to determine if you can visit all the rooms.
+
+#### Solution
+
+We can represent the problem as a graph where rooms are nodes and keys are edges that connect these nodes. The problem then reduces to checking if all nodes (rooms) are reachable from the starting node (room 0).
+
+Here is a C++ solution using Depth-First Search (DFS):
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+class Solution {
+public:
+    bool canVisitAllRooms(vector<vector<int>>& rooms) {
+        int n = rooms.size();
+        vector<bool> visited(n, false);
+        stack<int> s;
+        s.push(0);
+        visited[0] = true;
+
+        while (!s.empty()) {
+            int current = s.top();
+            s.pop();
+            for (int key : rooms[current]) {
+                if (!visited[key]) {
+                    visited[key] = true;
+                    s.push(key);
+                }
+            }
+        }
+
+        for (bool v : visited) {
+            if (!v) return false;
+        }
+        return true;
+    }
+};
+
+int main() {
+    vector<vector<int>> rooms = {{1}, {2}, {3}, {}};
+    Solution sol;
+    bool result = sol.canVisitAllRooms(rooms);
+    if (result) {
+        cout << "All rooms can be visited." << endl;
+    } else {
+        cout << "Not all rooms can be visited." << endl;
+    }
+    return 0;
+}
+```
+
+#### Explanation
+
+1. **Graph Representation**: We use a vector of vectors to represent the graph, where `rooms[i]` contains the list of keys available in room `i`.
+
+2. **DFS Initialization**: We use a stack for DFS. Initially, we push room `0` onto the stack and mark it as visited.
+
+3. **DFS Traversal**: While the stack is not empty, we pop the top element to visit the current room. For each key in the current room, if the corresponding room has not been visited, we mark it as visited and push it onto the stack.
+
+4. **Check All Rooms**: After the traversal, we check if all rooms have been visited by inspecting the `visited` vector.
+
+#### Conclusion
+
+This DFS approach ensures that we explore all reachable rooms starting from room `0`. If all rooms are marked as visited by the end of the traversal, we return `true`, indicating that all rooms can be visited. Otherwise, we return `false`.
+
+You can also solve this problem using BFS in a similar manner, where you would use a queue instead of a stack.
+
+### 1. Algorithms & Data Structures (C++): Flood Fill - Graphs
+
+Flood fill is a common algorithm used in image processing and computer graphics to determine a region connected to a given node in a multi-dimensional array. It's typically used to determine the area connected to a certain point with the same color in a two-dimensional image or matrix.
+
+Here's a basic implementation of flood fill in C++ using recursion:
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Define directions: up, down, left, right
+int dr[] = {-1, 1, 0, 0};
+int dc[] = {0, 0, -1, 1};
+
+// Function to perform flood fill
+void floodFill(vector<vector<int>>& image, int sr, int sc, int newColor, int originalColor) {
+    // Base case: if current pixel is out of bounds or not the original color, return
+    if (sr < 0 || sr >= image.size() || sc < 0 || sc >= image[0].size() || image[sr][sc] != originalColor) {
+        return;
+    }
+    
+    // Change the color of the current pixel
+    image[sr][sc] = newColor;
+    
+    // Recursively call flood fill for neighboring pixels
+    for (int i = 0; i < 4; ++i) {
+        floodFill(image, sr + dr[i], sc + dc[i], newColor, originalColor);
+    }
+}
+
+int main() {
+    // Example usage
+    vector<vector<int>> image = {
+        {1, 1, 1, 1, 1},
+        {1, 1, 0, 0, 1},
+        {1, 0, 1, 0, 1},
+        {1, 0, 0, 1, 1},
+        {1, 1, 1, 1, 1}
+    };
+    
+    int sr = 2, sc = 2; // Starting position
+    int newColor = 2;   // New color to fill
+    int originalColor = image[sr][sc]; // Original color
+    
+    floodFill(image, sr, sc, newColor, originalColor);
+    
+    // Output the result
+    for (const auto& row : image) {
+        for (int val : row) {
+            cout << val << " ";
+        }
+        cout << endl;
+    }
+    
+    return 0;
+}
+```
+
+In this implementation:
+
+- `floodFill()` function performs the actual flood fill. It takes the image, starting row and column, the new color to fill, and the original color of the starting pixel.
+- Base case checks if the current pixel is out of bounds or not of the original color.
+- If the base case is not met, it changes the color of the current pixel and recursively calls `floodFill()` for its neighbors.
+- `main()` function provides an example usage, defining an image as a 2D vector and performing flood fill from a starting point.
+
+You can adjust the starting point, original color, and new color according to your requirements.
+
+### 1. Algorithms & Data Structures (C++): Find the Town Judge
+
+To find the town judge in a town where there may be a judge or not, you can use a graph-based approach. In this problem, each person in the town is represented by a node, and if person A trusts person B, there's a directed edge from A to B. The town judge is someone who is trusted by everyone else but trusts no one themselves. This means the town judge has an in-degree of N - 1 (where N is the number of people) and an out-degree of 0.
+
+Here's a C++ implementation of the algorithm using adjacency lists:
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int findJudge(int N, vector<vector<int>>& trust) {
+    // Initialize vectors to store in-degree and out-degree of each person
+    vector<int> inDegree(N + 1, 0); // 1-indexed
+    vector<int> outDegree(N + 1, 0); // 1-indexed
+    
+    // Calculate in-degree and out-degree for each person
+    for (const auto& t : trust) {
+        outDegree[t[0]]++;
+        inDegree[t[1]]++;
+    }
+    
+    // Find the potential town judge
+    for (int i = 1; i <= N; ++i) {
+        if (inDegree[i] == N - 1 && outDegree[i] == 0) {
+            return i; // Found the town judge
+        }
+    }
+    
+    return -1; // No town judge found
+}
+
+int main() {
+    // Example usage
+    int N = 4;
+    vector<vector<int>> trust = {{1, 3}, {1, 4}, {2, 3}, {2, 4}, {4, 3}};
+    cout << "The town judge is at position: " << findJudge(N, trust) << endl;
+    
+    return 0;
+}
+```
+
+This code first calculates the in-degree and out-degree for each person based on the given trust relationships. Then, it iterates through each person to find the one with an in-degree of N - 1 and an out-degree of 0, which represents the town judge. If such a person is found, their position (index) is returned; otherwise, -1 is returned to indicate that there is no town judge.
+
+### 1. Algorithms & Data Structures (C++): Graphs: Exercise: Check Balanced - LeetCode 110
+
+LeetCode problem 110, "Check Balanced", is a classic problem in graph theory and can be solved using depth-first search (DFS). The problem asks you to determine whether a given undirected graph is a tree. A tree is a connected graph with no cycles.
+
+Here's the general approach to solve this problem:
+
+1. **Check for Cycle**: Use DFS to traverse the graph. While traversing, keep track of visited vertices and parent of each vertex. If you encounter a vertex that is already visited and it's not the parent of the current vertex, then there exists a cycle in the graph, and it cannot be a tree.
+
+2. **Check for Connectivity**: After DFS traversal, check if all vertices are visited. If not, the graph is not connected, and hence not a tree.
+
+3. **Final Check**: If the graph passes the above two conditions, it is a tree.
+
+Here's a sample implementation in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+
+using namespace std;
+
+class Graph {
+    vector<vector<int>> adj;
+
+public:
+    Graph(int n) : adj(n) {}
+
+    void addEdge(int u, int v) {
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+
+    bool isCyclicUtil(int v, vector<bool>& visited, int parent) {
+        visited[v] = true;
+        for (int u : adj[v]) {
+            if (!visited[u]) {
+                if (isCyclicUtil(u, visited, v))
+                    return true;
+            } else if (u != parent) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool isCyclic() {
+        vector<bool> visited(adj.size(), false);
+        for (int i = 0; i < adj.size(); ++i) {
+            if (!visited[i] && isCyclicUtil(i, visited, -1))
+                return true;
+        }
+        return false;
+    }
+
+    bool isConnected() {
+        vector<bool> visited(adj.size(), false);
+        dfs(0, visited);
+        for (bool v : visited) {
+            if (!v) return false; // Not all vertices are reachable
+        }
+        return true;
+    }
+
+    void dfs(int v, vector<bool>& visited) {
+        visited[v] = true;
+        for (int u : adj[v]) {
+            if (!visited[u]) {
+                dfs(u, visited);
+            }
+        }
+    }
+};
+
+bool isValidTree(int n, vector<vector<int>>& edges) {
+    if (edges.size() != n - 1) return false; // Necessary condition for a tree
+    Graph graph(n);
+    for (auto& edge : edges) {
+        graph.addEdge(edge[0], edge[1]);
+    }
+    if (graph.isCyclic()) return false;
+    if (!graph.isConnected()) return false;
+    return true;
+}
+
+int main() {
+    int n = 5;
+    vector<vector<int>> edges = {{0, 1}, {0, 2}, {0, 3}, {1, 4}};
+    cout << (isValidTree(n, edges) ? "Valid Tree" : "Not a Valid Tree") << endl;
+    return 0;
+}
+```
+
+This implementation checks whether the given graph is a valid tree or not. The `isValidTree` function returns true if the graph is a valid tree, otherwise false.
+
+### 1. Algorithms & Data Structures (C++): Graphs: Exercise: First Common Ancestor - LeetCode 236
+
+The problem you're referring to, LeetCode problem 236, is a classic algorithmic problem involving binary trees, not graphs. The problem is commonly known as "Lowest Common Ancestor (LCA) of a Binary Tree."
+
+Here's the problem statement:
+
+Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
+
+The definition of the LCA is the lowest node in the tree that has both `p` and `q` as descendants (where we allow a node to be a descendant of itself).
+
+To solve this problem, you can use various approaches such as recursive DFS (Depth-First Search), iterative DFS, or even BFS (Breadth-First Search).
+
+Here's a general outline of how you can solve this problem recursively:
+
+1. Start from the root of the binary tree.
+2. If the root is null or equal to either `p` or `q`, return the root.
+3. Recursively search for `p` and `q` in the left and right subtrees.
+4. If both `p` and `q` are found in different subtrees, return the current root as the LCA.
+5. If only one of `p` or `q` is found, return that node as a potential ancestor for further search.
+6. If neither `p` nor `q` is found, return null.
+
+Here's a simple recursive C++ implementation:
+
+```cpp
+#include <iostream>
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (!root || root == p || root == q)
+            return root;
+
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+
+        if (left && right) // If both p and q are found in different subtrees
+            return root;
+        else if (left) // If only p or q is found in the left subtree
+            return left;
+        else if (right) // If only p or q is found in the right subtree
+            return right;
+        else // If neither p nor q is found
+            return nullptr;
+    }
+};
+
+int main() {
+    // Example usage
+    Solution solution;
+    TreeNode* root = new TreeNode(3);
+    root->left = new TreeNode(5);
+    root->right = new TreeNode(1);
+    root->left->left = new TreeNode(6);
+    root->left->right = new TreeNode(2);
+    root->left->right->left = new TreeNode(7);
+    root->left->right->right = new TreeNode(4);
+    root->right->left = new TreeNode(0);
+    root->right->right = new TreeNode(8);
+
+    TreeNode* p = root->left;
+    TreeNode* q = root->right;
+
+    TreeNode* lca = solution.lowestCommonAncestor(root, p, q);
+    if (lca)
+        std::cout << "Lowest Common Ancestor: " << lca->val << std::endl;
+    else
+        std::cout << "No common ancestor found." << std::endl;
+
+    // Don't forget to free the memory allocated for the tree nodes
+    return 0;
+}
+```
+
+This implementation will find the lowest common ancestor of the given two nodes `p` and `q` in the binary tree.
+
+### 1. Algorithms & Data Structures (C++): Solving maze routing problems
+
+Solving maze routing problems involves finding a path from the starting point to the destination within a maze, navigating through obstacles. Here's a high-level approach using C++ and common algorithms and data structures:
+
+1. **Representing the Maze**:
+   - You can represent the maze as a 2D grid. Each cell can represent a passage or a wall.
+   - Define a data structure to represent the maze. You can use a 2D array or a vector of vectors in C++.
+
+2. **Depth-First Search (DFS)** or **Breadth-First Search (BFS)**:
+   - Both DFS and BFS are popular algorithms for traversing graphs.
+   - DFS explores as far as possible along each branch before backtracking.
+   - BFS explores the neighbor nodes at the current depth before moving on to nodes at the next depth.
+   - Choose DFS if you want to explore as deep as possible before backtracking, or BFS if you want to find the shortest path.
+
+3. **Algorithm Steps**:
+   - Start from the entrance of the maze.
+   - Explore adjacent cells.
+   - If a cell is unvisited and accessible, mark it as visited and continue exploration.
+   - Repeat until reaching the destination or all accessible cells have been explored.
+
+4. **Backtracking**:
+   - When using DFS, if you reach a dead end, backtrack to the last junction and explore another path.
+   - Use a stack to keep track of the path during DFS.
+
+5. **Queue for BFS**:
+   - Use a queue to implement BFS. When exploring a cell, enqueue its neighboring cells.
+
+6. **Path Finding**:
+   - Once you reach the destination, trace back the path from the destination to the start.
+   - This can be done by storing the parent of each cell during traversal.
+
+7. **Implementation** (Basic Pseudocode):
+
+```cpp
+// Pseudocode for DFS
+
+DFS(maze, start, end):
+    stack.push(start)
+    while stack is not empty:
+        current = stack.top()
+        stack.pop()
+        if current == end:
+            // Path found
+            return path
+        mark current as visited
+        for each neighbor of current:
+            if neighbor is accessible and not visited:
+                stack.push(neighbor)
+                set parent of neighbor to current
+    // No path found
+    return empty path
+
+// Pseudocode for BFS
+
+BFS(maze, start, end):
+    queue.enqueue(start)
+    while queue is not empty:
+        current = queue.front()
+        queue.dequeue()
+        if current == end:
+            // Path found
+            return path
+        mark current as visited
+        for each neighbor of current:
+            if neighbor is accessible and not visited:
+                queue.enqueue(neighbor)
+                set parent of neighbor to current
+    // No path found
+    return empty path
+```
+
+1. **Optimizations**:
+   - Use memoization or dynamic programming to avoid redundant computations.
+   - Implement heuristics if you want to use A* search for more efficient pathfinding.
+
+1. **Testing**:
+   - Test your implementation with various maze configurations, including mazes with multiple solutions or no solution at all.
+
+1. **Error Handling**:
+
+- Handle cases where the start or end points are invalid, or the maze is not navigable.
+
+By following these steps and using appropriate algorithms and data structures, you can effectively solve maze routing problems in C++.

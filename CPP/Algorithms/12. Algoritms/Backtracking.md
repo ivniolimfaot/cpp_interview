@@ -1557,3 +1557,78 @@ Backtracking is typically implemented using recursion, where each recursive call
 4. **Backtrack**: If the current partial solution cannot be extended further or does not lead to a valid solution, you undo the last decision and backtrack to the previous decision point to explore other possibilities.
 
 Backtracking is commonly used to solve problems such as permutation, combination, subset, and maze problems. It is a fundamental technique used in many algorithmic problems where exhaustive search is required.
+
+### 1. Algorithms & Data Structures (C++): Amazon Backtracking question: Letter Combination of a Phone Number
+
+Sure, the "Letter Combinations of a Phone Number" problem is a classic backtracking problem. Here's the problem statement and a possible solution in C++:
+
+**Problem Statement:**
+
+Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
+![Phone Number to Letters Mapping](https://leetcode.com/problems/letter-combinations-of-a-phone-number/Figures/17/17_telephone_keypad.png)
+
+**Example:**
+
+Input: "23"
+
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
+
+**Solution in C++:**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        if (digits.empty()) return {};
+        
+        vector<string> result;
+        string combination;
+        backtrack(digits, 0, combination, result);
+        return result;
+    }
+    
+    void backtrack(const string& digits, int index, string& combination, vector<string>& result) {
+        // Base case: if the combination is of full length, add it to the result.
+        if (index == digits.length()) {
+            result.push_back(combination);
+            return;
+        }
+        
+        // Mapping of digits to letters
+        const vector<string> letters = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        
+        // Get the current digit
+        char digit = digits[index];
+        // Get the corresponding letters for the current digit
+        string possibleLetters = letters[digit - '0'];
+        
+        // Iterate through each letter and backtrack
+        for (char letter : possibleLetters) {
+            combination.push_back(letter); // Choose
+            backtrack(digits, index + 1, combination, result); // Explore
+            combination.pop_back(); // Un-choose
+        }
+    }
+};
+
+int main() {
+    Solution sol;
+    string input = "23";
+    vector<string> result = sol.letterCombinations(input);
+    cout << "Letter Combinations: ";
+    for (const string& comb : result) {
+        cout << comb << " ";
+    }
+    cout << endl;
+    return 0;
+}
+```
+
+This solution utilizes backtracking to generate all possible combinations of letters corresponding to the given digits. We start with an empty combination and iterate through each digit of the input string. For each digit, we retrieve the corresponding letters and recursively explore all possible combinations. Once we reach the end of the input string, we add the combination to the result.

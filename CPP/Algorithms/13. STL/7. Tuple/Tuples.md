@@ -753,46 +753,146 @@ if (tupleA < tupleB) {
 
 These are some common operations you can perform on tuples in C++. They provide a convenient way to handle multiple values as a single entity.
 
-### 1. Algorithms & Data Structures (C++): Tuples: Tuples
+### 1. Algorithms & Data Structures (C++): Tuples: Theory
 
-In C++, tuples are a versatile feature that allows you to bundle together a fixed number of elements, possibly of different types, into a single object. Tuples are particularly useful when you need to return multiple values from a function or when you want to pass multiple values to a function as arguments.
+Tuples are a versatile and powerful feature in C++ that can be used to store and manage multiple values together, potentially of different types, as a single entity. This makes them especially useful for returning multiple values from a function or grouping related data together.
 
-Here's a basic example of how to use tuples in C++:
+#### Basics of Tuples
+
+A tuple in C++ is defined using the `std::tuple` template, which is part of the Standard Library. You can create a tuple that holds a fixed number of elements, each potentially of different types.
+
+##### Syntax and Declaration
+
+To declare and initialize a tuple, you can use the following syntax:
 
 ```cpp
-#include <iostream>
 #include <tuple>
-#include <string>
+
+std::tuple<int, double, std::string> myTuple(42, 3.14, "Hello");
+```
+
+Here, `myTuple` is a tuple containing three elements: an `int`, a `double`, and a `std::string`.
+
+#### Accessing Elements
+
+Elements in a tuple can be accessed using `std::get`, which requires the index of the element you want to access:
+
+```cpp
+int myInt = std::get<0>(myTuple); // Access the first element
+double myDouble = std::get<1>(myTuple); // Access the second element
+std::string myString = std::get<2>(myTuple); // Access the third element
+```
+
+The indices are zero-based.
+
+#### Modifying Elements
+
+You can also modify the elements in a tuple:
+
+```cpp
+std::get<0>(myTuple) = 100; // Modify the first element
+std::get<1>(myTuple) = 2.718; // Modify the second element
+std::get<2>(myTuple) = "World"; // Modify the third element
+```
+
+#### Tuple Operations
+
+##### Creating a Tuple with `std::make_tuple`
+
+The function `std::make_tuple` is a convenient way to create a tuple without explicitly specifying the types:
+
+```cpp
+auto myTuple = std::make_tuple(42, 3.14, "Hello");
+```
+
+##### Tuple Size
+
+To get the number of elements in a tuple, use `std::tuple_size`:
+
+```cpp
+constexpr size_t tupleSize = std::tuple_size<decltype(myTuple)>::value; // tupleSize will be 3
+```
+
+##### Tuple Element Type
+
+To get the type of a specific element in a tuple, use `std::tuple_element`:
+
+```cpp
+using FirstType = std::tuple_element<0, decltype(myTuple)>::type; // FirstType will be int
+```
+
+#### Example Usage in Functions
+
+Tuples are particularly useful when you want a function to return multiple values. Here's an example:
+
+```cpp
+#include <tuple>
+#include <iostream>
+
+// Function returning a tuple
+std::tuple<int, double, std::string> getData() {
+    return std::make_tuple(42, 3.14, "Hello");
+}
 
 int main() {
-    // Creating a tuple with three elements
-    std::tuple<int, double, std::string> myTuple(10, 3.14, "Hello");
+    auto myTuple = getData();
+    std::cout << "Int: " << std::get<0>(myTuple) << std::endl;
+    std::cout << "Double: " << std::get<1>(myTuple) << std::endl;
+    std::cout << "String: " << std::get<2>(myTuple) << std::endl;
+    return 0;
+}
+```
 
-    // Accessing elements of the tuple using std::get<>
-    int intValue = std::get
+#### Structured Bindings (C++17 and later)
 
-
+C++17 introduced structured bindings, which allow for a more concise syntax for unpacking tuples:
 
 ```cpp
-    <int>(myTuple);  // Get the integer value from the tuple
-    double doubleValue = std::get
+#include <tuple>
+#include <iostream>
+
+std::tuple<int, double, std::string> getData() {
+    return std::make_tuple(42, 3.14, "Hello");
+}
+
+int main() {
+    auto [myInt, myDouble, myString] = getData(); // Structured binding
+    std::cout << "Int: " << myInt << std::endl;
+    std::cout << "Double: " << myDouble << std::endl;
+    std::cout << "String: " << myString << std::endl;
+    return 0;
+}
+```
+
+#### Comparison Operations
+
+Tuples support comparison operators (`==`, `!=`, `<`, `<=`, `>`, `>=`). These operators perform lexicographical comparison of the tuple elements.
 
 ```cpp
-    <1>(myTuple);   // Get the double value from the tuple
-    std::string stringValue = std::get<std::string>(myTuple); // Get the string value from the tuple
+#include <tuple>
+#include <iostream>
 
-    // Printing the values
-    std::cout << "Integer value: " << intValue << std::endl;
-    std::cout << "Double value: " << doubleValue << std::endl;
-    std::cout << "String value: " << stringValue << std::endl;
+int main() {
+    std::tuple<int, double, std::string> tuple1(1, 3.14, "Hello");
+    std::tuple<int, double, std::string> tuple2(1, 2.71, "World");
+
+    if (tuple1 < tuple2) {
+        std::cout << "tuple1 is less than tuple2" << std::endl;
+    }
 
     return 0;
 }
 ```
 
-This code snippet demonstrates how to create a tuple with three elements: an integer, a double, and a string. Then, it accesses each element using `std::get<>` with the appropriate type specifier within angle brackets. Finally, it prints out the values stored in the tuple.
+#### Use Cases
 
-Tuples can be very useful when you want to return multiple values from a function, as you can pack the return values into a tuple and return it. Similarly, you can use tuples to pass multiple values to a function as arguments.
+1. **Multiple Return Values**: Functions can return multiple values without the need for creating a struct or using output parameters.
+2. **Grouping Related Data**: Tuples can be used to group heterogeneous data together, making it easier to pass around sets of related values.
+3. **Tie with `std::tie`**: Using `std::tie`, you can unpack tuples directly into variables, which can be particularly useful for dealing with functions that modify their arguments.
+
+#### Summary
+
+Tuples in C++ are a flexible and powerful feature for handling multiple values of different types in a single object. They provide a way to return multiple values from functions, group related data together, and support operations for accessing, modifying, and comparing their elements. With the introduction of structured bindings in C++17, working with tuples has become even more convenient.
 
 ### 1. Algorithms & Data Structures (C++): Tuples: Tuples in Memory / Accessing an element of Tuple
 
