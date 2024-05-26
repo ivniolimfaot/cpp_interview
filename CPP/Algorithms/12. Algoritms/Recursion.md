@@ -1458,7 +1458,7 @@ Here, the recurrence relation is T(n) = T(n-1) + T(n-2) + O(1), where O(1) repre
 
 To solve this recurrence relation, you can use techniques like recursion tree method, substitution method, or master theorem. For Fibonacci, it's not trivial to apply master theorem, so let's use the recursion tree method:
 
-```
+```bash
                         T(n)
                      /        \
                T(n-1)         T(n-2)
@@ -2658,7 +2658,7 @@ In this example:
 - Base case: When `n` is 0 or 1, the function returns 1.
 - Recursive case: When `n` is greater than 1, the function calls itself with `n-1` until it reaches the base case.
 
-6. **Efficiency**: While recursion provides elegant solutions to certain problems, it may not always be the most efficient approach due to the overhead of function calls and stack usage. In such cases, iterative solutions or dynamic programming techniques may be preferable.
+1. **Efficiency**: While recursion provides elegant solutions to certain problems, it may not always be the most efficient approach due to the overhead of function calls and stack usage. In such cases, iterative solutions or dynamic programming techniques may be preferable.
 
 Understanding recursion is fundamental to mastering algorithms and data structures, as many classic algorithms, such as tree traversal and sorting algorithms, rely on recursive techniques for implementation.
 
@@ -3216,7 +3216,7 @@ In both implementations, we're using recursion to calculate the factorial. Howev
 
 Certainly! The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1. In mathematical terms, the sequence is defined recursively as:
 
-```
+```bash
 F(0) = 0
 F(1) = 1
 F(n) = F(n-1) + F(n-2) for n > 1
@@ -3673,7 +3673,7 @@ The `main` function demonstrates how to use this recursive function by passing a
 
 When you run this code, it should output:
 
-```
+```cpp
 Length of the string: 13
 ```
 
@@ -4410,7 +4410,8 @@ This implementation showcases the basic principles of a recursive binary search 
 In C++, recursion is a powerful technique used to solve problems where the solution depends on solutions to smaller instances of the same problem. It's commonly used in algorithms and data structures to solve a variety of problems. Here are some classic recursive problems in C++:
 
 1. **Factorial Calculation:**
-   ```
+
+   ```cpp
    int factorial(int n) {
        if (n <= 1)
            return 1;
@@ -4420,7 +4421,8 @@ In C++, recursion is a powerful technique used to solve problems where the solut
    ```
 
 2. **Fibonacci Sequence:**
-   ```
+
+   ```cpp
    int fibonacci(int n) {
        if (n <= 1)
            return n;
@@ -4430,7 +4432,8 @@ In C++, recursion is a powerful technique used to solve problems where the solut
    ```
 
 3. **Tower of Hanoi:**
-   ```
+
+   ```cpp
    void towerOfHanoi(int n, char source, char auxiliary, char destination) {
        if (n == 1) {
            cout << "Move disk 1 from " << source << " to " << destination << endl;
@@ -4443,7 +4446,8 @@ In C++, recursion is a powerful technique used to solve problems where the solut
    ```
 
 4. **Binary Search:**
-   ```
+
+   ```cpp
    int binarySearch(int arr[], int low, int high, int target) {
        if (low > high)
            return -1;
@@ -4458,7 +4462,8 @@ In C++, recursion is a powerful technique used to solve problems where the solut
    ```
 
 5. **Merge Sort:**
-   ```
+
+   ```cpp
    void merge(int arr[], int l, int m, int r) {
        // Merge two sorted subarrays
    }
@@ -5349,7 +5354,7 @@ void tail_recursive(int n) {
 }
 ```
 
-2. **Non-tail Recursion**: In non-tail recursion, the recursive call is not the last operation, and thus, each recursive call adds a new stack frame to the call stack. In this case, the space complexity is O(n), where n is the maximum depth of the recursive calls.
+1. **Non-tail Recursion**: In non-tail recursion, the recursive call is not the last operation, and thus, each recursive call adds a new stack frame to the call stack. In this case, the space complexity is O(n), where n is the maximum depth of the recursive calls.
 
 ```cpp
 void non_tail_recursive(int n) {
@@ -5360,7 +5365,7 @@ void non_tail_recursive(int n) {
 }
 ```
 
-3. **Tree Recursion**: When a recursive function makes more than one recursive call in its body, it's called tree recursion. In this case, the space complexity can be exponential, as each function call branches into multiple calls.
+1. **Tree Recursion**: When a recursive function makes more than one recursive call in its body, it's called tree recursion. In this case, the space complexity can be exponential, as each function call branches into multiple calls.
 
 ```cpp
 void tree_recursive(int n) {
@@ -5372,7 +5377,7 @@ void tree_recursive(int n) {
 }
 ```
 
-4. **Indirect Recursion**: In indirect recursion, functions call each other in a circular manner. The space complexity depends on the pattern of function calls and can vary case by case.
+1. **Indirect Recursion**: In indirect recursion, functions call each other in a circular manner. The space complexity depends on the pattern of function calls and can vary case by case.
 
 ```cpp
 void foo(int n);
@@ -5420,7 +5425,7 @@ int factorial(int n) {
 
 The time complexity of this algorithm can be expressed as T(n) = T(n-1) + O(1), where O(1) represents constant time for the multiplication operation. This recurrence resolves to O(n) time complexity.
 
-2. **Fibonacci Sequence:**
+1. **Fibonacci Sequence:**
 
 ```cpp
 int fibonacci(int n) {
@@ -5881,7 +5886,7 @@ This code defines a function `generateParentheses` that generates all valid comb
 
 For example, if `n = 3`, the output would be:
 
-```
+```bash
 Combinations for 3 pairs of parentheses:
 ((()))
 (()())
@@ -7301,6 +7306,7 @@ int main() {
 In this example, `functionA` calls `functionB`, and `functionB` calls `functionA` again. They alternate their calls until the termination condition is met.
 
 Output:
+
 ```bash
 A: 3
 B: 2
@@ -7638,3 +7644,98 @@ Recursion is a powerful concept in computer science and is particularly useful i
 5. **Dynamic Programming**: Recursion is a fundamental technique used in dynamic programming, which is a method for solving complex optimization problems by breaking them down into simpler subproblems and storing the solutions to those subproblems in a table or array. Recursive algorithms can be easily adapted to implement dynamic programming solutions by adding memoization (caching previously computed results) to avoid redundant computations.
 
 Despite its elegance and power, recursion also has some drawbacks. It can be less efficient than iterative approaches due to the overhead of function calls and the potential for stack overflow if the recursion depth is too deep. Additionally, recursive algorithms may be harder to debug and analyze compared to their iterative counterparts. However, when used appropriately, recursion can be a valuable tool for solving a wide range of problems in algorithms and data structures.
+
+### 1. Algorithms & Data Structures (C++): Theoretical Analysis Recursive Algorithm
+
+Analyzing recursive algorithms involves understanding their time complexity, space complexity, and termination conditions.
+
+1. **Time Complexity**: The time complexity of a recursive algorithm is typically determined by the number of recursive calls made and the work done per call. This can often be expressed using recurrence relations.
+
+2. **Space Complexity**: Recursive algorithms utilize stack space for each recursive call. The space complexity is typically determined by the maximum depth of the recursion, multiplied by the space required for each call.
+
+3. **Termination Condition**: A recursive algorithm must have a base case or termination condition that stops the recursion. Without this, the algorithm would recurse indefinitely, leading to a stack overflow error.
+
+When analyzing a recursive algorithm theoretically, you might consider the following steps:
+
+1. **Identify the Recursive Cases**: Understand when and how the algorithm makes recursive calls. This involves identifying the base case(s) and the recursive case(s).
+
+2. **Write Recurrence Relations**: Express the time complexity in terms of a recurrence relation. This often involves determining how many recursive calls are made and how the size of the problem changes with each call.
+
+3. **Solve the Recurrence**: Solve the recurrence relation to get a closed-form expression for the time complexity. Techniques like substitution, iteration, or master theorem might be used depending on the complexity of the recurrence.
+
+4. **Analyze Space Complexity**: Determine the space complexity by considering how much additional space is required for each recursive call. This typically involves analyzing the stack space used.
+
+5. **Consider Optimizations**: Think about possible optimizations to reduce time or space complexity. Tail recursion optimization, memoization, or dynamic programming are common techniques for improving recursive algorithms.
+
+6. **Evaluate Practical Performance**: Finally, consider how the theoretical analysis translates into actual performance. Benchmarking or profiling the algorithm with real data can help validate theoretical predictions and identify any discrepancies.
+
+For example, consider the time complexity of the recursive Fibonacci algorithm. The recurrence relation for the time complexity is T(n) = T(n-1) + T(n-2) + O(1), and solving it gives an exponential time complexity of O(2^n) in the worst case. The space complexity is O(n) due to the maximum depth of the recursion being proportional to the input size.
+
+### 1. Algorithms & Data Structures (C++): Time Complexity For Recursive Problems
+
+In algorithms and data structures, analyzing the time complexity of recursive problems involves understanding how the size of the input affects the number of recursive calls and the work done in each call. Here's a breakdown of common scenarios:
+
+1. **Single Recursive Call**: In some recursive algorithms, each recursive call spawns just one additional call. In such cases, if there are \( n \) recursive calls made, and the work done within each call is \( O(f(n)) \), then the overall time complexity is \( O(n \cdot f(n)) \).
+
+   ```cpp
+   void recursiveFunction(int n) {
+       // Base case
+       if (/* base case condition */) {
+           // Base case operation
+           return;
+       }
+       // Recursive call
+       recursiveFunction(n - 1);
+       // Other operations (O(1) typically)
+   }
+   ```
+
+2. **Multiple Recursive Calls**: Some recursive algorithms make multiple recursive calls in each step. Suppose there are \( k \) recursive calls made in each step, and the input size reduces by a factor of \( m \) (where \( m > 1 \)). Then, if there are \( h \) recursive steps, the time complexity can be expressed as \( O(m^h) \).
+
+   ```cpp
+   void recursiveFunction(int n) {
+       // Base case
+       if (/* base case condition */) {
+           // Base case operation
+           return;
+       }
+       // Multiple recursive calls
+       for (int i = 0; i < k; i++) {
+           recursiveFunction(n / m);
+       }
+       // Other operations (O(1) typically)
+   }
+   ```
+
+3. **Divide and Conquer Algorithms**: Divide and conquer algorithms typically split the problem into smaller subproblems, solve each independently, and then combine the solutions. Examples include merge sort, quicksort, and binary search. The time complexity of these algorithms can often be expressed using recurrence relations, which are then solved to obtain the overall time complexity.
+
+   ```cpp
+   int binarySearch(int arr[], int low, int high, int x) {
+       if (low > high) return -1; // Base case
+
+       int mid = low + (high - low) / 2;
+       if (arr[mid] == x) return mid; // Found the element
+       else if (arr[mid] > x) return binarySearch(arr, low, mid - 1, x); // Search in left half
+       else return binarySearch(arr, mid + 1, high, x); // Search in right half
+   }
+   ```
+
+4. **Backtracking Algorithms**: Backtracking algorithms involve recursively exploring all possible solutions to a problem. The time complexity depends on the number of recursive calls made and the work done in each call. For many backtracking algorithms, especially in exhaustive search problems, the time complexity is often exponential.
+
+   ```cpp
+   void backtrack(int pos, /* other parameters */) {
+       if (/* solution found */) {
+           // Process solution
+           return;
+       }
+       for (/* all possible choices */) {
+           if (/* valid choice */) {
+               // Make choice
+               backtrack(pos + 1, /* updated parameters */);
+               // Undo choice
+           }
+       }
+   }
+   ```
+
+Analyzing the time complexity of recursive algorithms often involves solving recurrence relations or reasoning about the number of recursive calls and the work done in each call.

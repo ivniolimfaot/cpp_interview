@@ -7109,7 +7109,7 @@ These are some of the key features related to tuples in C++17. They provide a fl
 
 ### 1. std::cerr
 
-`std::cerr` is an output stream in C++ that is typically used for printing error messages. It is an instance of the `std::ostream` class and is associated with the standard error device, which is typically the console. 
+`std::cerr` is an output stream in C++ that is typically used for printing error messages. It is an instance of the `std::ostream` class and is associated with the standard error device, which is typically the console.
 
 Unlike `std::cout`, which is buffered, `std::cerr` is unbuffered. This means that any data written to `std::cerr` is immediately flushed to the output device, which is important for error messages because it ensures that they are displayed immediately, even if the program crashes or terminates unexpectedly.
 
@@ -7259,15 +7259,667 @@ int main() {
 }
 ```
 
-### Explanation
+#### Explanation
+
 1. **Using `remove`:**
-   - This function iterates through the list and removes all elements that are equal to the specified value. In the example, all occurrences of `3` are removed from the list.
+   * This function iterates through the list and removes all elements that are equal to the specified value. In the example, all occurrences of `3` are removed from the list.
 
 2. **Using `remove_if`:**
-   - This function takes a predicate (a function or lambda expression that returns `true` for elements to be removed). The lambda function `[](int value) { return value == target; }` returns `true` for elements equal to `target`.
+   * This function takes a predicate (a function or lambda expression that returns `true` for elements to be removed). The lambda function `[](int value) { return value == target; }` returns `true` for elements equal to `target`.
 
 ### Notes
-- Both `remove` and `remove_if` perform the removal in a single pass through the list, making them efficient.
-- These functions do not change the size of the list until the elements are actually removed, which happens internally. After the call, the list's size is updated.
+
+* Both `remove` and `remove_if` perform the removal in a single pass through the list, making them efficient.
+* These functions do not change the size of the list until the elements are actually removed, which happens internally. After the call, the list's size is updated.
 
 This example shows how to use both methods to remove elements from a `std::list` based on a target value. You can adapt the predicate in `remove_if` to match more complex conditions as needed.
+
+### std::set
+
+In C++, `std::set` is a part of the Standard Template Library (STL) and is used to store unique elements in a specific order. The elements in a `std::set` are automatically sorted, typically in ascending order. Here are some key features and common operations associated with `std::set`:
+
+#### Key Features
+
+* **Unique Elements:** Each element in a `std::set` is unique. If you attempt to insert a duplicate element, it will not be added.
+* **Ordered:** Elements are stored in a sorted order. By default, this is ascending order according to the `operator<`.
+* **Balanced Binary Tree:** Internally, `std::set` is usually implemented as a red-black tree, which ensures that operations like insert, delete, and find have logarithmic complexity.
+
+#### Common Operations
+
+* **Insertion:**
+
+  ```cpp
+  std::set<int> mySet;
+  mySet.insert(10); // Insert a single element
+  mySet.insert({20, 30, 40}); // Insert multiple elements
+  ```
+
+* **Deletion:**
+
+  ```cpp
+  mySet.erase(20); // Remove an element by value
+  mySet.erase(mySet.begin()); // Remove the first element
+  ```
+
+* **Searching:**
+
+  ```cpp
+  auto it = mySet.find(30);
+  if (it != mySet.end()) {
+      // Element found
+  }
+  ```
+
+* **Size and Capacity:**
+
+  ```cpp
+  std::size_t size = mySet.size(); // Number of elements
+  bool isEmpty = mySet.empty(); // Check if the set is empty
+  ```
+
+* **Traversal:**
+
+  ```cpp
+  for (const auto& elem : mySet) {
+      std::cout << elem << " ";
+  }
+  ```
+
+* **Lower and Upper Bounds:**
+
+  ```cpp
+  auto itLow = mySet.lower_bound(25); // Iterator to the first element >= 25
+  auto itUp = mySet.upper_bound(25); // Iterator to the first element > 25
+  ```
+
+#### Example Usage
+
+Here's a simple example demonstrating the usage of `std::set`:
+
+```cpp
+#include <iostream>
+#include <set>
+
+int main() {
+    std::set<int> mySet;
+
+    // Insert elements
+    mySet.insert(1);
+    mySet.insert(3);
+    mySet.insert(2);
+
+    // Iterate and print elements
+    for (const auto& elem : mySet) {
+        std::cout << elem << " ";
+    }
+    std::cout << std::endl;
+
+    // Check if an element exists
+    if (mySet.find(3) != mySet.end()) {
+        std::cout << "Element 3 found!" << std::endl;
+    } else {
+        std::cout << "Element 3 not found!" << std::endl;
+    }
+
+    // Remove an element
+    mySet.erase(2);
+
+    // Print the set size
+    std::cout << "Set size: " << mySet.size() << std::endl;
+
+    return 0;
+}
+```
+
+#### Custom Comparators
+
+You can define custom comparison logic by passing a comparator as a template argument:
+
+```cpp
+struct CustomCompare {
+    bool operator()(const int& lhs, const int& rhs) const {
+        return lhs > rhs; // Descending order
+    }
+};
+
+std::set<int, CustomCompare> customSet;
+customSet.insert(1);
+customSet.insert(3);
+customSet.insert(2);
+
+for (const auto& elem : customSet) {
+    std::cout << elem << " "; // Output: 3 2 1
+}
+```
+
+#### Summary
+
+`std::set` is a powerful and versatile container in C++ for storing unique, ordered elements. Its efficiency for insertion, deletion, and search operations, combined with its automatic ordering, makes it suitable for various scenarios where these properties are needed.
+
+### difference between std::unordered_map and std::unordered_set C++
+
+In C++, both `std::unordered_map` and `std::unordered_set` are part of the Standard Library's unordered associative containers, designed to provide fast access to elements using hash tables. However, they serve different purposes and have distinct characteristics.
+
+### `std::unordered_map`
+
+* **Purpose**: Stores key-value pairs (i.e., a dictionary).
+* **Structure**: Each element is a `std::pair<const Key, T>`, where `Key` is the unique key associated with the value `T`.
+* **Key Uniqueness**: Each key is unique within the map.
+* **Access**: Allows fast retrieval of values based on their keys.
+* **Usage**: Useful when you need to associate a value with a key and retrieve the value quickly using the key.
+* **Example**:
+
+  ```cpp
+  std::unordered_map<int, std::string> myMap;
+  myMap[1] = "one";
+  myMap[2] = "two";
+  std::cout << myMap[1]; // Output: one
+  ```
+
+### `std::unordered_set`
+
+* **Purpose**: Stores unique keys without associated values (i.e., a set).
+* **Structure**: Each element is simply a `Key`.
+* **Key Uniqueness**: Each key is unique within the set.
+* **Access**: Allows fast retrieval and checking of the presence of keys.
+* **Usage**: Useful when you need to store unique keys and check for their existence quickly.
+* **Example**:
+
+  ```cpp
+  std::unordered_set<int> mySet;
+  mySet.insert(1);
+  mySet.insert(2);
+  if (mySet.find(1) != mySet.end()) {
+      std::cout << "1 is in the set"; // Output: 1 is in the set
+  }
+  ```
+
+### Key Differences
+
+1. **Element Composition**:
+   * `std::unordered_map` elements are key-value pairs.
+   * `std::unordered_set` elements are single keys.
+
+2. **Use Cases**:
+   * Use `std::unordered_map` when you need to map keys to values.
+   * Use `std::unordered_set` when you only need to store unique keys.
+
+3. **Memory and Performance**:
+   * Both have average time complexity of O(1) for insertions, deletions, and lookups, assuming a good hash function.
+   * `std::unordered_map` might have a slightly higher memory overhead due to the storage of value objects in addition to keys.
+
+4. **APIs**:
+   * `std::unordered_map` provides member functions like `operator[]`, `at()`, `insert()`, `erase()`, `find()`, etc., focusing on key-value operations.
+   * `std::unordered_set` provides member functions like `insert()`, `erase()`, `find()`, `count()`, etc., focusing solely on key operations.
+
+### Summary
+
+* **`std::unordered_map<Key, T>`**: Use when you need a hash table to map unique keys to values.
+* **`std::unordered_set<Key>`**: Use when you need a hash table to store unique keys and check for their presence efficiently.
+
+Understanding these differences helps you choose the right container based on the specific requirements of your C++ program.
+
+### std::lower_bound
+
+The `std::lower_bound` function in C++ is a part of the `<algorithm>` header and is used to find the first position in a sorted range where a specified value can be inserted without violating the order. It returns an iterator pointing to the first element that is not less than (i.e., greater than or equal to) a given value. This function is particularly useful when you need to find the insertion point for a value in a sorted container to maintain sorted order.
+
+Here's the syntax for `std::lower_bound`:
+
+```cpp
+#include <algorithm>
+// Version 1: Using default comparison (operator<)
+template< class ForwardIt, class T >
+ForwardIt lower_bound( ForwardIt first, ForwardIt last, const T& value );
+
+// Version 2: Using a custom comparator
+template< class ForwardIt, class T, class Compare >
+ForwardIt lower_bound( ForwardIt first, ForwardIt last, const T& value, Compare comp );
+```
+
+### Parameters
+
+* **first, last**: Forward iterators defining the range [first, last) in which to search.
+* **value**: The value to compare the elements to.
+* **comp**: A comparison function that returns true if the first argument is less than the second.
+
+### Returns
+
+An iterator pointing to the first element that is not less than `value`. If all elements in the range are less than `value`, it returns `last`.
+
+### Example
+
+Here's an example demonstrating how to use `std::lower_bound`:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main() {
+    std::vector<int> vec = {10, 20, 30, 40, 50};
+
+    // Find the first position where 30 can be inserted
+    auto it = std::lower_bound(vec.begin(), vec.end(), 30);
+
+    // Print the result
+    if (it != vec.end()) {
+        std::cout << "The lower bound for 30 is at position: " 
+                  << std::distance(vec.begin(), it) << "\n";
+        std::cout << "The element is: " << *it << "\n";
+    } else {
+        std::cout << "30 is greater than all elements in the vector\n";
+    }
+
+    return 0;
+}
+```
+
+### Explanation
+
+In this example, `std::lower_bound` is used to find the first position in the sorted vector `vec` where the value `30` can be inserted without disrupting the order. The iterator returned points to the first occurrence of `30` (or where `30` would go if it were present).
+
+If you need to use a custom comparison function, you can do so as follows:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+bool customCompare(int a, int b) {
+    return a > b; // Example: reverse order
+}
+
+int main() {
+    std::vector<int> vec = {50, 40, 30, 20, 10};
+
+    // Find the first position where 30 can be inserted in reverse order
+    auto it = std::lower_bound(vec.begin(), vec.end(), 30, customCompare);
+
+    // Print the result
+    if (it != vec.end()) {
+        std::cout << "The lower bound for 30 in reverse order is at position: " 
+                  << std::distance(vec.begin(), it) << "\n";
+        std::cout << "The element is: " << *it << "\n";
+    } else {
+        std::cout << "30 is less than all elements in the vector\n";
+    }
+
+    return 0;
+}
+```
+
+In this case, `customCompare` is used to define a reverse order comparison, and `std::lower_bound` finds the appropriate position based on this custom ordering.
+
+### sets
+
+In C++, the Standard Template Library (STL) provides several associative containers that store unique elements following a specific order (sorted containers) or in an arbitrary order (unordered containers). Here's an overview of `std::set`, `std::multiset`, `std::unordered_set`, and `std::unordered_multiset`.
+
+#### 1. `std::set`
+
+* **Description**: A sorted associative container that contains a collection of unique elements.
+* **Ordering**: Elements are stored in a specific order (usually ascending).
+* **Duplicate Elements**: Not allowed; each element is unique.
+* **Underlying Data Structure**: Typically implemented as a balanced binary search tree (e.g., red-black tree).
+* **Operations**: Provides logarithmic time complexity for insertion, deletion, and lookup operations.
+  
+```cpp
+#include <iostream>
+#include <set>
+
+int main() {
+    std::set<int> mySet = {1, 2, 3, 4, 5};
+    mySet.insert(6);
+
+    for (const auto& elem : mySet) {
+        std::cout << elem << " ";
+    }
+
+    return 0;
+}
+```
+
+#### 2. `std::multiset`
+
+* **Description**: A sorted associative container that allows multiple elements with equivalent values.
+* **Ordering**: Elements are stored in a specific order (usually ascending).
+* **Duplicate Elements**: Allowed; multiple elements can have the same value.
+* **Underlying Data Structure**: Typically implemented as a balanced binary search tree (e.g., red-black tree).
+* **Operations**: Provides logarithmic time complexity for insertion, deletion, and lookup operations.
+  
+```cpp
+#include <iostream>
+#include <set>
+
+int main() {
+    std::multiset<int> myMultiset = {1, 2, 2, 3, 4, 5};
+    myMultiset.insert(3);
+
+    for (const auto& elem : myMultiset) {
+        std::cout << elem << " ";
+    }
+
+    return 0;
+}
+```
+
+#### 3. `std::unordered_set`
+
+* **Description**: An unordered associative container that contains a collection of unique elements.
+* **Ordering**: Elements are stored in an arbitrary order.
+* **Duplicate Elements**: Not allowed; each element is unique.
+* **Underlying Data Structure**: Typically implemented as a hash table.
+* **Operations**: Provides average constant time complexity for insertion, deletion, and lookup operations, though worst-case can be linear time.
+  
+```cpp
+#include <iostream>
+#include <unordered_set>
+
+int main() {
+    std::unordered_set<int> myUnorderedSet = {1, 2, 3, 4, 5};
+    myUnorderedSet.insert(6);
+
+    for (const auto& elem : myUnorderedSet) {
+        std::cout << elem << " ";
+    }
+
+    return 0;
+}
+```
+
+#### 4. `std::unordered_multiset`
+
+* **Description**: An unordered associative container that allows multiple elements with equivalent values.
+* **Ordering**: Elements are stored in an arbitrary order.
+* **Duplicate Elements**: Allowed; multiple elements can have the same value.
+* **Underlying Data Structure**: Typically implemented as a hash table.
+* **Operations**: Provides average constant time complexity for insertion, deletion, and lookup operations, though worst-case can be linear time.
+  
+```cpp
+#include <iostream>
+#include <unordered_set>
+
+int main() {
+    std::unordered_multiset<int> myUnorderedMultiset = {1, 2, 2, 3, 4, 5};
+    myUnorderedMultiset.insert(3);
+
+    for (const auto& elem : myUnorderedMultiset) {
+        std::cout << elem << " ";
+    }
+
+    return 0;
+}
+```
+
+#### Summary
+
+* **`std::set`**: Unique, ordered elements.
+* **`std::multiset`**: Multiple, ordered elements.
+* **`std::unordered_set`**: Unique, unordered elements.
+* **`std::unordered_multiset`**: Multiple, unordered elements.
+
+Choose the appropriate container based on whether you need unique elements, if the order matters, and the expected performance characteristics.
+
+### std::upper_bound & std::lower_bound
+
+In C++, `std::lower_bound` and `std::upper_bound` are two functions from the Standard Template Library (STL) that are used to perform binary searches on sorted ranges. These functions are part of the `<algorithm>` header and are typically used with sorted containers like `std::vector` or `std::array`.
+
+Here’s a detailed comparison and explanation of each function:
+
+#### `std::lower_bound`
+
+* **Purpose**: Finds the first position where a given value could be inserted without violating the order.
+* **Usage**:
+
+  ```cpp
+  std::lower_bound(begin, end, value);
+  ```
+
+* **Returns**: An iterator pointing to the first element that is **not less than** (i.e., greater than or equal to) the given value.
+* **Example**:
+
+  ```cpp
+  #include <vector>
+  #include <algorithm>
+  #include <iostream>
+
+  int main() {
+      std::vector<int> v = {1, 3, 3, 5, 7};
+      auto it = std::lower_bound(v.begin(), v.end(), 3);
+      std::cout << "lower_bound for 3 is at position: " << (it - v.begin()) << '\n';
+      return 0;
+  }
+  ```
+
+  This will output: `lower_bound for 3 is at position: 1`
+
+#### `std::upper_bound`
+
+* **Purpose**: Finds the first position where a given value could be inserted such that all elements before this position are less than the given value.
+* **Usage**:
+
+  ```cpp
+  std::upper_bound(begin, end, value);
+  ```
+
+* **Returns**: An iterator pointing to the first element that is **greater than** the given value.
+* **Example**:
+
+  ```cpp
+  #include <vector>
+  #include <algorithm>
+  #include <iostream>
+
+  int main() {
+      std::vector<int> v = {1, 3, 3, 5, 7};
+      auto it = std::upper_bound(v.begin(), v.end(), 3);
+      std::cout << "upper_bound for 3 is at position: " << (it - v.begin()) << '\n';
+      return 0;
+  }
+  ```
+
+  This will output: `upper_bound for 3 is at position: 3`
+
+#### Key Differences
+
+1. **Returned Position**:
+   * `std::lower_bound`: Returns the first position where the value is not less than the target value.
+   * `std::upper_bound`: Returns the first position where the value is greater than the target value.
+
+2. **Inserting a Value**:
+   * `std::lower_bound`: Useful when you want to find a position to insert a value such that the value will be placed before any existing equal values.
+   * `std::upper_bound`: Useful when you want to find a position to insert a value such that the value will be placed after any existing equal values.
+
+3. **Use in Range Searching**:
+   * If you want to find a range of elements that are equal to a given value, you can use both functions together:
+
+     ```cpp
+     auto lower = std::lower_bound(v.begin(), v.end(), value);
+     auto upper = std::upper_bound(v.begin(), v.end(), value);
+     for (auto it = lower; it != upper; ++it) {
+         // Process range [lower, upper)
+     }
+     ```
+
+#### Complexity
+
+Both `std::lower_bound` and `std::upper_bound` have a time complexity of \(O(\log n)\), where \(n\) is the number of elements in the range `[begin, end)`.
+
+By understanding these functions and their differences, you can efficiently handle tasks involving sorted data, such as searching for elements or inserting elements while maintaining order.
+
+### std::accumulate
+
+`std::accumulate` is a function template in the C++ Standard Library, part of the `<numeric>` header, which performs a reduction on a range of elements. It successively applies a binary operation (typically addition) to the elements of a sequence and returns the result.
+
+Here is a basic overview of `std::accumulate`:
+
+#### Syntax
+
+```cpp
+#include <numeric>
+
+template<class InputIt, class T>
+T accumulate(InputIt first, InputIt last, T init);
+
+template<class InputIt, class T, class BinaryOperation>
+T accumulate(InputIt first, InputIt last, T init, BinaryOperation op);
+```
+
+#### Parameters
+
+* **first, last**: The range of elements to accumulate. `first` is the beginning iterator, and `last` is the end iterator (one past the last element to consider).
+* **init**: The initial value to start the accumulation.
+* **op** (optional): A binary operation function or function object to apply. If not provided, the `+` operator is used.
+
+#### Return Value
+
+* The result of accumulating all the values in the range `[first, last)` with the initial value `init`.
+
+#### Examples
+
+##### Example 1: Using Default Addition
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <numeric>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    int sum = std::accumulate(vec.begin(), vec.end(), 0);
+    std::cout << "Sum: " << sum << std::endl; // Output: Sum: 15
+    return 0;
+}
+```
+
+##### Example 2: Using a Custom Binary Operation
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <numeric>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    int product = std::accumulate(vec.begin(), vec.end(), 1, std::multiplies<int>());
+    std::cout << "Product: " << product << std::endl; // Output: Product: 120
+    return 0;
+}
+```
+
+In the second example, the custom binary operation is `std::multiplies<int>()`, which multiplies the elements instead of adding them.
+
+#### Key Points
+
+* `std::accumulate` is highly flexible and can be used with different types of iterators, initial values, and binary operations.
+* The initial value `init` is crucial as it sets the starting point for the accumulation.
+* If the range is empty, the result is simply `init`.
+
+#### Practical Considerations
+
+* Ensure that the type of `init` and the return type of the binary operation are consistent and capable of representing the accumulated result.
+* Be mindful of potential overflow when dealing with large ranges and types with limited capacity (e.g., integers).
+
+By understanding and leveraging `std::accumulate`, you can efficiently perform reductions and aggregations over ranges in a variety of contexts.
+
+### std::search
+
+The `std::search` function in C++ is a part of the Standard Library and is used to search for a subsequence within a range. It is found in the `<algorithm>` header.
+
+Here's a quick overview of its syntax and usage:
+
+#### Syntax
+
+1. **Basic Version:**
+
+```cpp
+template <class ForwardIterator1, class ForwardIterator2>
+ForwardIterator1 search(ForwardIterator1 first1, ForwardIterator1 last1,
+                        ForwardIterator2 first2, ForwardIterator2 last2);
+```
+
+1. **Version with Predicate:**
+
+```cpp
+template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
+ForwardIterator1 search(ForwardIterator1 first1, ForwardIterator1 last1,
+                        ForwardIterator2 first2, ForwardIterator2 last2,
+                        BinaryPredicate pred);
+```
+
+#### Parameters
+
+* **first1, last1:** Forward iterators to the initial and final positions of the first range (the range to be searched).
+* **first2, last2:** Forward iterators to the initial and final positions of the second range (the subsequence to be searched for within the first range).
+* **pred:** A binary predicate that returns `true` if the elements match, and `false` otherwise.
+
+#### Return Value
+
+* The function returns an iterator to the first element of the first subsequence found. If the subsequence is not found, it returns `last1`.
+
+#### Example Usage
+
+Here’s an example demonstrating the basic usage of `std::search`:
+
+```cpp
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    std::vector<int> sub = {4, 5, 6};
+
+    auto it = std::search(v.begin(), v.end(), sub.begin(), sub.end());
+
+    if (it != v.end()) {
+        std::cout << "Subsequence found at position: " 
+                  << std::distance(v.begin(), it) << std::endl;
+    } else {
+        std::cout << "Subsequence not found." << std::endl;
+    }
+
+    return 0;
+}
+```
+
+#### Example with Predicate
+
+Here’s an example using a custom predicate:
+
+```cpp
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+bool mypredicate(int i, int j) {
+    return (i == j);
+}
+
+int main() {
+    std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    std::vector<int> sub = {4, 5, 6};
+
+    auto it = std::search(v.begin(), v.end(), sub.begin(), sub.end(), mypredicate);
+
+    if (it != v.end()) {
+        std::cout << "Subsequence found at position: " 
+                  << std::distance(v.begin(), it) << std::endl;
+    } else {
+        std::cout << "Subsequence not found." << std::endl;
+    }
+
+    return 0;
+}
+```
+
+In the example with the predicate, `mypredicate` is a function that determines how to compare the elements of the subsequences.
+
+#### Use Cases
+
+`std::search` is useful in various scenarios such as:
+
+* Searching for a sequence of characters in a string.
+* Finding patterns in arrays or vectors.
+* Implementing basic substring search algorithms.
+
+Understanding `std::search` and how to use it with and without a predicate can help you handle complex searching requirements in C++ effectively.

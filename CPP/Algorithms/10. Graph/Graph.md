@@ -24406,3 +24406,89 @@ The Floyd-Warshall algorithm is a fundamental algorithm in computer science, par
 5. **Transitive Closure**: The algorithm can also be used to find the transitive closure of a directed graph, which is another important application in graph theory.
 
 Overall, Floyd-Warshall is valuable because it provides a simple and efficient solution to a fundamental problem in graph theory, making it a key tool in algorithmic problem-solving and optimization.
+
+### 1. Algorithms & Data Structures (C++): Cycle Detection in Directed Graph
+
+Detecting cycles in a directed graph is a fundamental problem in computer science and is often encountered in various applications like detecting deadlocks in resource allocation systems or in network routing algorithms. One popular algorithm to accomplish this is Depth-First Search (DFS). Here's how you can implement cycle detection in a directed graph using DFS in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+class Graph {
+    int V; // Number of vertices
+
+    // Pointer to an array containing adjacency lists
+    vector<int> *adj;
+
+    // Recursive helper function for DFS
+    bool isCyclicUtil(int v, vector<bool> &visited, vector<bool> &recStack) {
+        if (!visited[v]) {
+            visited[v] = true;
+            recStack[v] = true;
+
+            // Recur for all the vertices adjacent to this vertex
+            for (int i : adj[v]) {
+                if (!visited[i] && isCyclicUtil(i, visited, recStack))
+                    return true;
+                else if (recStack[i])
+                    return true;
+            }
+        }
+        recStack[v] = false; // Remove the vertex from recursion stack
+        return false;
+    }
+
+public:
+    Graph(int V) {
+        this->V = V;
+        adj = new vector<int>[V];
+    }
+
+    ~Graph() {
+        delete[] adj;
+    }
+
+    // Function to add an edge to the graph
+    void addEdge(int v, int w) {
+        adj[v].push_back(w);
+    }
+
+    // Function to detect cycle using DFS
+    bool isCyclic() {
+        vector<bool> visited(V, false);
+        vector<bool> recStack(V, false);
+
+        // Call the recursive helper function to detect cycle in different DFS trees
+        for (int i = 0; i < V; i++) {
+            if (isCyclicUtil(i, visited, recStack))
+                return true;
+        }
+        return false;
+    }
+};
+
+int main() {
+    Graph g(4); // Create a graph with 4 vertices
+
+    // Add edges
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 2);
+    g.addEdge(2, 0);
+    g.addEdge(2, 3);
+    g.addEdge(3, 3);
+
+    if (g.isCyclic())
+        cout << "Graph contains cycle";
+    else
+        cout << "Graph doesn't contain cycle";
+    
+    return 0;
+}
+```
+
+This code uses DFS to traverse the graph. It maintains two arrays: `visited` and `recStack`. The `visited` array keeps track of the vertices visited during DFS traversal, while the `recStack` array keeps track of the vertices that are part of the current DFS traversal path. If we encounter a vertex that is already in the recursion stack, it indicates the presence of a cycle.

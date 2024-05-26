@@ -7178,3 +7178,97 @@ Here's a simplified explanation of what happens when you call a function in C++:
 6. **Stack Frame Cleanup**: The stack frame for the function call is deallocated, typically by adjusting the stack pointer to "pop" the stack frame.
 
 So, while the operating system provides the initial environment for the program to execute, it's the program's runtime environment that manages the stack and handles function calls. This is typically done by setting up and managing stack frames for each function call and return.
+
+### C++ Symbol table
+
+In C++, symbol tables are data structures used to store and manage a collection of symbols, such as variable names, function names, or object instances. These tables are typically used in compilers and interpreters for programming languages to manage scope and binding information.
+
+A symbol table can be implemented using various data structures, such as hash tables, binary search trees, or balanced trees. Here, we'll look at how to implement a simple symbol table using a hash table. The following example uses the C++ Standard Library `unordered_map` to demonstrate a basic symbol table.
+
+### Basic Symbol Table using `unordered_map`
+
+```cpp
+#include <iostream>
+#include <unordered_map>
+#include <string>
+
+// Define the structure to hold symbol information
+struct SymbolInfo {
+    std::string type;   // The type of the symbol (e.g., int, float, function)
+    int scopeLevel;     // The scope level of the symbol
+    // Add any other relevant information needed for symbols
+};
+
+class SymbolTable {
+public:
+    // Insert a new symbol into the table
+    void insert(const std::string& name, const SymbolInfo& info) {
+        table[name] = info;
+    }
+
+    // Find a symbol in the table
+    bool find(const std::string& name) {
+        return table.find(name) != table.end();
+    }
+
+    // Retrieve the symbol information
+    SymbolInfo get(const std::string& name) {
+        if (find(name)) {
+            return table[name];
+        } else {
+            throw std::runtime_error("Symbol not found");
+        }
+    }
+
+    // Remove a symbol from the table
+    void remove(const std::string& name) {
+        table.erase(name);
+    }
+
+private:
+    std::unordered_map<std::string, SymbolInfo> table;
+};
+
+int main() {
+    SymbolTable symTable;
+
+    // Example usage
+    SymbolInfo varInfo = {"int", 1};
+    symTable.insert("myVar", varInfo);
+
+    if (symTable.find("myVar")) {
+        SymbolInfo info = symTable.get("myVar");
+        std::cout << "Symbol: myVar, Type: " << info.type << ", Scope: " << info.scopeLevel << std::endl;
+    } else {
+        std::cout << "Symbol myVar not found" << std::endl;
+    }
+
+    symTable.remove("myVar");
+
+    if (!symTable.find("myVar")) {
+        std::cout << "Symbol myVar removed successfully" << std::endl;
+    }
+
+    return 0;
+}
+```
+
+### Explanation
+
+1. **SymbolInfo Structure**:
+    - This structure holds information about each symbol, such as its type and scope level.
+
+2. **SymbolTable Class**:
+    - Uses an `unordered_map` to store symbols, with the symbol name as the key and `SymbolInfo` as the value.
+    - Provides methods to insert, find, get, and remove symbols.
+
+3. **Main Function**:
+    - Demonstrates how to use the `SymbolTable` class to manage symbols.
+
+### Key Points
+- **Insertion**: Adds a new symbol and its information to the table.
+- **Finding**: Checks if a symbol exists in the table.
+- **Retrieval**: Retrieves the information of a symbol if it exists.
+- **Removal**: Deletes a symbol from the table.
+
+This example is a basic illustration. In a real-world compiler or interpreter, the symbol table would be more complex, handling scopes, lifetimes, and possibly different types of symbols (variables, functions, classes, etc.). Moreover, error handling and scope management would be more sophisticated to deal with nested scopes and shadowing of symbols.

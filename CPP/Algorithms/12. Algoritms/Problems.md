@@ -28111,3 +28111,276 @@ int main() {
 ```
 
 Remember to handle edge cases and errors gracefully, such as file not found, insufficient memory, etc. Also, optimize your code for performance if dealing with large files.
+
+### 1. Algorithms & Data Structures (C++): Subsequence Based Problems
+
+Subsequence-based problems in algorithms and data structures often involve finding or analyzing subsequences within a given sequence. A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements. Here are some common subsequence-based problems in C++:
+
+1. **Longest Increasing Subsequence (LIS)**:
+   - Problem: Given an array of integers, find the length of the longest increasing subsequence.
+   - Solution: This problem can be solved using dynamic programming. You can define a DP array where `dp[i]` represents the length of the longest increasing subsequence ending at index `i`.
+   - Code Example:
+
+    ```cpp
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> dp(n, 1);
+        int maxLen = 1;
+        
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    dp[i] = max(dp[i], dp[j] + 1);
+                    maxLen = max(maxLen, dp[i]);
+                }
+            }
+        }
+        
+        return maxLen;
+    }
+    ```
+
+2. **Longest Common Subsequence (LCS)**:
+   - Problem: Given two sequences, find the length of the longest subsequence present in both of them.
+   - Solution: This can also be solved using dynamic programming. You can define a 2D DP array where `dp[i][j]` represents the length of LCS for `text1[0...i]` and `text2[0...j]`.
+   - Code Example:
+
+    ```cpp
+    int longestCommonSubsequence(string text1, string text2) {
+        int m = text1.size(), n = text2.size();
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+        
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (text1[i - 1] == text2[j - 1])
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                else
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+        
+        return dp[m][n];
+    }
+    ```
+
+3. **Maximum Sum Increasing Subsequence**:
+   - Problem: Given an array of integers, find the sum of the maximum sum subsequence such that the integers in the subsequence are sorted in increasing order.
+   - Solution: This can also be solved using dynamic programming. You can define a DP array where `dp[i]` represents the maximum sum of increasing subsequence ending at index `i`.
+   - Code Example:
+
+    ```cpp
+    int maxSumIncreasingSubsequence(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> dp(n);
+        int maxSum = INT_MIN;
+        
+        for (int i = 0; i < n; i++) {
+            dp[i] = nums[i];
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    dp[i] = max(dp[i], dp[j] + nums[i]);
+                }
+            }
+            maxSum = max(maxSum, dp[i]);
+        }
+        
+        return maxSum;
+    }
+    ```
+
+These are just a few examples of subsequence-based problems in C++. There are many more variations and complexities of these problems, and they often involve dynamic programming techniques for efficient solutions.
+
+### 1. Algorithms & Data Structures (C++): Sum Closest
+
+To find the sum of two numbers in an array that are closest to a given target value, you can follow these steps:
+
+1. Sort the array.
+2. Initialize two pointers, one at the beginning (left) and the other at the end (right) of the sorted array.
+3. While the left pointer is less than the right pointer:
+   a. Calculate the sum of the current elements pointed by the left and right pointers.
+   b. Update the closest sum found so far if the absolute difference between the current sum and the target is less than the absolute difference between the closest sum and the target.
+   c. If the current sum is less than the target, move the left pointer to the right (increasing the sum).
+   d. If the current sum is greater than the target, move the right pointer to the left (decreasing the sum).
+4. Repeat until the pointers meet.
+
+Here's a C++ implementation of the algorithm:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+
+using namespace std;
+
+pair<int, int> sumClosest(vector<int>& nums, int target) {
+    sort(nums.begin(), nums.end()); // Sort the array
+    int closestSum = INT_MAX;
+    pair<int, int> result;
+
+    int left = 0;
+    int right = nums.size() - 1;
+
+    while (left < right) {
+        int sum = nums[left] + nums[right];
+        int diff = abs(sum - target);
+
+        if (diff < abs(closestSum - target)) {
+            closestSum = sum;
+            result = {nums[left], nums[right]};
+        }
+
+        if (sum < target) {
+            left++;
+        } else if (sum > target) {
+            right--;
+        } else { // If sum equals target, this is the closest possible sum
+            return {nums[left], nums[right]};
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    vector<int> nums = {1, 2, 4, 7, 11, 15};
+    int target = 18;
+    pair<int, int> closestPair = sumClosest(nums, target);
+
+    cout << "Closest pair summing to " << target << ": " << closestPair.first << " and " << closestPair.second << endl;
+
+    return 0;
+}
+```
+
+This code demonstrates how to find the pair of numbers whose sum is closest to the target value in a given array. You can adjust the `nums` array and `target` value as per your requirement.
+
+### 1. Algorithms & Data Structures (C++): Trapping Rain Water - Arrays
+
+Trapping Rain Water problem is a classic algorithmic problem that can be solved efficiently using arrays. The problem statement goes like this: given an elevation map represented by an array where the width of each bar is 1, calculate how much water it can trap after raining.
+
+Here's a simple approach to solve this problem efficiently:
+
+1. **Scan from left to right to find the maximum height of bars on the left of each bar.**
+2. **Scan from right to left to find the maximum height of bars on the right of each bar.**
+3. **Iterate over each bar and calculate the trapped water at that position as min(max_left, max_right) - height of the current bar.**
+
+Here's a sample implementation in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int trap(vector<int>& height) {
+    int n = height.size();
+    if (n == 0) return 0;
+
+    vector<int> max_left(n);
+    vector<int> max_right(n);
+
+    // Fill max_left array
+    max_left[0] = height[0];
+    for (int i = 1; i < n; ++i) {
+        max_left[i] = max(max_left[i - 1], height[i]);
+    }
+
+    // Fill max_right array
+    max_right[n - 1] = height[n - 1];
+    for (int i = n - 2; i >= 0; --i) {
+        max_right[i] = max(max_right[i + 1], height[i]);
+    }
+
+    int water = 0;
+    // Calculate trapped water at each position
+    for (int i = 0; i < n; ++i) {
+        water += min(max_left[i], max_right[i]) - height[i];
+    }
+
+    return water;
+}
+
+int main() {
+    vector<int> height = {0,1,0,2,1,0,1,3,2,1,2,1};
+    cout << "Trapped water: " << trap(height) << endl;
+    return 0;
+}
+```
+
+This code snippet first calculates the maximum height of bars to the left and right of each bar in two separate passes. Then, it calculates the trapped water at each position by taking the minimum of the maximum heights on both sides and subtracting the height of the current bar. Finally, it sums up all the trapped water to get the total amount of trapped rainwater.
+
+### 1. Algorithms & Data Structures (C++): Flood Fill - Arrays
+
+Certainly! Flood fill is a classic algorithm used to traverse and manipulate connected regions in a grid or an array. It's commonly used in image processing, maze-solving, and other graphical applications. The basic idea is to start from a given point in the grid and explore its neighbors, recursively applying some operation until a certain condition is met. Here's a C++ implementation of the flood fill algorithm:
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Define the directions (up, down, left, right)
+const int dx[] = {-1, 1, 0, 0};
+const int dy[] = {0, 0, -1, 1};
+
+// Function to perform flood fill
+void floodFill(vector<vector<int>>& grid, int x, int y, int newColor, int oldColor) {
+    // Boundary check
+    if (x < 0 || x >= grid.size() || y < 0 || y >= grid[0].size() || grid[x][y] != oldColor)
+        return;
+
+    // Change the color of the current cell
+    grid[x][y] = newColor;
+
+    // Recursively flood fill adjacent cells
+    for (int i = 0; i < 4; ++i) {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+        floodFill(grid, nx, ny, newColor, oldColor);
+    }
+}
+
+// Function to print the grid
+void printGrid(const vector<vector<int>>& grid) {
+    for (const auto& row : grid) {
+        for (int cell : row) {
+            cout << cell << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    vector<vector<int>> grid = {
+        {1, 1, 1, 1, 1},
+        {1, 1, 0, 0, 1},
+        {1, 0, 1, 0, 1},
+        {1, 1, 1, 1, 1}
+    };
+
+    cout << "Original Grid:" << endl;
+    printGrid(grid);
+
+    int x = 1, y = 2; // Starting point
+    int newColor = 2; // New color to flood fill with
+    int oldColor = grid[x][y]; // Old color of the starting point
+
+    floodFill(grid, x, y, newColor, oldColor);
+
+    cout << "\nGrid after flood fill:" << endl;
+    printGrid(grid);
+
+    return 0;
+}
+```
+
+In this implementation:
+
+- We define a 2D vector `grid` representing the array.
+- `floodFill` function performs the flood fill algorithm recursively. It takes the grid, coordinates of the starting point `(x, y)`, the new color to fill, and the old color of the starting point as parameters.
+- `printGrid` function simply prints the grid.
+- In the `main` function, we define a sample grid, choose a starting point `(x, y)`, specify the new color, and call `floodFill` function with these parameters.
+- Finally, we print the grid before and after the flood fill operation.
+
+You can adjust the grid, starting point, and new color as needed to experiment with different scenarios.

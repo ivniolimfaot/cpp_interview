@@ -9687,3 +9687,669 @@ int lcs(string s1, string s2, int m, int n) {
 This recursive solution has exponential time complexity. By using dynamic programming, we can optimize it to have a time complexity of O(m*n), where m and n are the lengths of the input strings.
 
 Understanding and implementing dynamic programming algorithms for subsequence problems is essential for tackling various real-world challenges efficiently.
+
+### 1. Algorithms & Data Structures (C++): Array Partition
+
+Array partitioning involves dividing an array into two parts such that certain conditions are met. One common problem in this domain is the partition problem, which is typically stated as:
+
+"Given an array of integers, partition the array into two subsets such that the difference between the sums of the subsets is minimized."
+
+#### Approach
+
+To solve this problem efficiently, dynamic programming (DP) is commonly used. The idea is to use a DP table to keep track of the achievable sums up to half the total sum of the array. This allows us to determine the closest possible sum to half of the total sum, and from there derive the partition with the minimal difference.
+
+#### Steps
+
+1. **Calculate Total Sum**: Compute the total sum of the array.
+2. **Initialize DP Table**: Create a boolean DP table `dp` where `dp[i][j]` indicates whether a subset with sum `j` can be formed using the first `i` numbers.
+3. **Populate DP Table**: Update the DP table using the array elements.
+4. **Find the Closest Sum**: Find the largest `j` such that `dp[n][j]` is true and `j` is less than or equal to half of the total sum.
+5. **Calculate Minimum Difference**: The difference between the two subset sums is derived from the total sum and the closest sum found in the DP table.
+
+#### Implementation
+
+Here is a C++ implementation of the array partition problem:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <numeric> // for accumulate
+#include <algorithm> // for max
+
+int findMinPartitionDiff(const std::vector<int>& nums) {
+    int totalSum = std::accumulate(nums.begin(), nums.end(), 0);
+    int n = nums.size();
+    int halfSum = totalSum / 2;
+
+    // DP table to store which sums are possible with subsets
+    std::vector<std::vector<bool>> dp(n + 1, std::vector<bool>(halfSum + 1, false));
+
+    // It's always possible to form a subset with sum 0 (the empty subset)
+    for (int i = 0; i <= n; ++i) {
+        dp[i][0] = true;
+    }
+
+    // Populate the DP table
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 1; j <= halfSum; ++j) {
+            if (nums[i - 1] <= j) {
+                dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];
+            } else {
+                dp[i][j] = dp[i - 1][j];
+            }
+        }
+    }
+
+    // Find the largest sum j that is achievable and closest to half of the total sum
+    int closestSum = 0;
+    for (int j = halfSum; j >= 0; --j) {
+        if (dp[n][j]) {
+            closestSum = j;
+            break;
+        }
+    }
+
+    int subset1 = closestSum;
+    int subset2 = totalSum - closestSum;
+
+    // The minimum difference between the two subset sums
+    return std::abs(subset1 - subset2);
+}
+
+int main() {
+    std::vector<int> nums = {1, 6, 11, 5};
+    int minDiff = findMinPartitionDiff(nums);
+    std::cout << "The minimum difference between two subsets is: " << minDiff << std::endl;
+    return 0;
+}
+```
+
+#### Explanation
+
+1. **Total Sum Calculation**: `totalSum` is computed using `std::accumulate`.
+2. **DP Table Initialization**: The DP table `dp` is initialized with dimensions `(n+1) x (halfSum+1)`.
+3. **Subset Sum Possibilities**: The DP table is filled where `dp[i][j]` tells if a subset sum `j` can be achieved using the first `i` elements.
+4. **Finding Closest Sum**: We iterate backward to find the largest `j` such that `dp[n][j]` is true and less than or equal to `halfSum`.
+5. **Calculate Minimum Difference**: The difference between the subset sums is the absolute difference between `subset1` and `subset2`.
+
+This approach ensures that we find the partition with the minimum difference efficiently using dynamic programming.
+
+### 1. Algorithms & Data Structures (C++): Min Array Jumps
+
+Sure, let's discuss an algorithm to find the minimum number of jumps required to reach the end of an array. This problem can be solved using dynamic programming.
+
+Here's the basic idea:
+
+1. Initialize an array `minJumps` of the same size as the input array, where `minJumps[i]` represents the minimum number of jumps required to reach the `i`-th position from the start.
+2. Initialize `minJumps[0]` to 0, as it takes 0 jumps to reach the start position.
+3. Iterate over each position `i` from 1 to the end of the array.
+4. For each position `i`, iterate over all positions `j` from 0 to `i - 1`.
+5. For each `j`, if it is reachable from `j` and `j` itself is reachable from the start, update `minJumps[i]` to the minimum of its current value and `minJumps[j] + 1`.
+6. Finally, return `minJumps` at the last position, which represents the minimum number of jumps required to reach the end.
+
+Here's a sample implementation in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+int minArrayJumps(vector<int>& nums) {
+    int n = nums.size();
+    vector<int> minJumps(n, INT_MAX);
+    minJumps[0] = 0;
+
+    for (int i = 1; i < n; ++i) {
+        for (int j = 0; j < i; ++j) {
+            if (j + nums[j] >= i && minJumps[j] != INT_MAX) {
+                minJumps[i] = min(minJumps[i], minJumps[j] + 1);
+            }
+        }
+    }
+
+    return minJumps[n - 1];
+}
+
+int main() {
+    vector<int> nums = {2, 3, 1, 1, 4};
+    cout << "Minimum number of jumps: " << minArrayJumps(nums) << endl;
+    return 0;
+}
+```
+
+This implementation should output `Minimum number of jumps: 2` for the given input array `{2, 3, 1, 1, 4}`.
+
+### 1. Algorithms & Data Structures (C++): Matrix Exponentiation [RETURN]
+
+Matrix exponentiation is a powerful technique used in various algorithms, particularly in dynamic programming and number theory, to efficiently compute the power of a matrix. It's commonly used in problems involving recurrence relations, such as Fibonacci numbers, and in solving linear homogeneous recurrence relations with constant coefficients.
+
+Here's a basic outline of how matrix exponentiation works in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+typedef vector<vector<long long>> Matrix;
+
+// Function to multiply two matrices
+Matrix multiply(const Matrix &a, const Matrix &b) {
+    int n = a.size();
+    int m = b[0].size();
+    int p = a[0].size();
+    Matrix result(n, vector<long long>(m, 0));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            for (int k = 0; k < p; ++k) {
+                result[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+    return result;
+}
+
+// Function to raise a matrix to power n
+Matrix power(const Matrix &base, int n) {
+    int m = base.size();
+    Matrix result(m, vector<long long>(m, 0));
+    for (int i = 0; i < m; ++i) {
+        result[i][i] = 1; // Initialize result to identity matrix
+    }
+    Matrix temp = base;
+    while (n > 0) {
+        if (n & 1) {
+            result = multiply(result, temp); // If n is odd, multiply result with base
+        }
+        temp = multiply(temp, temp); // Square the base
+        n >>= 1;
+    }
+    return result;
+}
+
+int main() {
+    // Example usage
+    Matrix base = {{1, 1}, {1, 0}}; // Fibonacci matrix
+    int n = 10; // Compute Fibonacci(10)
+    Matrix result = power(base, n);
+    cout << "Fibonacci(" << n << ") is: " << result[0][1] << endl;
+    return 0;
+}
+```
+
+This code defines two functions: `multiply()` to multiply two matrices, and `power()` to compute the power of a matrix. The `power()` function uses binary exponentiation to efficiently compute the result.
+
+You can customize the matrix type and operations according to your specific problem requirements. Matrix exponentiation is incredibly versatile and can be applied to a wide range of problems in algorithm design.
+
+### 1. Algorithms & Data Structures (C++): Matrix Exponentiation and Dynamic Programming
+
+Matrix exponentiation and dynamic programming are powerful techniques used in algorithm design and optimization, particularly in solving problems related to combinatorics, graph theory, and optimization. Let's delve into each of these techniques in the context of C++.
+
+#### Matrix Exponentiation
+
+Matrix exponentiation is a technique used to efficiently compute the power of a square matrix. It's particularly useful in problems where you need to compute the nth term of a linear recurrence relation or solve certain types of dynamic programming problems efficiently.
+
+Here's a high-level overview of how matrix exponentiation works:
+
+1. **Define the matrix**: Identify the matrix representation of the problem. For example, if you're dealing with a linear recurrence relation, the matrix might represent the coefficients of the recurrence relation.
+
+2. **Express the problem as a matrix power**: Convert the problem into a matrix power problem. For instance, if you're trying to find the nth term of a sequence, represent it as the nth power of the transition matrix.
+
+3. **Compute the matrix power efficiently**: Use techniques like exponentiation by squaring to compute the nth power of the matrix efficiently in O(log n) time.
+
+4. **Extract the result**: Once you have the nth power of the matrix, extract the desired result from it. This might involve extracting specific elements from the resulting matrix depending on the problem.
+
+Here's a basic implementation of matrix exponentiation in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+typedef vector<vector<int>> Matrix;
+
+Matrix multiply(const Matrix &a, const Matrix &b) {
+    int n = a.size();
+    int m = b[0].size();
+    int p = a[0].size();
+    Matrix c(n, vector<int>(m, 0));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            for (int k = 0; k < p; ++k) {
+                c[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+    return c;
+}
+
+Matrix power(const Matrix &base, int exponent) {
+    int n = base.size();
+    Matrix result(n, vector<int>(n, 0));
+    for (int i = 0; i < n; ++i) {
+        result[i][i] = 1; // Initialize result to identity matrix
+    }
+    Matrix A = base;
+    while (exponent > 0) {
+        if (exponent % 2 == 1) {
+            result = multiply(result, A);
+        }
+        A = multiply(A, A);
+        exponent /= 2;
+    }
+    return result;
+}
+
+int main() {
+    // Example usage
+    Matrix base = {{1, 1}, {1, 0}}; // Fibonacci sequence matrix
+    int exponent = 5;
+    Matrix result = power(base, exponent);
+    cout << "Fibonacci(5) = " << result[0][1] << endl; // Output: 5
+    return 0;
+}
+```
+
+This code demonstrates how to use matrix exponentiation to efficiently compute Fibonacci numbers.
+
+#### Dynamic Programming
+
+Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems and solving each subproblem only once, storing their solutions to avoid redundant computations. It's especially useful for optimization problems and combinatorial problems.
+
+Here's a general approach to dynamic programming:
+
+1. **Identify the problem structure**: Understand the problem and identify the recursive structure of its solution. Determine the parameters that define the subproblems.
+
+2. **Define the recurrence relation**: Formulate a recurrence relation that expresses the solution to the problem in terms of solutions to its subproblems.
+
+3. **Memoization or bottom-up approach**: Implement the solution using either memoization (top-down approach) or a bottom-up approach. In memoization, you store the solutions to subproblems in a table to avoid redundant computations. In the bottom-up approach, you iteratively compute the solutions to subproblems in a bottom-up manner.
+
+4. **Return the solution**: Once you've computed the solution to the original problem, return it.
+
+Here's a simple example of dynamic programming in C++ to compute the nth Fibonacci number:
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int fibonacci(int n) {
+    vector<int> dp(n + 1, 0);
+    dp[0] = 0;
+    dp[1] = 1;
+    for (int i = 2; i <= n; ++i) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    return dp[n];
+}
+
+int main() {
+    int n = 5; // Example: compute Fibonacci(5)
+    cout << "Fibonacci(5) = " << fibonacci(n) << endl; // Output: 5
+    return 0;
+}
+```
+
+This code demonstrates how to use dynamic programming to efficiently compute Fibonacci numbers. The time complexity of this approach is O(n).
+
+### 1. Algorithms & Data Structures (C++): Matrix Exponentiation and Dynamic Programming: Binary Exponentiation
+
+Binary exponentiation, also known as exponentiation by squaring, is a technique to efficiently compute large powers of a number using logarithmic time complexity. It's commonly used in various algorithms, including matrix exponentiation. Here's how it works:
+
+Given a base `a` and an exponent `n`, the goal is to compute \( a^n \).
+
+The algorithm proceeds as follows:
+
+1. Start with the result `result` initialized to 1.
+2. Loop until the exponent `n` becomes zero:
+   - If the least significant bit of `n` is 1 (i.e., `n % 2 == 1`), multiply `result` by `a`.
+   - Square `a`.
+   - Right-shift `n` by 1 (i.e., `n = n / 2`).
+3. Return the final result.
+
+Here's the implementation of binary exponentiation in C++:
+
+```cpp
+long long binaryExponentiation(long long base, long long exponent) {
+    long long result = 1;
+    while (exponent > 0) {
+        if (exponent & 1) // If exponent is odd
+            result *= base;
+        base *= base; // Square the base
+        exponent >>= 1; // Right shift the exponent by 1
+    }
+    return result;
+}
+```
+
+You can use this function to efficiently compute large powers of a number. For example:
+
+```cpp
+#include <iostream>
+
+int main() {
+    long long base = 2;
+    long long exponent = 10;
+    long long result = binaryExponentiation(base, exponent);
+    std::cout << base << "^" << exponent << " = " << result << std::endl;
+    return 0;
+}
+```
+
+This will output: `2^10 = 1024`.
+
+### 1. Algorithms & Data Structures (C++): Matrix Exponentiation and Dynamic Programming: Fast Multiplication
+
+Matrix exponentiation and dynamic programming are powerful techniques used in algorithm design and optimization. When combined, they can lead to efficient solutions for various computational problems. One common application is fast multiplication of matrices using exponentiation.
+
+Here's how it works:
+
+1. **Matrix Representation**: In C++, matrices can be represented using 2D arrays or vectors of vectors.
+
+2. **Matrix Multiplication**: The standard matrix multiplication algorithm has a time complexity of O(n^3) for two n × n matrices. However, by using matrix exponentiation, we can reduce the time complexity significantly for multiplying a matrix with itself multiple times.
+
+3. **Exponentiation by Squaring**: This is a technique to efficiently compute the power of a matrix. Instead of multiplying the matrix with itself repeatedly, we use a divide-and-conquer approach to reduce the number of multiplications needed.
+
+Here's a basic implementation in C++:
+
+```cpp
+#include <vector>
+
+using namespace std;
+
+// Define a matrix type
+typedef vector<vector<long long>> Matrix;
+
+// Function to multiply two matrices
+Matrix multiply(const Matrix& a, const Matrix& b) {
+    int n = a.size();
+    Matrix c(n, vector<long long>(n, 0));
+    for (int i = 0; i < n; ++i)
+        for (int j = 0; j < n; ++j)
+            for (int k = 0; k < n; ++k)
+                c[i][j] += a[i][k] * b[k][j];
+    return c;
+}
+
+// Function for fast matrix exponentiation
+Matrix matrix_power(const Matrix& base, long long exp) {
+    int n = base.size();
+    Matrix result(n, vector<long long>(n, 0));
+    // Initialize result matrix as identity matrix
+    for (int i = 0; i < n; ++i)
+        result[i][i] = 1;
+
+    Matrix temp = base;
+    while (exp > 0) {
+        if (exp % 2 == 1)
+            result = multiply(result, temp);
+        temp = multiply(temp, temp);
+        exp /= 2;
+    }
+    return result;
+}
+
+int main() {
+    // Example usage
+    Matrix base = {{1, 1}, {1, 0}}; // Fibonacci matrix
+    long long exponent = 5;
+    Matrix result = matrix_power(base, exponent);
+    // Output the result
+    for (const auto& row : result) {
+        for (long long element : row) {
+            cout << element << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
+```
+
+In this implementation:
+
+- `multiply` function computes the product of two matrices.
+- `matrix_power` function calculates the power of a matrix using exponentiation by squaring.
+- `main` function demonstrates how to use `matrix_power` to compute the nth power of a matrix.
+
+This approach significantly reduces the time complexity for computing powers of matrices, making it particularly useful in problems that require repeated matrix multiplication.
+
+### 1. Algorithms & Data Structures (C++): Matrix Exponentiation and Dynamic Programming: Fibosum (spoj)
+
+Certainly! The problem "Fibosum" on SPOJ involves a combination of matrix exponentiation and dynamic programming to efficiently compute the sum of Fibonacci numbers in a given range. Let's break down the problem and outline the approach to solve it:
+
+#### Problem Statement
+
+Given two integers \( A \) and \( B \), you need to find the sum of Fibonacci numbers between the \( A \)th and \( B \)th Fibonacci numbers (inclusive).
+
+#### Approach
+
+1. **Calculate Fibonacci Numbers**: We need a way to efficiently calculate Fibonacci numbers. One common method is to use matrix exponentiation to compute Fibonacci numbers in logarithmic time.
+
+2. **Compute Prefix Sum of Fibonacci Numbers**: Once we have a fast way to calculate Fibonacci numbers, we can use dynamic programming to compute the prefix sum of Fibonacci numbers up to a certain index. This will enable us to find the sum of Fibonacci numbers in a given range efficiently.
+
+3. **Prefix Sum**: Let's denote the prefix sum array as \( F \), where \( F[i] \) represents the sum of Fibonacci numbers from 1st to \( i \)th Fibonacci number.
+
+4. **Compute Answer**: With the prefix sum array, we can easily compute the sum of Fibonacci numbers between \( A \) and \( B \) as \( F[B+2] - F[A+1] \).
+
+#### Implementation Steps
+
+1. Calculate Fibonacci numbers using matrix exponentiation.
+2. Compute prefix sum of Fibonacci numbers.
+3. Calculate the sum of Fibonacci numbers between \( A \) and \( B \) using the prefix sum array.
+
+#### Code (C++)
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+typedef vector<vector<long long>> Matrix;
+
+Matrix multiply(const Matrix &a, const Matrix &b) {
+    int n = a.size();
+    Matrix c(n, vector<long long>(n));
+    for (int i = 0; i < n; ++i)
+        for (int j = 0; j < n; ++j)
+            for (int k = 0; k < n; ++k)
+                c[i][j] = (c[i][j] + a[i][k] * b[k][j]) % 1000000007;
+    return c;
+}
+
+Matrix power(const Matrix &a, long long n) {
+    if (n == 1) return a;
+    if (n % 2 == 1) return multiply(a, power(a, n - 1));
+    Matrix half = power(a, n / 2);
+    return multiply(half, half);
+}
+
+long long fib(int n) {
+    if (n <= 1) return n;
+    Matrix T = {{1, 1}, {1, 0}};
+    T = power(T, n - 1);
+    return T[0][0];
+}
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int a, b;
+        cin >> a >> b;
+        long long prefixSumB = fib(b + 2);
+        long long prefixSumA = fib(a + 1);
+        long long result = (prefixSumB - prefixSumA + 1000000007) % 1000000007;
+        cout << result << endl;
+    }
+    return 0;
+}
+```
+
+This code calculates the sum of Fibonacci numbers between \( A \) and \( B \) for each test case and prints the result. It uses matrix exponentiation to compute Fibonacci numbers efficiently and then calculates the prefix sum to get the final answer. Make sure to handle modulo operations properly to avoid overflow issues.
+
+### 1. Algorithms & Data Structures (C++): Matrix Exponentiation and Dynamic Programming: Matrix Exponentiation
+
+Matrix exponentiation is a powerful technique used in algorithms to efficiently compute the power of a matrix. It's particularly useful in solving various problems in dynamic programming, combinatorics, graph theory, and more.
+
+Here's a basic overview of matrix exponentiation:
+
+#### Matrix Exponentiation Technique
+
+1. **Basic Idea**: Given a square matrix A and a non-negative integer k, compute \( A^k \) efficiently.
+
+2. **Naive Approach**: The naïve approach involves multiplying the matrix A with itself k times, which is not efficient and takes O(n^3 * k) time, where n is the dimension of the matrix.
+
+3. **Optimized Approach (Matrix Exponentiation)**:
+   - Utilizes the concept of divide and conquer.
+   - Exploits the property of exponentiation: \( A^{2k} = (A^k)^2 \) and \( A^{2k+1} = A * (A^k)^2 \).
+   - Uses binary exponentiation to compute \( A^k \) in O(n^3 * log(k)) time.
+
+4. **Algorithm**:
+   - Start with an identity matrix I (dimension same as A).
+   - Iterate through the binary representation of k:
+     - If the current bit is set (1), multiply I by A.
+     - Square A in each iteration.
+   - At the end of the iteration, I will hold the result \( A^k \).
+
+#### Applications
+
+- **Fibonacci Sequence**: Matrix exponentiation can be used to compute the nth Fibonacci number efficiently.
+- **Linear Recurrence Relations**: Solving linear recurrence relations efficiently using matrix exponentiation.
+- **Graph Theory**: Finding the number of walks of length k between two nodes in a graph.
+- **Optimization Problems**: Solving optimization problems where dynamic programming or recursion is involved.
+
+#### Example (Fibonacci Sequence)
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+typedef vector<vector<long long>> Matrix;
+
+Matrix matrixMultiply(const Matrix &a, const Matrix &b) {
+    int n = a.size();
+    int m = b[0].size();
+    int p = b.size();
+    Matrix result(n, vector<long long>(m));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            for (int k = 0; k < p; ++k) {
+                result[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+    return result;
+}
+
+Matrix matrixExponentiation(const Matrix &a, long long k) {
+    int n = a.size();
+    Matrix result(n, vector<long long>(n));
+    for (int i = 0; i < n; ++i) {
+        result[i][i] = 1; // Identity matrix
+    }
+    Matrix base = a;
+    while (k > 0) {
+        if (k & 1) {
+            result = matrixMultiply(result, base);
+        }
+        base = matrixMultiply(base, base);
+        k >>= 1;
+    }
+    return result;
+}
+
+int main() {
+    Matrix fibonacciMatrix = {{1, 1}, {1, 0}};
+    int n = 10;
+    Matrix result = matrixExponentiation(fibonacciMatrix, n - 1);
+    cout << "The " << n << "th Fibonacci number is: " << result[0][0] << endl;
+    return 0;
+}
+```
+
+Matrix exponentiation is a versatile tool that can significantly speed up computations in various algorithms, especially those dealing with large powers and optimization problems.
+
+### 1. Algorithms & Data Structures (C++): Matrix Exponentiation and Dynamic Programming: Modular Exponentiation
+
+Certainly! Matrix exponentiation and modular exponentiation are two important concepts in algorithms and data structures, especially in the context of competitive programming and algorithm optimization. Let's discuss them both briefly:
+
+#### Matrix Exponentiation
+
+Matrix exponentiation is a technique used to efficiently compute the power of a matrix. It's particularly useful in algorithms involving dynamic programming, especially when dealing with problems related to sequences or graphs. The basic idea is to represent a problem state or transition as a matrix, and then use exponentiation to efficiently compute the result after a certain number of steps.
+
+Here's a brief outline of how matrix exponentiation works:
+
+1. **Represent the problem**: Define a matrix that represents the state or transition of the problem you're trying to solve. For example, if you're dealing with a sequence, each element of the matrix might represent the number of ways to transition from one state to another.
+
+2. **Compute the power**: Use matrix exponentiation to efficiently compute the power of the matrix. This can be done using techniques like binary exponentiation, which reduces the number of multiplications required.
+
+3. **Extract the result**: After computing the desired power of the matrix, extract the relevant information from the resulting matrix to obtain the final answer to the problem.
+
+Matrix exponentiation is often used in problems involving Fibonacci numbers, recurrence relations, and graph algorithms like finding the shortest paths in a graph.
+
+#### Dynamic Programming: Modular Exponentiation
+
+Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems and solving each subproblem only once, storing the solutions to subproblems in a table (memoization) to avoid redundant computations. It's widely used in algorithm design and optimization.
+
+Modular exponentiation is a technique used to efficiently compute large powers of a number modulo another number. It's commonly used in cryptography and number theory, particularly in applications involving large integers.
+
+Here's a basic overview of how modular exponentiation works:
+
+1. **Start with a base and exponent**: Given a base (often denoted as `base`) and an exponent (often denoted as `exp`), the goal is to compute `base^exp % modulus`.
+
+2. **Repeated squaring**: Break down the exponent into its binary representation. For each bit in the binary representation of the exponent, square the base and take the result modulo the modulus. This process effectively reduces the number of multiplications required.
+
+3. **Modular arithmetic**: After each multiplication, take the result modulo the modulus to keep the numbers small and prevent overflow.
+
+4. **Combine the results**: Multiply the intermediate results together (modularly) to obtain the final result.
+
+Modular exponentiation is particularly useful in situations where dealing with large numbers or preventing overflow is necessary, such as cryptographic algorithms like RSA.
+
+In C++, you can implement both techniques using classes and functions. Libraries like `boost::multiprecision` provide support for arbitrary precision arithmetic, which is often necessary when dealing with large numbers in modular exponentiation.
+
+If you'd like to dive deeper into any of these topics or have specific questions, feel free to ask!
+
+### 1. Algorithms & Data Structures (C++): Sum of Maximum Weights
+
+To solve the problem of finding the sum of maximum weights from an array of integers, you can use dynamic programming. Here's how you can do it in C++:
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int maxWeightSum(vector<int>& nums) {
+    int n = nums.size();
+    if (n == 0) return 0;
+
+    // dp[i][0] represents the maximum sum when the i-th element is not included
+    // dp[i][1] represents the maximum sum when the i-th element is included
+    vector<vector<int>> dp(n, vector<int>(2));
+
+    dp[0][0] = 0;
+    dp[0][1] = nums[0];
+
+    for (int i = 1; i < n; ++i) {
+        // If we don't include the i-th element, we take the maximum sum so far
+        dp[i][0] = max(dp[i-1][0], dp[i-1][1]);
+
+        // If we include the i-th element, we add it to the maximum sum without the previous element
+        dp[i][1] = dp[i-1][0] + nums[i];
+    }
+
+    // Return the maximum of including or excluding the last element
+    return max(dp[n-1][0], dp[n-1][1]);
+}
+
+int main() {
+    vector<int> nums = {2, 1, 5, 8, 4}; // Example array
+    cout << "Maximum weight sum: " << maxWeightSum(nums) << endl;
+    return 0;
+}
+```
+
+This code defines a function `maxWeightSum` that takes a vector of integers and returns the maximum sum of weights. The function uses dynamic programming to calculate the maximum sum considering each element's inclusion and exclusion. Finally, it returns the maximum sum considering the last element included or excluded.

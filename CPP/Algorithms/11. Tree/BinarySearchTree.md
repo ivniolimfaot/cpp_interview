@@ -11713,3 +11713,110 @@ Here are the key properties of a Red-Black Tree:
 By maintaining these properties, Red-Black Trees guarantee that the longest path from the root to any leaf is no more than twice as long as the shortest path, ensuring that the tree remains balanced.
 
 Operations like insertion, deletion, and search in Red-Black Trees have a time complexity of O(log n), where n is the number of nodes in the tree, because the tree is always balanced according to the defined properties. This makes Red-Black Trees particularly useful in scenarios where dynamic sets are needed, such as in implementing associative arrays, map data structures, and as the basis for many efficient algorithms and data structures in computer science.
+
+### 1. Algorithms & Data Structures (C++): Count of Smaller Numbers
+
+Certainly! Counting the number of smaller elements to the right of each element in an array is a classic problem that can be solved using various algorithms and data structures in C++. Here's an outline of a solution using a Binary Search Tree (BST) approach:
+
+#### Problem Statement
+
+Given an array of integers, for each element, count how many elements to its right are smaller than itself.
+
+#### Example
+
+**Input**: [5, 2, 6, 1]
+
+**Output**: [2, 1, 1, 0]
+
+#### Approach
+
+We'll use a self-balancing Binary Search Tree (BST) to efficiently count the number of smaller elements to the right of each element in the array. The basic idea is to traverse the array from right to left and for each element, insert it into the BST while keeping track of the number of elements that are smaller than the current element.
+
+#### Detailed Steps
+
+1. Traverse the array from right to left.
+2. For each element:
+   - Insert it into the BST.
+   - Count the number of elements that are smaller than the current element.
+3. Maintain a count of smaller elements and store it in an output array.
+4. The insertion operation in the BST should be modified to count the number of smaller elements during the insertion process.
+
+#### Implementation
+
+Here is the C++ implementation of the described approach:
+
+```cpp
+#include <iostream>
+#include <vector>
+
+class TreeNode {
+public:
+    int val;
+    int left_count;  // Number of nodes in the left subtree
+    int count;  // Number of occurrences of the value
+    TreeNode* left;
+    TreeNode* right;
+    
+    TreeNode(int v) : val(v), left_count(0), count(1), left(nullptr), right(nullptr) {}
+};
+
+class BST {
+public:
+    TreeNode* root;
+    
+    BST() : root(nullptr) {}
+    
+    int insert(int val) {
+        return insert(root, val);
+    }
+    
+private:
+    int insert(TreeNode*& node, int val) {
+        if (node == nullptr) {
+            node = new TreeNode(val);
+            return 0;
+        }
+        if (val < node->val) {
+            node->left_count++;
+            return insert(node->left, val);
+        } else if (val > node->val) {
+            return node->left_count + node->count + insert(node->right, val);
+        } else {
+            node->count++;
+            return node->left_count;
+        }
+    }
+};
+
+std::vector<int> countSmaller(std::vector<int>& nums) {
+    int n = nums.size();
+    std::vector<int> result(n);
+    BST bst;
+    
+    for (int i = n - 1; i >= 0; --i) {
+        result[i] = bst.insert(nums[i]);
+    }
+    
+    return result;
+}
+
+int main() {
+    std::vector<int> nums = {5, 2, 6, 1};
+    std::vector<int> result = countSmaller(nums);
+    
+    for (int i : result) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+    
+    return 0;
+}
+```
+
+#### Explanation
+
+- The `TreeNode` class represents a node in the BST, with additional fields to keep track of the count of nodes in the left subtree (`left_count`) and the count of occurrences of the node's value (`count`).
+- The `BST` class manages the BST and provides an `insert` method which inserts a value into the BST and returns the count of smaller elements to the right of the current element.
+- The `countSmaller` function processes the array from right to left, inserting each element into the BST and storing the count of smaller elements in the result array.
+
+This approach ensures that each insertion operation in the BST runs in average O(log n) time, making the overall time complexity approximately O(n log n), which is efficient for this problem.

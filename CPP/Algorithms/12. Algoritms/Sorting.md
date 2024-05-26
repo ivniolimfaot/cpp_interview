@@ -9090,3 +9090,23 @@ In this code:
 - `LinkedList` is the class representing the linked list and contains methods to append elements, display the list, and perform bubble sort.
 - The `bubbleSort()` method implements the bubble sort algorithm on the linked list.
 - In the `main()` function, a sample linked list is created and sorted using the `bubbleSort()` method.
+
+### 1. Algorithms & Data Structures (C++): Criteria used for Analysing Sorts
+
+When analyzing sorting algorithms in C++, there are several criteria you can use to evaluate their performance and suitability for different use cases. Here are some common criteria:
+
+1. **Time Complexity**: This refers to how the time taken by the algorithm increases with the size of the input data. It's often expressed using Big O notation. Common time complexities for sorting algorithms include O(n^2) for algorithms like Bubble Sort and Selection Sort, O(n log n) for efficient algorithms like Quick Sort, Merge Sort, and Heap Sort, and O(n) for linear time algorithms like Counting Sort and Radix Sort.
+
+2. **Space Complexity**: This refers to the amount of memory space required by the algorithm, often expressed in terms of the size of the input data. Some sorting algorithms are "in-place," meaning they use only a constant amount of extra space, while others may require additional memory proportional to the size of the input data.
+
+3. **Stability**: A sorting algorithm is stable if it preserves the relative order of equal elements in the sorted output as they appeared in the original input. For example, if you have two objects with the same key value, a stable sort will guarantee that the object appearing first in the input will also appear first in the sorted output.
+
+4. **Adaptability**: An adaptable sorting algorithm is one that can take advantage of pre-sorted or partially sorted input data to improve its performance. Adaptive algorithms can be particularly useful when dealing with data that is already somewhat sorted.
+
+5. **Comparison vs. Non-comparison**: Sorting algorithms can be broadly classified into comparison-based and non-comparison-based algorithms. Comparison-based algorithms rely on comparing elements of the input data to determine their order (e.g., Bubble Sort, Quick Sort), while non-comparison-based algorithms use other techniques such as counting or radix to achieve sorting (e.g., Counting Sort, Radix Sort).
+
+6. **Best, Worst, and Average Case Scenarios**: Sorting algorithms may perform differently depending on the characteristics of the input data. It's important to consider their behavior in best-case scenarios (e.g., when the input data is already sorted), worst-case scenarios (e.g., when the input data is in reverse order), and average-case scenarios (e.g., when the input data is randomly shuffled).
+
+7. **Implementation Complexity**: This refers to how complex or difficult it is to implement and maintain the algorithm's code. Some algorithms, while theoretically efficient, may be more challenging to implement correctly and efficiently in practice.
+
+By considering these criteria, you can choose the most appropriate sorting algorithm for your specific requirements, balancing factors such as efficiency, stability, and ease of implementation.

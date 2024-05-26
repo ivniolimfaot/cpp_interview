@@ -4683,3 +4683,65 @@ int main() {
 ```
 
 This implementation uses level order traversal (BFS) and maintains a map to store nodes at each horizontal distance from the root. Finally, it constructs the result vector from the map. This code assumes that you already have a binary tree defined with TreeNode structure.
+
+### 1. Algorithms & Data Structures (C++): Traversal Operation
+
+Traversal operations are fundamental in algorithms and data structures, allowing us to visit and process each node or element in a data structure in a specific order. In the context of trees and graphs, traversal refers to the process of visiting all nodes/vertices in the structure exactly once.
+
+In C++, traversal operations are commonly implemented using recursion or iterative techniques, depending on the specific data structure and traversal order desired. Here are some common traversal operations:
+
+1. **Inorder Traversal**: For binary trees, visits nodes in the following order: left subtree, root, right subtree.
+
+```cpp
+void inorderTraversal(Node* root) {
+    if (root == nullptr) return;
+    inorderTraversal(root->left);
+    cout << root->data << " ";
+    inorderTraversal(root->right);
+}
+```
+
+1. **Preorder Traversal**: Visits nodes in the following order: root, left subtree, right subtree.
+
+```cpp
+void preorderTraversal(Node* root) {
+    if (root == nullptr) return;
+    cout << root->data << " ";
+    preorderTraversal(root->left);
+    preorderTraversal(root->right);
+}
+```
+
+1. **Postorder Traversal**: Visits nodes in the following order: left subtree, right subtree, root.
+
+```cpp
+void postorderTraversal(Node* root) {
+    if (root == nullptr) return;
+    postorderTraversal(root->left);
+    postorderTraversal(root->right);
+    cout << root->data << " ";
+}
+```
+
+1. **Level Order Traversal (Breadth-First Traversal)**: Visits nodes level by level, from left to right.
+
+```cpp
+void levelOrderTraversal(Node* root) {
+    if (root == nullptr) return;
+    queue<Node*> q;
+    q.push(root);
+    while (!q.empty()) {
+        Node* current = q.front();
+        q.pop();
+        cout << current->data << " ";
+        if (current->left != nullptr)
+            q.push(current->left);
+        if (current->right != nullptr)
+            q.push(current->right);
+    }
+}
+```
+
+For graphs, traversal algorithms like Depth-First Search (DFS) and Breadth-First Search (BFS) are commonly used. They can be implemented using similar recursive or iterative approaches, depending on the requirements of the problem.
+
+These are just basic examples, and there can be variations and optimizations depending on specific requirements and the characteristics of the data structure being traversed.
